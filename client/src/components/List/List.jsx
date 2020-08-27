@@ -1,0 +1,62 @@
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Droppable, Draggable } from 'react-beautiful-dnd'
+
+import Card from 'components/Card'
+import { ListWrapper, ListTitle } from './List.styled'
+import NewCardButton from './NewCardButton'
+import DRAG_DROP_TYPES from 'constants/dragDropTypes'
+
+const List = ({ cards, title, id, index, setCards }) => {
+	const handleAdd = (text) => {
+		setCards(index, [...cards, { title: text, id: text }])
+	}
+
+	return (
+		<Draggable 
+			draggableId={id} 
+			index={index}  
+			type={DRAG_DROP_TYPES.LIST}
+		>
+			{(provided) => (
+				<div
+					ref={provided.innerRef}
+					{...provided.draggableProps}
+				>
+					<ListWrapper>
+						<ListTitle {...provided.dragHandleProps} >{title}</ListTitle>
+						<Droppable droppableId={id} type={DRAG_DROP_TYPES.CARD}>
+							{(provided) => (
+								<div
+									ref={provided.innerRef}
+									{...provided.droppableProps}
+								>
+									{cards.map((card, i) => (
+										<Card key={card.id} index={i} {...card} />
+									))}
+									{provided.placeholder}
+								</div>
+							)}
+						</Droppable>
+						<NewCardButton
+							handleAdd={handleAdd}
+						/>
+					</ListWrapper>
+				</div>
+			)}
+		</Draggable>
+	)
+}
+
+List.propTypes = {
+	title: PropTypes.string.isRequired, 
+	id: PropTypes.string.isRequired,
+	cards: PropTypes.arrayOf(PropTypes.shape({
+		id: PropTypes.string.isRequired,
+		title: PropTypes.string.isRequired,
+	})).isRequired,
+	index: PropTypes.number.isRequired,
+	setCards: PropTypes.func.isRequired
+}
+
+export default List
