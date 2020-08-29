@@ -3,7 +3,8 @@ module.exports = {
     type List {
       _id: ID!,
       title: String!,
-      board_id: ID!
+      board_id: ID!,
+      cards: [Card]
     }
   `,
 

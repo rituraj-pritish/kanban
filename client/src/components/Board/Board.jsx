@@ -5,13 +5,15 @@ import { BoardWrapper } from './Board.styled'
 import List from 'components/List'
 import DRAG_DROP_TYPES from 'constants/dragDropTypes'
 import NewListButton from './NewListButton'
-import { useQuery } from '@apollo/client'
+import { useQuery, useMutation } from '@apollo/client'
 import { GET_BOARD } from 'graphql/queries/board'
 import { useParams } from 'react-router-dom'
+import { UPDATE_CARD_INDEX } from 'graphql/mutations/list'
 
 const Board = () => {
 	const { boardId } = useParams()
 	const [columns, setColumns] = useState(null)
+	const [updateCardIndex, d] = useMutation(UPDATE_CARD_INDEX)
 
 	const { data, loading } = useQuery(GET_BOARD, {
 		variables: { id: boardId }
@@ -19,13 +21,11 @@ const Board = () => {
 
 	useEffect(() => {
 		if (!loading && data.getBoard) {
-			setColumns(data.getBoard.lists)
+			setColumns([...data.getBoard.lists])
 		}
 	}, [loading, data])
-	console.log('da', data)
-	if (loading) return 'loading'
 
-	const { lists } = data.getBoard
+	if (loading) return 'loading'
 
 	const onDragEnd = (result) => {
 		const { destination, source, draggableId, type } = result
@@ -43,19 +43,45 @@ const Board = () => {
 			setColumns(newItems)
 			return
 		} else {
-			const sourceList = columns.find(({ id }) => id === source.droppableId).cards
-			const destinationList = columns.find(({ id }) => id === destination.droppableId).cards
-			const item = sourceList.find(({ id }) => id === draggableId)
+			updateCardIndex({
+				variables: {
+					old_index: source.index,
+					new_index: destination.index,
+					card_id: draggableId,
+					old_list: source.droppableId,
+					new_list: destination.droppableId
+				}
+			})
 
-			const sourceListIdx = sourceList.findIndex(({ id }) => id === source.droppableId)
-			const destinationListIdx = destinationList.findIndex(({ id }) => id === destination.droppableId)
+			const sourceList = columns.find(({ _id }) => _id === source.droppableId)
+			const destinationList = columns.find(({ _id }) => _id === destination.droppableId)
+			const item = sourceList.cards.find(({ _id }) => _id === draggableId)
 
-			sourceList.splice(source.index, 1)
-			destinationList.splice(destination.index, 0, item)
+			const sourceListIdx = columns.findIndex(({ _id }) => _id === source.droppableId)
+			const destinationListIdx = columns.findIndex(({ _id }) => _id === destination.droppableId)
+
+			const newSourceListCards = [...sourceList.cards]
+			const newDestinationListCards = [...destinationList.cards]
 
 			const newColumns = [...columns]
-			newColumns[sourceListIdx] = sourceList
-			newColumns[destinationListIdx] = destinationList
+
+			if (source.droppableId === destination.droppableId) {
+				newSourceListCards.splice(source.index, 1)
+				newSourceListCards.splice(destination.index, 0, item)
+
+				newColumns[sourceListIdx] = {
+					...sourceList,
+					cards: newSourceListCards
+				}
+			} else {
+				newSourceListCards.splice(source.index, 1)
+				newDestinationListCards.splice(destination.index, 0, item)
+
+				newColumns[sourceListIdx] = { ...sourceList, cards: newSourceListCards }
+				newColumns[destinationListIdx] = {
+					...destinationList, cards: newDestinationListCards
+				}
+			}
 			setColumns(newColumns)
 		}
 	}
@@ -91,5 +117,6 @@ const Board = () => {
 		</DragDropContext>
 	)
 }
+
 
 export default Board

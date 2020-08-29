@@ -1,4 +1,5 @@
 const List = require('../../models/List')
+const Board = require('../../models/Board')
 
 module.exports = {
 	Query: {
@@ -11,6 +12,10 @@ module.exports = {
 				board_id,
 				title
 			}).save()
+
+			const board = await Board.findById(board_id)
+			board.lists.push(list._id)
+			board.save()
 
 			return true
 		}

@@ -1,6 +1,7 @@
 module.exports = {
 	types: `
     type Card {
+      _id: ID!,
       title: String!
     }
   `, 
@@ -11,7 +12,16 @@ module.exports = {
 
 	mutations: `
     createCard(
-      title: String!
+      title: String!,
+      list_id: ID!
+    ): Boolean,
+
+    updateCardIndex(
+      old_index: Int!,
+      new_index: Int!,
+      card_id: ID!,
+      old_list: ID!,
+      new_list: ID!
     ): Boolean
   `
 }

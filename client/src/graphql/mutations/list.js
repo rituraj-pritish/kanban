@@ -10,3 +10,21 @@ export const CREATE_LIST = gql`
       )
   }
 `
+
+export const UPDATE_CARD_INDEX = gql`
+  mutation(
+    $old_index: Int!,
+    $new_index: Int!,
+    $card_id: ID!,
+    $old_list: ID!,
+    $new_list: ID!
+  ) {
+    updateCardIndex(
+      new_index: $new_index,
+      old_index: $old_index,
+      card_id: $card_id,
+      old_list: $old_list,
+      new_list: $new_list
+    )
+  }
+`

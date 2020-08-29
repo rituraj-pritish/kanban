@@ -5,8 +5,8 @@ const list = require('./list')
 
 module.exports = gql`
   ${card.types}
-  ${board.types}
   ${list.types}
+  ${board.types}
 
   type Query {
     ${card.queries}
@@ -15,7 +15,7 @@ module.exports = gql`
 
   type Mutation {
     ${card.mutations}
-    ${board.mutations}
     ${list.mutations}
+    ${board.mutations}
   }
 `

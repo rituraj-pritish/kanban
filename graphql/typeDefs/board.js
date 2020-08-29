@@ -3,7 +3,8 @@ module.exports = {
     type Board {
       _id: ID!,
       name: String!,
-      user_id: ID!
+      user_id: ID!,
+      lists: [List]
     }
   `,
 
