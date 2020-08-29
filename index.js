@@ -3,21 +3,12 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const { ApolloServer, gql } = require('apollo-server-express')
 
-const server = new ApolloServer({ 
-  typeDefs: gql`
-    type Test {
-      Test: String
-    }
+const typeDefs = require('./graphql/typeDefs')
+const resolvers = require('./graphql/resolvers')
 
-    type Query {
-      Test: [Test]
-    }
-  `, 
-  resolvers: {
-    Query: {
-      Test: () => {}
-    }
-  },
+const server = new ApolloServer({ 
+  typeDefs, 
+  resolvers,
   introspection: true,
   playground: true
 })
