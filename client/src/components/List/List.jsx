@@ -7,15 +7,15 @@ import { ListWrapper, ListTitle } from './List.styled'
 import NewCardButton from './NewCardButton'
 import DRAG_DROP_TYPES from 'constants/dragDropTypes'
 
-const List = ({ cards, title, id, index, setCards }) => {
+const List = ({ cards, title, _id, index, setCards }) => {
 	const handleAdd = (text) => {
 		setCards(index, [...cards, { title: text, id: text }])
 	}
 
 	return (
-		<Draggable 
-			draggableId={id} 
-			index={index}  
+		<Draggable
+			draggableId={_id}
+			index={index}
 			type={DRAG_DROP_TYPES.LIST}
 		>
 			{(provided) => (
@@ -25,14 +25,14 @@ const List = ({ cards, title, id, index, setCards }) => {
 				>
 					<ListWrapper>
 						<ListTitle {...provided.dragHandleProps} >{title}</ListTitle>
-						<Droppable droppableId={id} type={DRAG_DROP_TYPES.CARD}>
+						<Droppable droppableId={_id} type={DRAG_DROP_TYPES.CARD}>
 							{(provided) => (
 								<div
 									ref={provided.innerRef}
 									{...provided.droppableProps}
 								>
 									{cards.map((card, i) => (
-										<Card key={card.id} index={i} {...card} />
+										<Card key={card._id} index={i} {...card} />
 									))}
 									{provided.placeholder}
 								</div>
@@ -49,10 +49,10 @@ const List = ({ cards, title, id, index, setCards }) => {
 }
 
 List.propTypes = {
-	title: PropTypes.string.isRequired, 
-	id: PropTypes.string.isRequired,
+	title: PropTypes.string.isRequired,
+	_id: PropTypes.string.isRequired,
 	cards: PropTypes.arrayOf(PropTypes.shape({
-		id: PropTypes.string.isRequired,
+		_id: PropTypes.string.isRequired,
 		title: PropTypes.string.isRequired,
 	})).isRequired,
 	index: PropTypes.number.isRequired,

@@ -10,7 +10,7 @@ import Button from 'components/ui/Button'
 import IconButton from 'components/ui/IconButton/IconButton'
 
 const NewListButton = () => {
-	const [showInput, setShowInput] = useState(true)
+	const [showInput, setShowInput] = useState(false)
 	const [text, setText] = useState('')
 	const enterPress = useKeyPress(KEYS.ENTER)
   

@@ -4,20 +4,15 @@ import Button from 'components/ui/Button'
 import { useMutation, useQuery } from '@apollo/client'
 
 import { CREATE_BOARD } from 'graphql/mutations/board'
-import { GET_BOARDS } from 'graphql/queries/board'
+import Boards from 'components/Boards'
 
 const Dashboard = props => {
 	const [text, setText] = useState()
 	const [showInput, setShowInput] = useState(true)
-	const { data } = useQuery(GET_BOARDS, {
-		variables: {
-			user_id: '5f4a09093e4e131451870aaf'
-		}
-	})
+
 
 	const [createBoard, res] = useMutation(CREATE_BOARD)
 
-	console.log('res', data)
 
 	const handleSubmit = () => {
 		createBoard({
@@ -36,6 +31,7 @@ const Dashboard = props => {
 			<Button
 				onClick={handleSubmit}
 			>Create new board</Button>
+			<Boards />
 		</div>
 	)
 }

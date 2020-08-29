@@ -8,3 +8,20 @@ export const GET_BOARDS = gql`
     }
   }
 `
+
+export const GET_BOARD = gql`
+  query($id: ID!) {
+    getBoard(id: $id) {
+      _id
+      name
+      lists {
+        _id
+        title
+        cards {
+          _id
+          title
+        }
+      }
+    }
+  }
+`

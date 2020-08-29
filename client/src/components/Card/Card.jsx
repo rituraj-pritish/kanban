@@ -4,10 +4,10 @@ import PropTypes from 'prop-types'
 import { CardWrapper } from './Card.styled'
 import { Draggable } from 'react-beautiful-dnd'
 
-const Card = ({ title, index, id }) => {
+const Card = ({ title, index, _id }) => {
 	return (
 		<Draggable 
-			draggableId={id} 
+			draggableId={_id} 
 			index={index} 
 			type='card'
 		>
@@ -29,7 +29,7 @@ const Card = ({ title, index, id }) => {
 
 Card.propTypes = {
 	title: PropTypes.string.isRequired,
-	id: PropTypes.string.isRequired,
+	_id: PropTypes.string.isRequired,
 	index: PropTypes.number.isRequired
 }
 
