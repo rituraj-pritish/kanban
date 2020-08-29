@@ -1,18 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 
 import App from './App'
 import './index.css'
 
 const client = new ApolloClient({
-  uri: 'https://localhost:5000',
-  cache: new InMemoryCache()
-});
+	uri: 'http://localhost:5000/graphql',
+	cache: new InMemoryCache()
+})
 
 ReactDOM.render(
-  <ApolloProvider client={client} >
-    <App />
-  </ApolloProvider>,
-  document.getElementById('root')
+	<ApolloProvider client={client} >
+		<App />
+	</ApolloProvider>,
+	document.getElementById('root')
 )

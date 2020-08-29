@@ -1,5 +1,6 @@
 const card = require('./card')
 const board = require('./board')
+const list = require('./list')
 
 module.exports = {
 	Query: {
@@ -9,6 +10,7 @@ module.exports = {
 
 	Mutation: {
 		...card.Mutation,
-		...board.Mutation
+		...board.Mutation,
+		...list.Mutation
 	}
 }

@@ -4,4 +4,4 @@ const listSchema = new mongoose.Schema({
 	title: { type: String, required: true }
 })
 
-module.exports = List = ('list', listSchema)
+module.exports = List = mongoose.model('list', listSchema)

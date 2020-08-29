@@ -2,7 +2,8 @@ module.exports = {
 	types: `
     type Board {
       _id: ID!,
-      name: String!
+      name: String!,
+      user_id: ID!
     }
   `,
 
@@ -13,7 +14,8 @@ module.exports = {
 
 	mutations: `
     createBoard(
-      name: String!
+      name: String!,
+      user_id: ID!
     ): Boolean
   `
 }
