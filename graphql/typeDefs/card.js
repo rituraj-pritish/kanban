@@ -1,15 +1,15 @@
 module.exports = {
-  types: `
+	types: `
     type Card {
       title: String!
     }
   `, 
 
-  queries: `
+	queries: `
     getCard(id: ID): Card
   `,
 
-  mutations: `
+	mutations: `
     createCard(
       title: String!
     ): Boolean

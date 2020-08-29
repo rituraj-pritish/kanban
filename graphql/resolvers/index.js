@@ -1,11 +1,14 @@
 const card = require('./card')
+const board = require('./board')
 
 module.exports = {
-  Query: {
-    ...card.Query,
-  },
+	Query: {
+		...card.Query,
+		...board.Query
+	},
 
-  Mutation: {
-    ...card.Mutation
-  }
+	Mutation: {
+		...card.Mutation,
+		...board.Mutation
+	}
 }
