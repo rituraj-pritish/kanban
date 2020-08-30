@@ -18,6 +18,18 @@ module.exports = {
 			board.save()
 
 			return true
+		},
+
+		updateListIndex: async (
+			parent,
+			{ new_index, old_index, list_id, board_id }
+		) => {
+			const board = await Board.findById(board_id)
+
+			board.lists.splice(old_index, 1)
+			board.lists.splice(new_index, 0, list_id)
+
+			board.save()
 		}
 	}
 }

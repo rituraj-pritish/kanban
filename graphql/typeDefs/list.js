@@ -12,6 +12,13 @@ module.exports = {
     createList(
       title: String!,
       board_id: ID!
+    ): Boolean,
+
+    updateListIndex(
+      new_index: Int!,
+      old_index: Int!,
+      list_id: ID!,
+      board_id: ID!
     ): Boolean
   `
 }

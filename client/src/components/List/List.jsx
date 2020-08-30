@@ -40,6 +40,7 @@ const List = ({ cards, title, _id, index, setCards }) => {
 						</Droppable>
 						<NewCardButton
 							handleAdd={handleAdd}
+							listId={_id}
 						/>
 					</ListWrapper>
 				</div>

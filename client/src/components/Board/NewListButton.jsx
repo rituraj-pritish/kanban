@@ -8,59 +8,35 @@ import useKeyPress from 'hooks/useKeyPress'
 import KEYS from 'constants/keys'
 import Button from 'components/ui/Button'
 import IconButton from 'components/ui/IconButton/IconButton'
+import { useMutation } from '@apollo/client'
+import { useParams } from 'react-router-dom'
+import { CREATE_LIST } from 'graphql/mutations/list'
+import NewButton from 'components/NewButton'
 
 const NewListButton = () => {
-	const [showInput, setShowInput] = useState(false)
-	const [text, setText] = useState('')
-	const enterPress = useKeyPress(KEYS.ENTER)
-  
-	const inputRef = useRef()
-  
-	useEffect(() => {
-		if (showInput) inputRef.current.focus()
-	}, [showInput])
+	const [createList, { data, loading }] = useMutation(CREATE_LIST)
 
-	useEffect(() => () => {
-		setText('')
-	},[])
+	const { boardId } = useParams()
 
-	useEffect(() => {
-		if(enterPress) {
-			handleAddClick()
-		} 
-	}, [enterPress])
+	const handleAddClick = (title) => {
+		if (!title) return
 
-	const handleAddClick = () => {
-		if(!text) return
-		// handleAdd(text)
-		setText('')
-		setShowInput(false)
+		createList({
+			variables: {
+				title,
+				board_id: boardId
+			}
+		})
 	}
+
 	return (
-		<RootWrapper removePadding={!showInput} >
-			{	showInput
-				? (
-					<>
-						<StyledInput 
-							ref={inputRef} 
-							onChange={e => setText(e.target.value)}
-						/>
-						<ActionsWrapper>
-							<Button>Add</Button>
-							<IconButton 
-								icon={<FaTimes/>} 
-								onClick={() => setShowInput(false)} 
-							/>
-						</ActionsWrapper>
-					</>
-				)
-				: (
-					<ButtonWrapper onClick={() => setShowInput(true)} >
-						<BsPlus/>
-            Add new list
-					</ButtonWrapper>
-				)}
-		</RootWrapper>
+		<NewButton
+			havePaddingIfOpen
+			onSubmit={handleAddClick}
+			placeholder='Enter list name'
+		>
+			Add new list
+		</NewButton>
 	)
 }
 

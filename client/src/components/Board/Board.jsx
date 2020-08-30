@@ -4,16 +4,19 @@ import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 import { BoardWrapper } from './Board.styled'
 import List from 'components/List'
 import DRAG_DROP_TYPES from 'constants/dragDropTypes'
-import NewListButton from './NewListButton'
+
 import { useQuery, useMutation } from '@apollo/client'
 import { GET_BOARD } from 'graphql/queries/board'
 import { useParams } from 'react-router-dom'
-import { UPDATE_CARD_INDEX } from 'graphql/mutations/list'
+import { UPDATE_CARD_INDEX } from 'graphql/mutations/card'
+import { UPDATE_LIST_INDEX } from 'graphql/mutations/list'
+import NewListButton from './NewListButton'
 
 const Board = () => {
 	const { boardId } = useParams()
 	const [columns, setColumns] = useState(null)
 	const [updateCardIndex, d] = useMutation(UPDATE_CARD_INDEX)
+	const [updateListIndex, a] = useMutation(UPDATE_LIST_INDEX)
 
 	const { data, loading } = useQuery(GET_BOARD, {
 		variables: { id: boardId }
@@ -35,8 +38,17 @@ const Board = () => {
 			destination.index === source.index) return
 
 		if (type === DRAG_DROP_TYPES.LIST) {
-			const items = columns
-			const item = items.find(({ id }) => id === draggableId)
+			updateListIndex({
+				variables: {
+					old_index: source.index,
+					new_index: destination.index,
+					list_id: draggableId,
+					board_id: boardId
+				}
+			})
+
+			const items = [...columns]
+			const item = items.find(({ _id }) => _id === draggableId)
 			const newItems = [...items]
 			newItems.splice(source.index, 1)
 			newItems.splice(destination.index, 0, item)
@@ -88,7 +100,10 @@ const Board = () => {
 
 	const setCards = (index, cards) => {
 		const newColumns = [...columns]
-		newColumns[index].cards = cards
+		newColumns[index] = {
+			...newColumns[index],
+			cards
+		}
 		setColumns(newColumns)
 	}
 

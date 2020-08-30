@@ -4,27 +4,25 @@ export const CREATE_LIST = gql`
   mutation(
     $title: String!,
     $board_id: ID!) {
-      createBoard(
+      createList(
         title: $title,
         board_id: $board_id
       )
   }
 `
 
-export const UPDATE_CARD_INDEX = gql`
+export const UPDATE_LIST_INDEX = gql`
   mutation(
     $old_index: Int!,
     $new_index: Int!,
-    $card_id: ID!,
-    $old_list: ID!,
-    $new_list: ID!
+    $list_id: ID!,
+    $board_id: ID!
   ) {
-    updateCardIndex(
+    updateListIndex(
       new_index: $new_index,
       old_index: $old_index,
-      card_id: $card_id,
-      old_list: $old_list,
-      new_list: $new_list
+      list_id: $list_id,
+      board_id: $board_id
     )
   }
 `
