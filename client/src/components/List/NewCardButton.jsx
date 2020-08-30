@@ -1,13 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useMutation } from '@apollo/client'
+
 import { CREATE_CARD } from 'graphql/mutations/card'
 import NewButton from 'components/NewButton'
 
 const NewCardButton = ({ handleAdd, listId }) => {
 	const [createCard, data] = useMutation(CREATE_CARD)
 
-	const handleAddClick = (title) => {
+	const handleAddClick = title => {
 		if (!title) return
 
 		createCard({
@@ -21,18 +22,15 @@ const NewCardButton = ({ handleAdd, listId }) => {
 	}
 
 	return (
-		<NewButton
-			placeholder='Enter title for card'
-			onSubmit={handleAddClick}
-		>
-			Add new card
+		<NewButton placeholder="Enter title for card" onSubmit={handleAddClick}>
+      Add new card
 		</NewButton>
 	)
 }
 
-
 NewCardButton.propTypes = {
-	handleAdd: PropTypes.func.isRequired
+	handleAdd: PropTypes.func.isRequired,
+	listId: PropTypes.string.isRequired
 }
 
 export default NewCardButton

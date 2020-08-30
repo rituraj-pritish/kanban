@@ -18,6 +18,9 @@
         "react"
     ],
     "rules": {
+        "arrow-parens": [2, "as-needed"],
+        "no-extra-parens": "error",
+        "no-mixed-spaces-and-tabs": 0,
         "indent": [
             "error",
             "tab"

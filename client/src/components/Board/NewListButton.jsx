@@ -1,15 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react'
-import PropTypes from 'prop-types'
-import { BsPlus } from 'react-icons/bs'
-import { FaTimes } from 'react-icons/fa'
-
-import { ButtonWrapper, StyledInput, RootWrapper, ActionsWrapper } from './Board.styled'
-import useKeyPress from 'hooks/useKeyPress'
-import KEYS from 'constants/keys'
-import Button from 'components/ui/Button'
-import IconButton from 'components/ui/IconButton/IconButton'
+import React from 'react'
 import { useMutation } from '@apollo/client'
 import { useParams } from 'react-router-dom'
+
 import { CREATE_LIST } from 'graphql/mutations/list'
 import NewButton from 'components/NewButton'
 
@@ -18,7 +10,7 @@ const NewListButton = () => {
 
 	const { boardId } = useParams()
 
-	const handleAddClick = (title) => {
+	const handleAddClick = title => {
 		if (!title) return
 
 		createList({
@@ -33,15 +25,11 @@ const NewListButton = () => {
 		<NewButton
 			havePaddingIfOpen
 			onSubmit={handleAddClick}
-			placeholder='Enter list name'
+			placeholder="Enter list name"
 		>
-			Add new list
+      Add new list
 		</NewButton>
 	)
-}
-
-NewListButton.propTypes = {
-
 }
 
 export default NewListButton
