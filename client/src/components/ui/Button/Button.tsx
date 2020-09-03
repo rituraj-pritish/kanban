@@ -3,7 +3,11 @@ import PropTypes from 'prop-types'
 
 import { StyledButton } from './Button.styled'
 
-const Button = ({ children, ...otherProps }) => {
+interface Props {
+	children: React.ReactNode,
+}
+
+const Button: React.FC<Props> = ({ children, ...otherProps }) => {
 	return (
 		<StyledButton {...otherProps} >
 			{children}

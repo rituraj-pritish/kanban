@@ -1,18 +1,17 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { ButtonWrapper } from './IconButton.styled'
 
-const IconButton = ({ icon, onClick }) => {
+interface Props {
+	icon: React.ReactNode,
+	onClick: () => void
+}
+
+const IconButton: React.FC<Props> = ({ icon, onClick }) => {
 	return (
 		<ButtonWrapper onClick={onClick} >
 			{icon}
 		</ButtonWrapper>
 	)
-}
-
-IconButton.propTypes = {
-	icon: PropTypes.node.isRequired,
-	onClick: PropTypes.func.isRequired
 }
 
 export default IconButton

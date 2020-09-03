@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
-import PropTypes from 'prop-types'
 import { useMutation } from '@apollo/client'
 
 import Button from 'components/ui/Button'
 import { CREATE_BOARD } from 'graphql/mutations/board'
 import Boards from 'components/Boards'
 
-const Dashboard = () => {
-	const [text, setText] = useState()
-	const [showInput, setShowInput] = useState(true)
+const Dashboard: React.FC = () => {
+	const [text, setText] = useState<string>()
+	const [showInput, setShowInput] = useState<boolean>(true)
 
 	const [createBoard, res] = useMutation(CREATE_BOARD)
 
@@ -21,14 +20,16 @@ const Dashboard = () => {
 	return (
 		<div>
 			{showInput && 
-        <input value={text} onChange={e => setText(e.target.value)} />
+				<input 
+					value={text} 
+					onChange={(
+						e: React.ChangeEvent<HTMLInputElement>): void => 
+						setText(e.target.value)} />
 			}
 			<Button onClick={handleSubmit}>Create new board</Button>
 			<Boards />
 		</div>
 	)
 }
-
-Dashboard.propTypes = {}
 
 export default Dashboard

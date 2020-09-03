@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Droppable, Draggable } from 'react-beautiful-dnd'
 
 import DRAG_DROP_TYPES from 'constants/dragDropTypes'
@@ -7,12 +6,29 @@ import Card from 'components/Card'
 import NewCardButton from './NewCardButton'
 import { ListWrapper, ListTitle } from './List.styled'
 
-const List = ({ cards, title, _id, index, setCards }) => {
-	const handleAdd = text => {
+interface Card {
+	_id: string,
+	title: string
+}
+
+interface Props {
+	_id: string,
+	cards: Card[],
+	title: string,
+	index: number,
+	setCards: (index: number, card: any ) => void
+}
+
+const List: React.FC<Props> = ({ 
+	cards, title, _id, index, setCards 
+}) => {
+	const handleAdd = (text: string) => {
+		// todo fix this, should have the id coming from db
 		setCards(index, [...cards, { title: text, id: text }])
 	}
 
 	return (
+		// @ts-expect-error
 		<Draggable draggableId={_id} index={index} type={DRAG_DROP_TYPES.LIST}>
 			{provided => 
 				<div ref={provided.innerRef} {...provided.draggableProps}>
@@ -34,19 +50,6 @@ const List = ({ cards, title, _id, index, setCards }) => {
 			}
 		</Draggable>
 	)
-}
-
-List.propTypes = {
-	title: PropTypes.string.isRequired,
-	_id: PropTypes.string.isRequired,
-	cards: PropTypes.arrayOf(
-		PropTypes.shape({
-			_id: PropTypes.string.isRequired,
-			title: PropTypes.string.isRequired
-		})
-	).isRequired,
-	index: PropTypes.number.isRequired,
-	setCards: PropTypes.func.isRequired
 }
 
 export default List

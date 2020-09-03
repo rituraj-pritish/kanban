@@ -1,5 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
-import PropTypes from 'prop-types'
+import React, { useState, useRef, useEffect, useLayoutEffect } from 'react'
 import { BsPlus } from 'react-icons/bs'
 import { FaTimes } from 'react-icons/fa'
 
@@ -14,21 +13,29 @@ import {
 	RootWrapper
 } from './NewButton.styled'
 
-const NewButton = ({
+interface Props {
+	havePaddingIfOpen?: boolean,
+	onCancel?: () => void,
+	onSubmit: (text: string) => void,
+	placeholder: string,
+	children: React.ReactNode
+}
+
+const NewButton: React.FC<Props> = ({
 	havePaddingIfOpen,
 	onCancel = () => {},
 	onSubmit,
 	placeholder,
 	children
 }) => {
-	const [text, setText] = useState('')
-	const [showInput, setShowInput] = useState(false)
+	const [text, setText] = useState<string>('')
+	const [showInput, setShowInput] = useState<boolean>(false)
 	const enterPress = useKeyPress(KEYS.ENTER)
 
-	const inputRef = useRef()
+	const inputRef = useRef<HTMLInputElement>(null)
 
-	useEffect(() => {
-		if (showInput) inputRef.current.focus()
+	useLayoutEffect(() => {
+		if (showInput && inputRef.current) inputRef.current.focus()
 	}, [showInput, onSubmit])
 
 	useEffect(
@@ -53,7 +60,8 @@ const NewButton = ({
 						type="text"
 						placeholder={placeholder}
 						ref={inputRef}
-						onChange={e => setText(e.target.value)}
+						onChange={(
+							e: React.ChangeEvent<HTMLInputElement>): void => setText(e.target.value)}
 						value={text}
 					/>
 					<ActionsWrapper>
@@ -84,13 +92,6 @@ const NewButton = ({
 			}
 		</RootWrapper>
 	)
-}
-NewButton.propTypes = {
-	onCancel: PropTypes.func,
-	onSubmit: PropTypes.func.isRequired,
-	havePaddingIfOpen: PropTypes.bool,
-	children: PropTypes.node.isRequired,
-	placeholder: PropTypes.string
 }
 
 export default NewButton
