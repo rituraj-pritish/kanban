@@ -22,7 +22,7 @@ interface Props {
 }
 
 const NewButton: React.FC<Props> = ({
-	havePaddingIfOpen,
+	havePaddingIfOpen = false,
 	onCancel = () => {},
 	onSubmit,
 	placeholder,
@@ -32,7 +32,7 @@ const NewButton: React.FC<Props> = ({
 	const [showInput, setShowInput] = useState<boolean>(false)
 	const enterPress = useKeyPress(KEYS.ENTER)
 
-	const inputRef = useRef<HTMLInputElement>(null)
+	const inputRef = useRef<HTMLTextAreaElement>(null)
 
 	useLayoutEffect(() => {
 		if (showInput && inputRef.current) inputRef.current.focus()
@@ -57,11 +57,10 @@ const NewButton: React.FC<Props> = ({
 			{showInput ? 
 				<>
 					<StyledInput
-						type="text"
 						placeholder={placeholder}
 						ref={inputRef}
 						onChange={(
-							e: React.ChangeEvent<HTMLInputElement>): void => setText(e.target.value)}
+							e: React.ChangeEvent<HTMLTextAreaElement>): void => setText(e.target.value)}
 						value={text}
 					/>
 					<ActionsWrapper>

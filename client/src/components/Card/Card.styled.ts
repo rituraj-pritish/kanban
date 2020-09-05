@@ -2,7 +2,11 @@ import styled from 'styled-components'
 import theme from 'theme'
 import { lighten } from 'polished'
 
-export const CardWrapper = styled.div`
+interface CardWrapper {
+  isDragging: boolean
+}
+
+export const CardWrapper = styled.div<CardWrapper>`
   padding-top: ${theme.spacing(0.5)};
   cursor: pointer !important;
 

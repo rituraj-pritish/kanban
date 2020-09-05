@@ -3,7 +3,7 @@ import theme from 'theme'
 import { lighten, darken } from 'polished'
 import { VARIANTS } from 'constants/button'
 
-const getBgColor = (variant) => {
+const getBgColor = (variant: string) => {
 	switch(variant) {
 	case VARIANTS.CANCEL:
 		return '#BCB8BF'
@@ -12,7 +12,12 @@ const getBgColor = (variant) => {
 	}
 }
 
-export const StyledButton = styled.button`
+interface StyledButton {
+  variant: string,
+  disabled?: boolean
+}
+
+export const StyledButton = styled.button<StyledButton>`
   border: none;
   outline: none;
   cursor: pointer;

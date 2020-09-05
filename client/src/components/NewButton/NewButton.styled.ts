@@ -2,7 +2,12 @@ import styled from 'styled-components'
 import theme from 'theme'
 import { darken } from 'polished'
 
-export const RootWrapper = styled.div`
+interface RootWrapper {
+  havePadding: boolean,
+  showInput: boolean
+}
+
+export const RootWrapper = styled.div<RootWrapper>`
   display: flex;
   flex-direction: column;
   width: ${theme.listWidth};
@@ -10,11 +15,11 @@ export const RootWrapper = styled.div`
   border-radius: ${theme.borderRadius};
   height: max-content;
   padding: ${({ havePadding, showInput }) => 
-    havePadding && showInput && theme.spacing(0.5)};
+		havePadding && showInput && theme.spacing(0.5)};
 
   & > div {
     margin-top: ${({ havePadding, showInput }) =>
-      havePadding && !showInput && 0};
+		havePadding && !showInput && 0};
   }
 
   & > textarea {

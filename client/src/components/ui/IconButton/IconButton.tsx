@@ -3,7 +3,7 @@ import { ButtonWrapper } from './IconButton.styled'
 
 interface Props {
 	icon: React.ReactNode,
-	onClick: () => void
+	onClick(e: React.MouseEvent<HTMLElement>): void
 }
 
 const IconButton: React.FC<Props> = ({ icon, onClick }) => {
