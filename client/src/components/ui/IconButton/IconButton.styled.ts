@@ -9,7 +9,7 @@ export const ButtonWrapper = styled.div`
   width: ${ICON_SIZE};
   height: ${ICON_SIZE};
   border-radius: ${theme.borderRadius};
-  ${theme.centerElement}
+  ${theme.styles.centerElement}
 
   &:hover {
     background: #0000001a;

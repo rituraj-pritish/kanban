@@ -11,9 +11,24 @@ import List from 'components/List'
 import NewListButton from './NewListButton'
 import { BoardWrapper } from './Board.styled'
 
-const Board = () => {
-	const { boardId } = useParams()
-	const [columns, setColumns] = useState(null)
+interface Card {
+	_id: string,
+	title: string
+}
+
+interface List {
+	_id: string,
+	title: string,
+	cards: Card[]
+}
+
+interface RouteParams {
+	boardId: string
+}
+
+const Board: React.FC = () => {
+	const { boardId } = useParams<RouteParams>()
+	const [columns, setColumns] = useState<List[] | null>(null)
 	const [updateCardIndex, updateCardData] = useMutation(UPDATE_CARD_INDEX)
 	const [updateListIndex, updateListData] = useMutation(UPDATE_LIST_INDEX)
 
@@ -27,10 +42,16 @@ const Board = () => {
 		}
 	}, [loading, data])
 
-	if (loading) return 'loading'
+	if (loading) return <div>loading</div>
 
-	const onDragEnd = result => {
+	const onDragEnd = (result: {
+		type: string,
+		destination: {droppableId: string, index: number},
+		source: {droppableId: string, index: number},
+		draggableId: string
+	}) => {
 		const { destination, source, draggableId, type } = result
+		if (!columns) return 
 		if (!destination) return
 
 		if (
@@ -52,8 +73,10 @@ const Board = () => {
 			const items = [...columns]
 			const item = items.find(({ _id }) => _id === draggableId)
 			const newItems = [...items]
-			newItems.splice(source.index, 1)
-			newItems.splice(destination.index, 0, item)
+			if(item) {
+				newItems.splice(source.index, 1)
+				newItems.splice(destination.index, 0, item)
+			}
 			setColumns(newItems)
 			return
 		} else {
@@ -67,12 +90,14 @@ const Board = () => {
 				}
 			})
 
-			const sourceList = columns.find(({ _id }) => _id === source.droppableId)
+			const sourceList = columns.find(({ _id }: {_id: string}) => _id === source.droppableId)
 			const destinationList = columns.find(
 				({ _id }) => _id === destination.droppableId
 			)
-			const item = sourceList.cards.find(({ _id }) => _id === draggableId)
 
+			// TODO error handle
+			if(!sourceList || !destinationList) return 
+			const item = sourceList.cards.find(({ _id }: {_id: string}) => _id === draggableId)
 			const sourceListIdx = columns.findIndex(
 				({ _id }) => _id === source.droppableId
 			)
@@ -86,16 +111,20 @@ const Board = () => {
 			const newColumns = [...columns]
 
 			if (source.droppableId === destination.droppableId) {
-				newSourceListCards.splice(source.index, 1)
-				newSourceListCards.splice(destination.index, 0, item)
+				if(item) {
+					newSourceListCards.splice(source.index, 1)
+					newSourceListCards.splice(destination.index, 0, item)
+				}
 
 				newColumns[sourceListIdx] = {
 					...sourceList,
 					cards: newSourceListCards
 				}
 			} else {
-				newSourceListCards.splice(source.index, 1)
-				newDestinationListCards.splice(destination.index, 0, item)
+				if(item) {
+					newSourceListCards.splice(source.index, 1)
+					newDestinationListCards.splice(destination.index, 0, item)
+				}
 
 				newColumns[sourceListIdx] = { ...sourceList, cards: newSourceListCards }
 				newColumns[destinationListIdx] = {
@@ -107,8 +136,8 @@ const Board = () => {
 		}
 	}
 
-	const setCards = (index, cards) => {
-		const newColumns = [...columns]
+	const setCards = (index: number, cards: []) => {
+		const newColumns = columns ? [...columns] : []
 		newColumns[index] = {
 			...newColumns[index],
 			cards
@@ -117,6 +146,7 @@ const Board = () => {
 	}
 
 	return (
+		// @ts-expect-error
 		<DragDropContext onDragEnd={onDragEnd}>
 			<BoardWrapper>
 				<Droppable

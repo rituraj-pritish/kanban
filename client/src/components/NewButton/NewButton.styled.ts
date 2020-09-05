@@ -11,7 +11,7 @@ export const RootWrapper = styled.div<RootWrapper>`
   display: flex;
   flex-direction: column;
   width: ${theme.listWidth};
-  background: ${theme.primaryLight};
+  background: ${theme.colors.primaryLight};
   border-radius: ${theme.borderRadius};
   height: max-content;
   padding: ${({ havePadding, showInput }) => 
@@ -39,7 +39,7 @@ export const AddButton = styled.div`
   }
 
   &:hover {
-    background: ${darken(0.05, theme.primaryLight)};
+    background: ${darken(0.05, theme.colors.primaryLight)};
   }
 `
 

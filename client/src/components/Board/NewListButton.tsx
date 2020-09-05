@@ -5,12 +5,17 @@ import { useParams } from 'react-router-dom'
 import { CREATE_LIST } from 'graphql/mutations/list'
 import NewButton from 'components/NewButton'
 
-const NewListButton = () => {
+interface RouteParams {
+	boardId: string
+}
+
+
+const NewListButton: React.FC = () => {
 	const [createList, { data, loading }] = useMutation(CREATE_LIST)
 
-	const { boardId } = useParams()
+	const { boardId } = useParams<RouteParams>()
 
-	const handleAddClick = title => {
+	const handleAddClick = (title: string) => {
 		if (!title) return
 
 		createList({

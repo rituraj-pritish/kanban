@@ -6,17 +6,17 @@ import theme from 'theme'
 import Dashboard from 'components/Dashboard'
 import Board from 'components/Board'
 
-const App = () => {
-  return (
-    <ThemeProvider theme={theme}>
-      <Router>
-        <Switch>
-          <Route exact path='/' component={Dashboard} />
-          <Route exact path='/board/:boardId' component={Board} />
-        </Switch>
-      </Router>
-    </ThemeProvider>
-  )
+const App: React.FC = () => {
+	return (
+		<ThemeProvider theme={theme}>
+			<Router>
+				<Switch>
+					<Route exact path='/' component={Dashboard} />
+					<Route exact path='/board/:boardId' component={Board} />
+				</Switch>
+			</Router>
+		</ThemeProvider>
+	)
 }
 
 export default App

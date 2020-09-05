@@ -8,7 +8,7 @@ const getBgColor = (variant: string) => {
 	case VARIANTS.CANCEL:
 		return '#BCB8BF'
 	default:
-		return theme.primary
+		return theme.colors.primary
 	}
 }
 
