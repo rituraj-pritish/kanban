@@ -38,7 +38,11 @@ const List: React.FC<Props> = ({
 							{provided => 
 								<div ref={provided.innerRef} {...provided.droppableProps}>
 									{cards.map((card, i) => 
-										<Card key={card._id} index={i} {...card} />
+										<Card 
+											key={card._id} 
+											index={i} 
+											{...card} 
+										/>
 									)}
 									{provided.placeholder}
 								</div>

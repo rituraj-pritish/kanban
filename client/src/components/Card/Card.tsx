@@ -2,6 +2,7 @@ import React from 'react'
 import { Draggable } from 'react-beautiful-dnd'
 
 import { CardWrapper } from './Card.styled'
+import { useHistory, useParams } from 'react-router-dom'
 
 interface Props {
 	title: string,
@@ -9,9 +10,20 @@ interface Props {
 	_id: string
 }
 
+interface RouteParams {
+	boardId: string
+}
+
 const Card: React.FC<Props> = ({ title, index, _id }) => {
+	const { boardId } = useParams<RouteParams>()
+	const history = useHistory()
+	
+	const handleCardClick = () =>{
+		history.push(`/board/${boardId}?selected=${_id}`)
+	}	
+
 	return (
-		// @ts-expect-error
+		  // @ts-expect-error 
 		<Draggable draggableId={_id} index={index} type="card">
 			{(provided, snapshot) => 
 				<CardWrapper
@@ -19,6 +31,7 @@ const Card: React.FC<Props> = ({ title, index, _id }) => {
 					{...provided.draggableProps}
 					{...provided.dragHandleProps}
 					isDragging={snapshot.isDragging}
+					onClick={handleCardClick}
 				>
 					<div>{title}</div>
 				</CardWrapper>

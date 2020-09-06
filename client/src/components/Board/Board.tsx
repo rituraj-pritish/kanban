@@ -10,6 +10,9 @@ import DRAG_DROP_TYPES from 'constants/dragDropTypes'
 import List from 'components/List'
 import NewListButton from './NewListButton'
 import { BoardWrapper } from './Board.styled'
+import Navbar from 'components/Navbar'
+import onDragEnd from 'helpers/onDragEnd'
+import CardDetails from 'components/CardDetails'
 
 interface Card {
 	_id: string,
@@ -44,98 +47,6 @@ const Board: React.FC = () => {
 
 	if (loading) return <div>loading</div>
 
-	const onDragEnd = (result: {
-		type: string,
-		destination: {droppableId: string, index: number},
-		source: {droppableId: string, index: number},
-		draggableId: string
-	}) => {
-		const { destination, source, draggableId, type } = result
-		if (!columns) return 
-		if (!destination) return
-
-		if (
-			destination.droppableId === source.droppableId &&
-      destination.index === source.index
-		)
-			return
-
-		if (type === DRAG_DROP_TYPES.LIST) {
-			updateListIndex({
-				variables: {
-					old_index: source.index,
-					new_index: destination.index,
-					list_id: draggableId,
-					board_id: boardId
-				}
-			})
-
-			const items = [...columns]
-			const item = items.find(({ _id }) => _id === draggableId)
-			const newItems = [...items]
-			if(item) {
-				newItems.splice(source.index, 1)
-				newItems.splice(destination.index, 0, item)
-			}
-			setColumns(newItems)
-			return
-		} else {
-			updateCardIndex({
-				variables: {
-					old_index: source.index,
-					new_index: destination.index,
-					card_id: draggableId,
-					old_list: source.droppableId,
-					new_list: destination.droppableId
-				}
-			})
-
-			const sourceList = columns.find(({ _id }: {_id: string}) => _id === source.droppableId)
-			const destinationList = columns.find(
-				({ _id }) => _id === destination.droppableId
-			)
-
-			// TODO error handle
-			if(!sourceList || !destinationList) return 
-			const item = sourceList.cards.find(({ _id }: {_id: string}) => _id === draggableId)
-			const sourceListIdx = columns.findIndex(
-				({ _id }) => _id === source.droppableId
-			)
-			const destinationListIdx = columns.findIndex(
-				({ _id }) => _id === destination.droppableId
-			)
-
-			const newSourceListCards = [...sourceList.cards]
-			const newDestinationListCards = [...destinationList.cards]
-
-			const newColumns = [...columns]
-
-			if (source.droppableId === destination.droppableId) {
-				if(item) {
-					newSourceListCards.splice(source.index, 1)
-					newSourceListCards.splice(destination.index, 0, item)
-				}
-
-				newColumns[sourceListIdx] = {
-					...sourceList,
-					cards: newSourceListCards
-				}
-			} else {
-				if(item) {
-					newSourceListCards.splice(source.index, 1)
-					newDestinationListCards.splice(destination.index, 0, item)
-				}
-
-				newColumns[sourceListIdx] = { ...sourceList, cards: newSourceListCards }
-				newColumns[destinationListIdx] = {
-					...destinationList,
-					cards: newDestinationListCards
-				}
-			}
-			setColumns(newColumns)
-		}
-	}
-
 	const setCards = (index: number, cards: []) => {
 		const newColumns = columns ? [...columns] : []
 		newColumns[index] = {
@@ -145,18 +56,30 @@ const Board: React.FC = () => {
 		setColumns(newColumns)
 	}
 
+	const handleDragEnd = (result: any) => {
+		onDragEnd(
+			result, 
+			columns, 
+			setColumns, 
+			updateListIndex, 
+			updateCardIndex, 
+			boardId
+		)
+	}
+
 	return (
-		// @ts-expect-error
-		<DragDropContext onDragEnd={onDragEnd}>
-			<BoardWrapper>
-				<Droppable
-					droppableId={boardId}
-					direction="horizontal"
-					type={DRAG_DROP_TYPES.LIST}
-				>
-					{provided => 
-						<div ref={provided.innerRef} {...provided.droppableProps}>
-							{columns &&
+		<>
+			<Navbar/>
+			<DragDropContext onDragEnd={handleDragEnd}>
+				<BoardWrapper>
+					<Droppable
+						droppableId={boardId}
+						direction="horizontal"
+						type={DRAG_DROP_TYPES.LIST}
+					>
+						{provided => 
+							<div ref={provided.innerRef} {...provided.droppableProps}>
+								{columns &&
                 columns.map((list, i) => 
                 	<List
                 		key={list._id}
@@ -165,13 +88,15 @@ const Board: React.FC = () => {
                 		setCards={setCards}
                 	/>
                 )}
-							{provided.placeholder}
-						</div>
-					}
-				</Droppable>
-				<NewListButton />
-			</BoardWrapper>
-		</DragDropContext>
+								{provided.placeholder}
+							</div>
+						}
+					</Droppable>
+					<NewListButton />
+				</BoardWrapper>
+			</DragDropContext>
+			<CardDetails/>
+		</>
 	)
 }
 

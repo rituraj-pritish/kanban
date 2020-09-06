@@ -8,14 +8,16 @@ import Board from 'components/Board'
 
 const App: React.FC = () => {
 	return (
-		<ThemeProvider theme={theme}>
-			<Router>
-				<Switch>
-					<Route exact path='/' component={Dashboard} />
-					<Route exact path='/board/:boardId' component={Board} />
-				</Switch>
-			</Router>
-		</ThemeProvider>
+		<div style={{ padding: '0 1rem', overflowY: 'hidden' }}>
+			<ThemeProvider theme={theme}>
+				<Router>
+					<Switch>
+						<Route exact path='/' component={Dashboard} />
+						<Route exact path='/board/:boardId' component={Board} />
+					</Switch>
+				</Router>
+			</ThemeProvider>
+		</div>
 	)
 }
 

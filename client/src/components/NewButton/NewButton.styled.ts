@@ -48,7 +48,9 @@ export const StyledInput = styled.textarea`
   outline: none;
   border: none;
   font-family: 'Montserrat', sans-serif;
-  width: -webkit-fill-available ;
+  width: -webkit-fill-available;
+  min-width: -webkit-fill-available;
+  max-width: -webkit-fill-available;
   border-radius: ${theme.borderRadius};
   font-size: ${theme.spacing(1.1)};
   padding: ${theme.spacing(0.5)};
