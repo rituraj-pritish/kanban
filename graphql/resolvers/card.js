@@ -3,12 +3,13 @@ const List = require('../../models/List')
 
 module.exports = {
 	Query: {
-		getCard: async (parent, { id }) => {
+		getCard: async (_, { id }) => {
+			return await Card.findById(id)
 		}
 	},
 
 	Mutation: {
-		createCard: async (parent, { title, list_id }) => {
+		createCard: async (_, { title, list_id }) => {
 			const card = await new Card({
 				title
 			}).save()
@@ -20,7 +21,7 @@ module.exports = {
 		},
 
 		updateCardIndex: async (
-			parent, 
+			_, 
 			{ old_index, new_index, card_id, old_list, new_list }
 		) => {
 			if(old_list === new_list) {

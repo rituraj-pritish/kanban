@@ -2,7 +2,7 @@ const Board = require('../../models/Board')
 
 module.exports = {
 	Query: {
-		getBoard: async (parent, { id }) => {
+		getBoard: async (_, { id }) => {
 			const board = await Board.findById(id)
 				.populate({
 					path: 'lists',
@@ -12,14 +12,14 @@ module.exports = {
 			return board
 		},
 
-		getBoards: async (parent, { user_id }) => {
+		getBoards: async (_, { user_id }) => {
 			const boards = await Board.find({ user_id })
 			return boards
 		}
 	},
 
 	Mutation: {
-		createBoard: async (parent, { name, user_id }) => {
+		createBoard: async (_, { name, user_id }) => {
 			const board = await new Board({
 				user_id,
 				name

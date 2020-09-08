@@ -7,7 +7,7 @@ module.exports = {
   `, 
 
 	queries: `
-    getCard(id: ID): Card
+    getCard(id: ID!): Card
   `,
 
 	mutations: `

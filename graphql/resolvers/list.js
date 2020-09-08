@@ -7,7 +7,7 @@ module.exports = {
 	},
 
 	Mutation: {
-		createList: async (parent, { title, board_id }) => {
+		createList: async (_, { title, board_id }) => {
 			const list = await new List({
 				board_id,
 				title
@@ -21,7 +21,7 @@ module.exports = {
 		},
 
 		updateListIndex: async (
-			parent,
+			_,
 			{ new_index, old_index, list_id, board_id }
 		) => {
 			const board = await Board.findById(board_id)

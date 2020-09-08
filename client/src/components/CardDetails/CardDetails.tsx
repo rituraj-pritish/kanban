@@ -24,8 +24,6 @@ const CardDetails: React.FC = () => {
 		id: cardId
 	} })
 
-	console.log('da', data)
-
 	useEffect(() => {
 		if(cardId && !isOpen) setIsOpen(true)
 	},[cardId])
