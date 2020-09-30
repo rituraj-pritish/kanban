@@ -11,7 +11,10 @@ export const ListWrapper = styled.div`
 `
 
 export const ListTitle = styled.div`
+  display: flex;
+  align-items: center;
   font-weight: bold;
+  justify-content: space-between;
   padding: ${theme.spacing(0.5)} ${theme.spacing(0.5)};
   background: ${lighten(0.03, theme.colors.primaryLight)};
   border-radius: ${theme.borderRadius};

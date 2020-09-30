@@ -5,6 +5,7 @@ import DRAG_DROP_TYPES from 'constants/dragDropTypes'
 import Card from 'components/Card'
 import NewCardButton from './NewCardButton'
 import { ListWrapper, ListTitle } from './List.styled'
+import ToggleMenu from 'components/ui/ToggleMenu'
 
 interface Card {
 	_id: string,
@@ -33,7 +34,14 @@ const List: React.FC<Props> = ({
 			{provided => 
 				<div ref={provided.innerRef} {...provided.draggableProps}>
 					<ListWrapper>
-						<ListTitle {...provided.dragHandleProps}>{title}</ListTitle>
+						<ListTitle {...provided.dragHandleProps}>
+							<span>{title}</span>
+							<ToggleMenu 
+								items={[
+									{ text: 'Delete list', onClick: () => console.log('click') }
+								]}
+							/>
+						</ListTitle>
 						<Droppable droppableId={_id} type={DRAG_DROP_TYPES.CARD}>
 							{provided => 
 								<div ref={provided.innerRef} {...provided.droppableProps}>

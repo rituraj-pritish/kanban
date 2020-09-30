@@ -3,6 +3,7 @@ import { Draggable } from 'react-beautiful-dnd'
 
 import { CardWrapper } from './Card.styled'
 import { useHistory, useParams } from 'react-router-dom'
+import ToggleMenu from 'components/ui/ToggleMenu'
 
 interface Props {
 	title: string,
@@ -33,7 +34,14 @@ const Card: React.FC<Props> = ({ title, index, _id }) => {
 					isDragging={snapshot.isDragging}
 					onClick={handleCardClick}
 				>
-					<div>{title}</div>
+					<div>
+						{title}
+						<ToggleMenu
+							items={[
+								{ text: 'Copy link', onClick: () => console.log('link') }
+							]}
+						/>
+					</div>
 				</CardWrapper>
 			}
 		</Draggable>

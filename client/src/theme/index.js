@@ -8,6 +8,7 @@ export default {
 	colors: {
 		primary: '#A85EDA',
 		primaryLight: '#EDDEF7',
+		greyLight: '#DCDCDC'
 	},
 
 	listWidth: '17rem',
