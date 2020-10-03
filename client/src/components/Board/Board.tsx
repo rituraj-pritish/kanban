@@ -48,15 +48,6 @@ const Board: React.FC = () => {
 
 	if (loading) return <div>loading</div>
 
-	const setCards = (index: number, cards: []) => {
-		const newColumns = columns ? [...columns] : []
-		newColumns[index] = {
-			...newColumns[index],
-			cards
-		}
-		setColumns(newColumns)
-	}
-
 	const handleDragEnd = (result: any) => {
 		onDragEnd(
 			result, 
@@ -86,8 +77,6 @@ const Board: React.FC = () => {
                 		key={list._id}
                 		index={i}
                 		{...list}
-                		setCards={setCards}
-                		setLists={setColumns}
                 	/>
                 )}
 								{provided.placeholder}

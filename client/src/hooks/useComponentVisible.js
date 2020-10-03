@@ -17,5 +17,5 @@ export default initialIsVisible => {
 		}
 	})
 
-	return { ref, isComponentVisible, setIsComponentVisible }
+	return [ ref, isComponentVisible, setIsComponentVisible ]
 }

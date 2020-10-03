@@ -34,7 +34,11 @@ const CardToggleMenu: React.FC<Props> = ({ cardId, listId }) => {
 	return (
 		<ToggleMenu
 			items={[
-				{ text: 'Copy link', onClick: () => console.log('link') },
+				{ text: 'Copy link', 
+					//todo change with BASE_URL
+					onClick: () => navigator.clipboard
+						.writeText(`http://localhost:3000/board/${boardId}?selected=${cardId}`) 
+				},
 				{ text: 'Delete Card', onClick: deleteCard }
 			]}
 		/>

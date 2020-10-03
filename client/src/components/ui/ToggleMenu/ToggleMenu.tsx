@@ -13,11 +13,11 @@ interface Props {
 }
 
 const ToggleMenu: React.FC<Props> = ({ items }) => {
-	const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible(false)
+	const [ref, showMenu, setShowMenu] = useComponentVisible(false)
 	
 	const handleClick = (e: React.MouseEvent<HTMLElement>) => {
 		e.stopPropagation()
-		setIsComponentVisible(true)
+		setShowMenu(true)
 	}
 	
 	return (
@@ -25,14 +25,14 @@ const ToggleMenu: React.FC<Props> = ({ items }) => {
 			<Trigger onClick={handleClick}>
 				<span/><span/><span/>
 			</Trigger>
-			{isComponentVisible &&
+			{showMenu &&
 			<Menu ref={ref}>
 				{items.map(({ text, onClick }, idx) => 
 					<div 
 						onClick={(e: React.MouseEvent<HTMLElement>) => {
 							e.stopPropagation()
 							onClick()
-							setIsComponentVisible(false)
+							setShowMenu(false)
 						}} 
 						key={idx}
 					>

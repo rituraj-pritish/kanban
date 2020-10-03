@@ -12,6 +12,7 @@ import {
 	ActionsWrapper,
 	RootWrapper
 } from './NewButton.styled'
+import useComponentVisible from 'hooks/useComponentVisible'
 
 interface Props {
 	havePaddingIfOpen?: boolean,
@@ -28,8 +29,8 @@ const NewButton: React.FC<Props> = ({
 	placeholder,
 	children
 }) => {
+	const [ ref, showInput, setShowInput ] = useComponentVisible(false)
 	const [text, setText] = useState<string>('')
-	const [showInput, setShowInput] = useState<boolean>(false)
 	const enterPress = useKeyPress(KEYS.ENTER)
 
 	const inputRef = useRef<HTMLTextAreaElement>(null)
@@ -55,7 +56,7 @@ const NewButton: React.FC<Props> = ({
 	return (
 		<RootWrapper havePadding={havePaddingIfOpen} showInput={showInput}>
 			{showInput ? 
-				<>
+				<div ref={ref}>
 					<StyledInput
 						placeholder={placeholder}
 						ref={inputRef}
@@ -82,7 +83,7 @@ const NewButton: React.FC<Props> = ({
 							}}
 						/>
 					</ActionsWrapper>
-				</>
+				</div>
 				: 
 				<AddButton onClick={() => setShowInput(true)}>
 					<BsPlus size="1.25rem" />

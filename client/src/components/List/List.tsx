@@ -24,19 +24,12 @@ interface Props {
 	cards: Card[],
 	title: string,
 	index: number,
-	board_id: string,
-	setCards: (index: number, card: any ) => void,
-	setLists: (lists: List[]) => void
+	board_id: string
 }
 
 const List: React.FC<Props> = ({ 
-	cards, title, _id, board_id, index, setCards
+	cards, title, _id, board_id, index
 }) => {
-	const handleAdd = (text: string) => {
-		// todo fix this, should have the id coming from db
-		setCards(index, [...cards, { title: text, id: text }])
-	}
-
 	return (
 		// @ts-expect-error
 		<Draggable draggableId={_id} index={index} type={DRAG_DROP_TYPES.LIST}>
@@ -64,7 +57,7 @@ const List: React.FC<Props> = ({
 								</div>
 							}
 						</Droppable>
-						<NewCardButton handleAdd={handleAdd} listId={_id} />
+						<NewCardButton listId={_id} boardId={board_id} />
 					</ListWrapper>
 				</div>
 			}
