@@ -19,6 +19,11 @@ module.exports = {
       old_index: Int!,
       list_id: ID!,
       board_id: ID!
+    ): Boolean,
+
+    deleteList(
+      id: ID!,
+      board_id: ID!
     ): Boolean
   `
 }

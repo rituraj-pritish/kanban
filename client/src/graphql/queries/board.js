@@ -17,6 +17,8 @@ export const GET_BOARD = gql`
       lists {
         _id
         title
+        board_id
+        
         cards {
           _id
           title

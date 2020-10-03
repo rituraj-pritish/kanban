@@ -26,3 +26,15 @@ export const UPDATE_LIST_INDEX = gql`
     )
   }
 `
+
+export const DELETE_LIST = gql`
+  mutation(
+    $board_id: ID!,
+    $id: ID!
+  ) {
+    deleteList(
+      board_id: $board_id,
+      id: $id
+    )
+  }
+`

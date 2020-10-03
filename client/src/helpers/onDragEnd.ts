@@ -14,6 +14,7 @@ interface Card {
 
 interface List {
 	_id: string,
+	board_id: string,
 	title: string,
 	cards: Card[]
 }

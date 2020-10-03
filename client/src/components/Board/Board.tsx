@@ -19,8 +19,9 @@ interface Card {
 	title: string
 }
 
-interface List {
+interface ListInterface {
 	_id: string,
+	board_id: string,
 	title: string,
 	cards: Card[]
 }
@@ -31,7 +32,7 @@ interface RouteParams {
 
 const Board: React.FC = () => {
 	const { boardId } = useParams<RouteParams>()
-	const [columns, setColumns] = useState<List[] | null>(null)
+	const [columns, setColumns] = useState<ListInterface[] | null>(null)
 	const [updateCardIndex, updateCardData] = useMutation(UPDATE_CARD_INDEX)
 	const [updateListIndex, updateListData] = useMutation(UPDATE_LIST_INDEX)
 
@@ -86,13 +87,14 @@ const Board: React.FC = () => {
                 		index={i}
                 		{...list}
                 		setCards={setCards}
+                		setLists={setColumns}
                 	/>
                 )}
 								{provided.placeholder}
 							</div>
 						}
 					</Droppable>
-					<NewListButton />
+					<NewListButton setLists={setColumns} />
 				</BoardWrapper>
 			</DragDropContext>
 			<CardDetails/>

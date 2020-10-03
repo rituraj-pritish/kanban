@@ -19,3 +19,7 @@ export const ListTitle = styled.div`
   background: ${lighten(0.03, theme.colors.primaryLight)};
   border-radius: ${theme.borderRadius};
 `
+
+export const ListDivider = styled.div`
+  padding: ${theme.spacing(0.01)};
+`

@@ -30,6 +30,18 @@ module.exports = {
 			board.lists.splice(new_index, 0, list_id)
 
 			board.save()
+		},
+
+		deleteList: async (
+			_,
+			{ id, board_id }
+		) => {
+			const board = await Board.findById(board_id)
+
+			board.lists = board.lists.filter(listId => listId.toString() !== id )
+
+			await board.save()
+			return true
 		}
 	}
 }
