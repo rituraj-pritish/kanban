@@ -54,6 +54,7 @@ const List: React.FC<Props> = ({
 									<ListDivider/>
 									{cards.map((card, i) => 
 										<Card 
+											listId={_id}
 											key={card._id} 
 											index={i} 
 											{...card} 

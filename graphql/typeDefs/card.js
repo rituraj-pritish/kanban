@@ -16,6 +16,11 @@ module.exports = {
       list_id: ID!
     ): Boolean,
 
+    deleteCard(
+      list_id: ID!,
+      id: ID!
+    ): Boolean,
+
     updateCardIndex(
       old_index: Int!,
       new_index: Int!,

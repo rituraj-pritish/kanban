@@ -3,11 +3,13 @@ import React from 'react'
 import useComponentVisible from 'hooks/useComponentVisible'
 import { Trigger, MenuWrapper, Menu } from './ToggleMenu.styled'
 
+interface item {
+	text: string,
+	onClick: () => void
+}
+
 interface Props {
-	items: [{
-		text: string,
-		onClick: () => void
-	}]
+	items: item[]
 }
 
 const ToggleMenu: React.FC<Props> = ({ items }) => {

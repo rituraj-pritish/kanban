@@ -20,6 +20,15 @@ module.exports = {
 			return true
 		},
 
+		deleteCard: async ( _, { list_id, id }) => {
+			const list = await List.findById(list_id)
+
+			list.cards = list.cards.filter(cardId => cardId.toString() !== id)
+			
+			await list.save()
+			return true
+		},
+
 		updateCardIndex: async (
 			_, 
 			{ old_index, new_index, card_id, old_list, new_list }

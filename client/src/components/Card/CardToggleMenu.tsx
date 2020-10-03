@@ -1,0 +1,44 @@
+import React from 'react'
+
+import ToggleMenu from 'components/ui/ToggleMenu'
+import { useMutation } from '@apollo/client'
+import { DELETE_CARD } from 'graphql/mutations/card'
+import { useParams } from 'react-router-dom'
+import { GET_BOARD } from 'graphql/queries/board'
+
+interface Props {
+  listId: string,
+  cardId: string
+}
+
+interface RouteParams {
+  boardId: string
+}
+
+const CardToggleMenu: React.FC<Props> = ({ cardId, listId }) => {
+	const { boardId } = useParams<RouteParams>()
+
+	const [deleteCard, { data, loading }] = useMutation(DELETE_CARD, {
+		variables: {
+			id: cardId,
+			list_id: listId
+		},
+		refetchQueries: [{
+			query: GET_BOARD,
+			variables: {
+				id: boardId
+			}
+		}]  
+	})
+  
+	return (
+		<ToggleMenu
+			items={[
+				{ text: 'Copy link', onClick: () => console.log('link') },
+				{ text: 'Delete Card', onClick: deleteCard }
+			]}
+		/>
+	)
+}
+
+export default CardToggleMenu

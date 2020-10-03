@@ -4,18 +4,21 @@ import { Draggable } from 'react-beautiful-dnd'
 import { CardWrapper } from './Card.styled'
 import { useHistory, useParams } from 'react-router-dom'
 import ToggleMenu from 'components/ui/ToggleMenu'
+import CardToggleMenu from './CardToggleMenu'
+import DRAG_DROP_TYPES from 'constants/dragDropTypes'
 
 interface Props {
 	title: string,
 	index: number,
-	_id: string
+	_id: string,
+	listId: string
 }
 
 interface RouteParams {
 	boardId: string
 }
 
-const Card: React.FC<Props> = ({ title, index, _id }) => {
+const Card: React.FC<Props> = ({ listId, title, index, _id }) => {
 	const { boardId } = useParams<RouteParams>()
 	const history = useHistory()
 	
@@ -25,7 +28,7 @@ const Card: React.FC<Props> = ({ title, index, _id }) => {
 
 	return (
 		  // @ts-expect-error 
-		<Draggable draggableId={_id} index={index} type="card">
+		<Draggable draggableId={_id} index={index} type={DRAG_DROP_TYPES.CARD}>
 			{(provided, snapshot) => 
 				<CardWrapper
 					ref={provided.innerRef}
@@ -36,11 +39,7 @@ const Card: React.FC<Props> = ({ title, index, _id }) => {
 				>
 					<div>
 						{title}
-						<ToggleMenu
-							items={[
-								{ text: 'Copy link', onClick: () => console.log('link') }
-							]}
-						/>
+						<CardToggleMenu cardId={_id} listId={listId} />
 					</div>
 				</CardWrapper>
 			}
