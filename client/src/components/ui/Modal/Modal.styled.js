@@ -2,6 +2,8 @@ import React from 'react'
 import styled, { css } from 'styled-components/macro'
 import theme from 'theme'
 import ReactModal from 'react-modal'
+import { FaTimes } from 'react-icons/fa'
+import { lighten } from 'polished'
 
 function ReactModalAdapter ({ className, modalClassName, ...props }) {
 	return (
@@ -46,5 +48,18 @@ export const StyledModal = styled(ReactModalAdapter).attrs({
         transform: translate(-50%, -50%);
         ${modalStyles};
       `}
+  }
+`
+
+export const CloseIcon = styled(FaTimes)`
+  position: absolute;
+  top: ${theme.spacing(0.5)};
+  right: ${theme.spacing(0.5)};
+  font-size: ${theme.spacing(1.2)};
+  cursor: pointer;
+  color: #4d4d4dba;
+
+  &:hover {
+    color: black;
   }
 `

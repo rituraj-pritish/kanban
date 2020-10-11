@@ -1,19 +1,21 @@
 import React from 'react'
-import { StyledModal } from './Modal.styled'
+import { CloseIcon, StyledModal } from './Modal.styled'
 import { CSSProperties } from 'styled-components'
 
 interface Props {
   isOpen: boolean,
   onRequestClose: () => void,
 	children: React.ReactNode,
-	modalStyles: CSSProperties
+	modalStyles?: CSSProperties,
+	showCloseIcon?: boolean
 }
 
 const ModalComponent: React.FC<Props> = ({ 
 	isOpen, 
 	onRequestClose, 
 	modalStyles, 
-	children 
+	children,
+	showCloseIcon = true 
 }) => {
 	return (
 		<StyledModal 
@@ -23,6 +25,7 @@ const ModalComponent: React.FC<Props> = ({
 			shouldCloseOnOverlayClick
 			modalStyles={modalStyles}
 		>
+			{showCloseIcon && <CloseIcon onClick={onRequestClose}/>}
 			{children}
 		</StyledModal>
 	)

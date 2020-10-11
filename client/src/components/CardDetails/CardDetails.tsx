@@ -4,6 +4,7 @@ import { useLocation, useParams, useHistory } from 'react-router-dom'
 
 import { GET_CARD } from 'graphql/queries/card'
 import Modal from 'components/ui/Modal'
+import Spinner from 'components/ui/Spinner'
 
 interface RouteParams {
 	boardId: string
@@ -19,10 +20,12 @@ const CardDetails: React.FC = () => {
 	const cardId = params.get('selected')
 
 	const [getCard, { loading, called, data }] = useLazyQuery(GET_CARD)
-
-	if(cardId && !loading && !called) getCard({ variables: {
-		id: cardId
-	} })
+	
+	useEffect(() => {
+		if(cardId && !loading) getCard({ variables: {
+			id: cardId
+		} })
+	}, [cardId, data])
 
 	useEffect(() => {
 		if(cardId && !isOpen) setIsOpen(true)
@@ -31,6 +34,17 @@ const CardDetails: React.FC = () => {
 	const onRequestClose = () => {
 		history.push(`/board/${boardId}`)
 		setIsOpen(false)
+	}
+
+	const render = () => {
+		if(loading) return <Spinner centerOfParent loading/>
+		if(!called) return
+
+		const { title } = data.getCard
+
+		return (
+			<div>{title}</div>
+		)
 	}
 
 	return (
@@ -42,7 +56,7 @@ const CardDetails: React.FC = () => {
 				height: '50rem'
 			}}
 		>
-      something    
+			{render()}
 		</Modal>
 	)
 }

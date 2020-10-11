@@ -15,7 +15,7 @@ interface Props {
 }
 
 
-const NewListButton: React.FC<Props> = ({ setLists }) => {
+const NewListButton: React.FC<Props> = () => {
 	const [createList, { data, loading }] = useMutation(CREATE_LIST)
 
 	const { boardId } = useParams<RouteParams>()

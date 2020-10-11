@@ -36,20 +36,22 @@ const NewButton: React.FC<Props> = ({
 	const inputRef = useRef<HTMLTextAreaElement>(null)
 
 	useLayoutEffect(() => {
-		if (showInput && inputRef.current) inputRef.current.focus()
+		if (showInput && inputRef.current) {
+			setText('')
+			inputRef.current.focus()
+		}
 	}, [showInput, onSubmit])
 
-	useEffect(
-		() => () => {
-			setText('')
-		},
-		[]
-	)
-
 	useEffect(() => {
-		if (enterPress && text.trim()) {
+		if(!showInput) {
 			setText('')
+		}
+	}, [setShowInput, showInput])
+
+	useLayoutEffect(() => {
+		if (enterPress && text.trim()) {
 			onSubmit(text)
+			setText('')
 		}
 	}, [enterPress])
 
@@ -61,7 +63,9 @@ const NewButton: React.FC<Props> = ({
 						placeholder={placeholder}
 						ref={inputRef}
 						onChange={(
-							e: React.ChangeEvent<HTMLTextAreaElement>): void => setText(e.target.value)}
+							e: React.ChangeEvent<HTMLTextAreaElement>): void => {
+							setText(e.target.value)
+						}}
 						value={text}
 					/>
 					<ActionsWrapper>
