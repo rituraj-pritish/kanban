@@ -3,7 +3,6 @@ module.exports = {
     type User {
       name: String!,
       email: String!,
-      password: String!
       token: String!
     }
   `,
@@ -14,6 +13,6 @@ module.exports = {
   `,
 
 	mutations: `
-    signUp(email: String!, password: String!, name: String): User
+    signUp(email: String!, password: String!, name: String!, confirm_password: String!): User
   `
 }

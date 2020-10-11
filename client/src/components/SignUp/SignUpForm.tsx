@@ -6,16 +6,28 @@ import Button from 'components/ui/Button'
 import { required } from 'helpers/validators'
 
 interface Props {
-  onSubmit: (values: { email: string, password: string }) => void
+  onSubmit: (values: { 
+    name: string, 
+    email: string, 
+    password: string, 
+    confirm_password: string 
+  }) => void
 }
 
-const SignInForm: React.FC<Props> = ({ onSubmit }) => {
+const SignUpForm: React.FC<Props> = ({ onSubmit }) => {
 	return (
 		<Form
 			onSubmit={onSubmit}
 			render={({ handleSubmit }) => {
 				return (
 					<form onSubmit={handleSubmit}>
+						<Field
+							name='name'
+							label='Name'
+							validate={required}
+							component={TextFieldAdapter}
+							isRequired
+						/>
 						<Field
 							name='email'
 							label='Email'
@@ -31,6 +43,14 @@ const SignInForm: React.FC<Props> = ({ onSubmit }) => {
 							component={TextFieldAdapter}			
 							isRequired
 						/>
+						<Field
+							name='confirm_password'
+							label='Confirm Password'
+							inputType='password'
+							validate={required}
+							component={TextFieldAdapter}			
+							isRequired
+						/>
 						<Button type='submit' >Submit</Button>
 					</form>
 				)
@@ -39,4 +59,4 @@ const SignInForm: React.FC<Props> = ({ onSubmit }) => {
 	)
 }
 
-export default SignInForm
+export default SignUpForm

@@ -1,35 +1,34 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
+import { useLazyQuery } from '@apollo/client'
 
-import Modal from 'components/ui/Modal'
-import useSearchParams from 'hooks/useSearchParams'
+import { SIGN_IN } from 'graphql/queries/user'
 import SignInForm from './SignInForm'
+import { useHistory } from 'react-router-dom'
+
+interface Values {
+	email: string,
+	password: string
+}
+
 
 const SignIn: React.FC = () => {
-	const [isOpen, setIsOpen] = useState<boolean>(false)
-  
-	// @ts-expect-error
-	const { signin } = useSearchParams(['signin'])
-  
-	useEffect(() => {
-		if(signin) {
-			setIsOpen(true)
-		} else setIsOpen(false)
-	}, [signin])
-  
-	const handleSubmit = () => {
-    
+	const history = useHistory()
+	const [signIn, { data, loading }] = useLazyQuery(SIGN_IN)
+
+	const handleSubmit = (values: Values) => {
+		signIn({ variables: values })
 	}
   
 	return (
-		<Modal 
-			isOpen={isOpen} 
-			onRequestClose={() => setIsOpen(false)} 
-			modalStyles={{
-				width: '30rem'
-			}}
-		>
+		<>
 			<SignInForm onSubmit={handleSubmit} />
-		</Modal>
+			<div>
+				Don't have an account{' '}
+				<span onClick={() => history.push('/?auth=signup')} >
+					sign up
+				</span>
+			</div>
+		</>
 	)
 }
 

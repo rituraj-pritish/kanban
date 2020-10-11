@@ -1,26 +1,12 @@
-
 import React from 'react'
+import { FieldRenderProps } from 'react-final-form'
 
 import Input from 'components/ui/Input'
 import Label from '../Label'
 import Error from 'components/ui/forms/Error'
 import { AdapterWrapper, TextArea } from './TextField.styled'
 
-interface Props {
-  input: {
-		onChange: () => void
-	},
-	meta: {
-		touched: boolean,
-		visited: boolean,
-		submitFailed: boolean,
-		submitError: string,
-		error: string
-	},
-	label: string,
-	isRequired: boolean,
-	inputType: string
-}
+type Props = FieldRenderProps<string, any>
 
 const TextFieldAdapter: React.FC<Props> = ({
 	input,

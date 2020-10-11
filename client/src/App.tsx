@@ -5,14 +5,14 @@ import { ThemeProvider } from 'styled-components'
 import theme from 'theme'
 import Dashboard from 'components/Dashboard'
 import Board from 'components/Board'
-import SignIn from 'components/SignIn'
+import AuthModal from 'components/AuthModal'
 
 const App: React.FC = () => {
 	return (
 		<div style={{ padding: '0 1rem', overflowY: 'hidden' }}>
 			<ThemeProvider theme={theme}>
 				<Router>
-					<SignIn/>
+					<AuthModal/>
 					<Switch>
 						<Route exact path='/' component={Dashboard} />
 						<Route exact path='/board/:boardId' component={Board} />

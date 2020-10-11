@@ -36,7 +36,7 @@ module.exports = {
 	},
 
 	Mutation: {
-		signUp: async (_, { name, email, password }) => {
+		signUp: async (_, { name, email, password, confirm_password }) => {
 			const existingUser = await User.findOne({ email })
 
 			if (existingUser) {
@@ -47,6 +47,10 @@ module.exports = {
 
 			if (!emailExpression.test(String(email).toLowerCase())) {
 				throw new Error('Please provide valid email address')
+			}
+
+			if (password !== confirm_password) {
+				throw new Error('Passwords do not match')
 			}
 
 			const hashedPassword = await utils.hashPassword(password)
