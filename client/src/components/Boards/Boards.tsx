@@ -18,7 +18,7 @@ const Boards: React.FC = () => {
 
 	return (
 		<CardsWrapper>
-			{data.getBoards.map(
+			{data?.getBoards.map(
 				({ _id, name }: {_id: string, name: string}) => 
 					<BoardCard key={_id} onClick={() => history.push(`/board/${_id}`)}>
 						{name}

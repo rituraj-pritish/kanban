@@ -3,6 +3,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const { ApolloServer } = require('apollo-server-express')
 
+const utils = require('./helpers/authHelpers')
 const typeDefs = require('./graphql/typeDefs')
 const resolvers = require('./graphql/resolvers')
 
@@ -10,7 +11,22 @@ const server = new ApolloServer({
 	typeDefs, 
 	resolvers,
 	introspection: true,
-	playground: true
+	playground: true,
+	context: async ({ req }) => {
+		let authToken = null
+		let currentUser = null
+		
+		try {
+			authToken = req.headers['authorization']
+
+			if (authToken) currentUser = await utils.getUserIdFromToken(authToken)
+		} catch (err) {
+			//todo error handling
+			console.warn('Unable to authorize with token')
+		}
+
+		return { authToken, currentUser }
+	}
 })
 
 const app = express()

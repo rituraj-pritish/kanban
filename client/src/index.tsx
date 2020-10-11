@@ -5,8 +5,17 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 import App from './App'
 import './index.css'
 
+const token = window.localStorage.getItem('auth_token')
+
+const URI = process.env.NODE_ENV === 'production'
+	? '/graphql'
+	: 'http://localhost:5000/graphql'
+
 const client = new ApolloClient({
-	uri: 'http://localhost:5000/graphql',
+	uri: URI,
+	headers: {
+		authorization: token || ''
+	},
 	cache: new InMemoryCache()
 })
 
