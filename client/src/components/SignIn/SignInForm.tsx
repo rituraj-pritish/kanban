@@ -12,6 +12,10 @@ interface Props {
 const SignInForm: React.FC<Props> = ({ onSubmit }) => {
 	return (
 		<Form
+			initialValues={{
+				email: 'jd@gmail.com',
+				password: '123456'
+			}}
 			onSubmit={onSubmit}
 			render={({ handleSubmit }) => {
 				return (

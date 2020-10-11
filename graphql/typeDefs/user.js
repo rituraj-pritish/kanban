@@ -3,7 +3,8 @@ module.exports = {
     type User {
       name: String!,
       email: String!,
-      token: String!
+      token: String!,
+      _id: ID!
     }
   `,
 

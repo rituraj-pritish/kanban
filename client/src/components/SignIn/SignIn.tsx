@@ -13,10 +13,14 @@ interface Values {
 
 const SignIn: React.FC = () => {
 	const history = useHistory()
-	const [signIn, { data, loading }] = useLazyQuery(SIGN_IN)
+	const [signIn, { data, loading, called }] = useLazyQuery(SIGN_IN)
 
 	const handleSubmit = (values: Values) => {
 		signIn({ variables: values })
+	}
+
+	if(called && !loading && data.signIn) {
+		localStorage.setItem('auth_token', data.signIn.token)
 	}
   
 	return (

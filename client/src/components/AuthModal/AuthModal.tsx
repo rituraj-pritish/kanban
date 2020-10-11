@@ -18,6 +18,7 @@ const AuthModal: React.FC = () => {
 	useEffect(() => {
 		window.addEventListener('click', () => {
 			const search = document.location.search
+			console.log('click')
 
 			// todo find a better solution
 			const auth = search.slice(6, search.length)

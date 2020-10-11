@@ -1,6 +1,6 @@
 import React from 'react'
 import { useQuery } from '@apollo/client'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 import { GET_BOARDS } from 'graphql/queries/board'
 import { BoardCard, CardsWrapper } from './Boards.styled'
@@ -24,7 +24,6 @@ const Boards: React.FC = () => {
 						{name}
 					</BoardCard>
 			)}
-			<Link to='/?auth=signin'>Sign in</Link>
 		</CardsWrapper>
 	)
 }
