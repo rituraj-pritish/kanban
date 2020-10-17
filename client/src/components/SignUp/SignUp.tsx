@@ -12,7 +12,11 @@ interface Values {
   confirm_password: string
 }
 
-const SignIn: React.FC = () => {
+interface Props {
+	closeAuthModal: () => void
+}
+
+const SignIn: React.FC<Props> = ({ closeAuthModal }) => {
 	const history = useHistory()
 	const [signUp, { data, loading }] = useMutation(SIGN_UP)
 

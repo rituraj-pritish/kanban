@@ -11,14 +11,11 @@ const SIGN_UP = 'signup'
 const AuthModal: React.FC = () => {
 	const history = useHistory()
 	const [isOpen, setIsOpen] = useState<boolean>(false)
-	
-	
 	const [currentForm, setCurrentForm] = useState<string>('')
 
 	useEffect(() => {
 		window.addEventListener('click', () => {
 			const search = document.location.search
-			console.log('click')
 
 			// todo find a better solution
 			const auth = search.slice(6, search.length)
@@ -44,8 +41,8 @@ const AuthModal: React.FC = () => {
 			}}
 		>
 			{currentForm === SIGN_IN 
-				? <SignIn /> 
-				: <SignUp />
+				? <SignIn closeAuthModal={() => setIsOpen(false)} /> 
+				: <SignUp closeAuthModal={() => setIsOpen(false)} />
 			}
 		</Modal>
 	)

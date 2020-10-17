@@ -10,8 +10,11 @@ interface Values {
 	password: string
 }
 
+interface Props {
+	closeAuthModal: () => void
+}
 
-const SignIn: React.FC = () => {
+const SignIn: React.FC<Props> = ({ closeAuthModal }) => {
 	const history = useHistory()
 	const [signIn, { data, loading, called }] = useLazyQuery(SIGN_IN)
 
@@ -21,6 +24,12 @@ const SignIn: React.FC = () => {
 
 	if(called && !loading && data.signIn) {
 		localStorage.setItem('auth_token', data.signIn.token)
+		// todo push to whatever the previous link was
+		// in case of trying to access a specific page
+		// and not logged in
+		// thats why we are using modal sign authentication
+		closeAuthModal()
+		history.push('/')
 	}
   
 	return (

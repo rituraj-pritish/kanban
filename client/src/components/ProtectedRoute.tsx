@@ -7,7 +7,7 @@ interface Props {
 
 const ProtectedRoute: React.FC<Props> = props => {
 	const token = window.localStorage.getItem('auth_token')
-
+	
 	if(!token) return <Redirect to='/' />
 
 	return (
