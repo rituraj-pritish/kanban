@@ -22,8 +22,15 @@ const SignUpForm: React.FC<Props> = ({ onSubmit }) => {
 				return (
 					<form onSubmit={handleSubmit}>
 						<Field
-							name='name'
-							label='Name'
+							name='first_name'
+							label='First Name'
+							validate={required}
+							component={TextFieldAdapter}
+							isRequired
+						/>
+						<Field
+							name='last_name'
+							label='Last Name'
 							validate={required}
 							component={TextFieldAdapter}
 							isRequired

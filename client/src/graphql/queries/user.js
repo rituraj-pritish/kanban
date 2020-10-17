@@ -4,7 +4,9 @@ export const SIGN_IN = gql`
   query($email: String!, $password: String!) {
     signIn(email: $email, password: $password) {
       _id
-      name
+      first_name
+      last_name
+      avatar_bg_color
       email
       token
     }
@@ -15,7 +17,8 @@ export const GET_USER = gql`
   query($token: String!) {
     getUser(token: $token) {
       _id
-      name
+      first_name
+      last_name
       email
     }
   }

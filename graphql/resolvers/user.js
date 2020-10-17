@@ -1,5 +1,6 @@
 const User = require('../../models/User')
 const utils = require('../../helpers/authHelpers')
+const COLORS = require('../../constants/colors')
 
 module.exports = {
 	Query: {
@@ -36,7 +37,7 @@ module.exports = {
 	},
 
 	Mutation: {
-		signUp: async (_, { name, email, password, confirm_password }) => {
+		signUp: async (_, { first_name, last_name, email, password, confirm_password }) => {
 			const existingUser = await User.findOne({ email })
 
 			if (existingUser) {
@@ -56,7 +57,9 @@ module.exports = {
 			const hashedPassword = await utils.hashPassword(password)
 
 			const user = new User({
-				name,
+				first_name,
+				last_name,
+				avatar_bg_color: COLORS[Math.floor(Math.random() * COLORS.length)],
 				email,
 				password: hashedPassword
 			})
