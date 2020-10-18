@@ -14,7 +14,7 @@ export const AvatarWrapper = styled.div<AvatarWrapper>`
   width: ${({ size }) => size + 'px'};
   height: ${({ size }) => size + 'px'};
   background: ${({ bgColor }) => bgColor};
-  background-image: ${({ imageUrl }) => `url(${imageUrl})`};
+  background-image: ${({ imageUrl }) => imageUrl && `url(${imageUrl})`};
   background-size: cover;
   ${theme.styles.centerElement}
   font-size: ${theme.spacing(0.9)};

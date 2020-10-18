@@ -1,6 +1,7 @@
 import { lighten } from 'polished'
 import styled from 'styled-components'
 import theme from 'theme'
+import PLACEMENTS from 'constants/placements'
 
 export const Trigger = styled.div`
   ${theme.styles.centerElement};
@@ -26,7 +27,11 @@ export const MenuWrapper = styled.div`
   position: relative;
 `
 
-export const Menu = styled.div`
+interface Menu {
+  placement: string
+}
+
+export const Menu = styled.div<Menu>`
   position: absolute;
   background: ${lighten(0.1, theme.colors.greyLight)};
   border-radius: ${theme.borderRadius};
@@ -34,6 +39,7 @@ export const Menu = styled.div`
   width: max-content;
   padding: ${theme.spacing(0.5)} 0;
   z-index: 5;
+  right: ${({ placement }) => placement === PLACEMENTS.LEFT && 0};
 
   & > div {
     background: ${lighten(0.1, theme.colors.greyLight)};

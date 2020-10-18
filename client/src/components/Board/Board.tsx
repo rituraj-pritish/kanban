@@ -10,7 +10,6 @@ import DRAG_DROP_TYPES from 'constants/dragDropTypes'
 import List from 'components/List'
 import NewListButton from './NewListButton'
 import { BoardWrapper } from './Board.styled'
-import Navbar from 'components/Navbar'
 import onDragEnd from 'helpers/onDragEnd'
 import CardDetails from 'components/CardDetails'
 
@@ -61,7 +60,6 @@ const Board: React.FC = () => {
 
 	return (
 		<>
-			<Navbar/>
 			<DragDropContext onDragEnd={handleDragEnd}>
 				<BoardWrapper>
 					<Droppable

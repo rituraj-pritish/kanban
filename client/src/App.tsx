@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 import { useLazyQuery } from '@apollo/client'
 
+import Navbar from 'components/Navbar'
 import theme from 'theme'
 import { GET_USER } from 'graphql/queries/user'
 import Dashboard from 'components/Dashboard'
@@ -13,7 +14,6 @@ import ProtectedRoute from 'components/ProtectedRoute'
 
 const App: React.FC = () => {
 	const [getUser, { data, loading, called }] = useLazyQuery(GET_USER)
-
 	const token = window.localStorage.getItem('auth_token')
 
 	if(called && !loading && !data) {
@@ -31,6 +31,7 @@ const App: React.FC = () => {
 			<ThemeProvider theme={theme}>
 				<Router>
 					{!token && <AuthModal/>}
+					<Navbar/>
 					<Switch>
 						<Route exact path='/' component={Home} />
 						<ProtectedRoute exact path='/dashboard' component={Dashboard} />

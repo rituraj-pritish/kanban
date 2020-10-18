@@ -1,7 +1,7 @@
 import React from 'react'
-import { useLazyQuery } from '@apollo/client'
+import { useApolloClient, useLazyQuery } from '@apollo/client'
 
-import { SIGN_IN } from 'graphql/queries/user'
+import { GET_USER, SIGN_IN } from 'graphql/queries/user'
 import SignInForm from './SignInForm'
 import { useHistory } from 'react-router-dom'
 
@@ -15,6 +15,7 @@ interface Props {
 }
 
 const SignIn: React.FC<Props> = ({ closeAuthModal }) => {
+	const client = useApolloClient()
 	const history = useHistory()
 	const [signIn, { data, loading, called }] = useLazyQuery(SIGN_IN)
 
@@ -24,6 +25,13 @@ const SignIn: React.FC<Props> = ({ closeAuthModal }) => {
 
 	if(called && !loading && data.signIn) {
 		localStorage.setItem('auth_token', data.signIn.token)
+		
+		client.writeQuery({
+			query: GET_USER,
+			variables: { token: data.signIn.token },
+			data: data.signIn.token
+		})
+
 		// todo push to whatever the previous link was
 		// in case of trying to access a specific page
 		// and not logged in
