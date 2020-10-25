@@ -1,18 +1,24 @@
-import React from 'react'
-import { useQuery } from '@apollo/client'
+import React, { useEffect } from 'react'
+import { useLazyQuery, useQuery } from '@apollo/client'
 import { useHistory } from 'react-router-dom'
 
 import { GET_BOARDS } from 'graphql/queries/board'
 import { BoardCard, CardsWrapper } from './Boards.styled'
+import useAuth from 'hooks/useAuth'
 
 const Boards: React.FC = () => {
 	const history = useHistory()
+	const { user } = useAuth()
 
-	const { data, loading } = useQuery(GET_BOARDS, {
-		variables: {
-			user_id: '5f4a09093e4e131451870aaf'
+	const [getBoards, { data, loading }] = useLazyQuery(GET_BOARDS)
+
+	useEffect(() => {
+		if(user?._id) {
+			getBoards({ variables: {
+				user_id: user._id
+			} })
 		}
-	})
+	}, [user])
 
 	if (loading) return <div>loading</div>
 

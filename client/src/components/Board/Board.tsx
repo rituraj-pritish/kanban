@@ -38,7 +38,7 @@ const Board: React.FC = () => {
 	const { data, loading } = useQuery(GET_BOARD, {
 		variables: { id: boardId }
 	})
-
+	console.log('data', data)
 	useEffect(() => {
 		if (!loading && data.getBoard) {
 			setColumns([...data.getBoard.lists])

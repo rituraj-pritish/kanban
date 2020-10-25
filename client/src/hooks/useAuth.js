@@ -4,6 +4,7 @@ import { GET_USER } from 'graphql/queries/user'
 export default () => {
 	const client = useApolloClient()
 	const token = localStorage.getItem('auth_token')
+
 	const data = client.readQuery({ 
 		query: GET_USER, 
 		variables: {

@@ -13,7 +13,7 @@ module.exports = {
 		},
 
 		getBoards: async (_, { user_id }) => {
-			const boards = await Board.find({ user_id })
+			const boards = await Board.find({ 'users.user': user_id })
 			return boards
 		}
 	},
@@ -21,7 +21,6 @@ module.exports = {
 	Mutation: {
 		createBoard: async (_, { name, user_id, is_admin = false }) => {
 			await new Board({
-				user_id,
 				name,
 				users: {
 					user: user_id,

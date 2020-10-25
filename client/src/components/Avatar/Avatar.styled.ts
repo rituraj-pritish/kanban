@@ -19,6 +19,7 @@ export const AvatarWrapper = styled.div<AvatarWrapper>`
   ${theme.styles.centerElement}
   font-size: ${theme.spacing(0.9)};
   cursor: pointer;
+  color: white;
 `
 
 export const AdminIcon = styled(IoMdSettings)`

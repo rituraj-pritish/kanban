@@ -1,5 +1,5 @@
 import React from 'react'
-import { useApolloClient, useLazyQuery } from '@apollo/client'
+import { useLazyQuery } from '@apollo/client'
 
 import { GET_USER, SIGN_IN } from 'graphql/queries/user'
 import SignInForm from './SignInForm'
@@ -15,29 +15,33 @@ interface Props {
 }
 
 const SignIn: React.FC<Props> = ({ closeAuthModal }) => {
-	const client = useApolloClient()
 	const history = useHistory()
 	const [signIn, { data, loading, called }] = useLazyQuery(SIGN_IN)
+	const [getUser, res] = useLazyQuery(GET_USER)
 
 	const handleSubmit = (values: Values) => {
 		signIn({ variables: values })
 	}
 
 	if(called && !loading && data.signIn) {
-		localStorage.setItem('auth_token', data.signIn.token)
 		
-		client.writeQuery({
-			query: GET_USER,
-			variables: { token: data.signIn.token },
-			data: data.signIn.token
-		})
+		if(!res.loading && !res.called) {
+			getUser({
+				variables: {
+					token: data.signIn.token
+				}
+			})
+		}
 
-		// todo push to whatever the previous link was
-		// in case of trying to access a specific page
-		// and not logged in
-		// thats why we are using modal sign authentication
-		closeAuthModal()
-		history.push('/')
+		if(!res.loading && res.called && res.data.getUser) {
+			localStorage.setItem('auth_token', data.signIn.token)
+			// todo push to whatever the previous link was
+			// in case of trying to access a specific page
+			// and not logged in
+			// thats why we are using modal sign authentication
+			closeAuthModal()
+			history.push('/')
+		}
 	}
   
 	return (
