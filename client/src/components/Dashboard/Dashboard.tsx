@@ -14,6 +14,7 @@ const Dashboard: React.FC = () => {
 	const [createBoard, res] = useMutation(CREATE_BOARD)
 
 	const handleSubmit = () => {
+		if(!text) return
 		createBoard({
 			variables: { name: text, user_id: user._id , is_admin: true },
 			refetchQueries: [{

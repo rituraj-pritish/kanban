@@ -16,6 +16,7 @@ export const RootWrapper = styled.div<RootWrapper>`
   height: max-content;
   padding: ${({ havePadding, showInput }) => 
 		havePadding && showInput && theme.spacing(0.5)};
+  min-width: ${theme.listWidth};
 
   & > div {
     margin-top: ${({ havePadding, showInput }) =>
