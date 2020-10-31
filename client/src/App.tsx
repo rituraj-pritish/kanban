@@ -11,6 +11,7 @@ import Board from 'components/Board'
 import AuthModal from 'components/AuthModal'
 import Home from 'components/Home'
 import ProtectedRoute from 'components/ProtectedRoute'
+import AuthState from 'contexts/auth/AuthState'
 
 const App: React.FC = () => {
 	const [getUser, { data, loading, called }] = useLazyQuery(GET_USER)
@@ -30,13 +31,15 @@ const App: React.FC = () => {
 		<div style={{ padding: '0 1rem', overflowY: 'hidden' }}>
 			<ThemeProvider theme={theme}>
 				<Router>
-					{!token && <AuthModal/>}
-					<Navbar/>
-					<Switch>
-						<Route exact path='/' component={Home} />
-						<ProtectedRoute exact path='/dashboard' component={Dashboard} />
-						<ProtectedRoute exact path='/board/:boardId' component={Board} />
-					</Switch>
+					<AuthState>
+						{!token && <AuthModal/>}
+						<Navbar/>
+						<Switch>
+							<Route exact path='/' component={Home} />
+							<ProtectedRoute exact path='/dashboard' component={Dashboard} />
+							<ProtectedRoute exact path='/board/:boardId' component={Board} />
+						</Switch>
+					</AuthState>
 				</Router>
 			</ThemeProvider>
 		</div>

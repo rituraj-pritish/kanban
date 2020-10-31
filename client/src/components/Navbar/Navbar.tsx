@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import { useApolloClient, useLazyQuery } from '@apollo/client'
-import { useHistory } from 'react-router-dom'
+import React, { useContext } from 'react'
 
 import { NavWrapper } from './Navbar.styled'
 import { Link } from 'react-router-dom'
@@ -8,31 +6,17 @@ import Avatar from 'components/Avatar'
 import ToggleMenu from 'components/ui/ToggleMenu'
 import { FlexGrow } from 'components/CommonStyles'
 import PLACEMENTS from 'constants/placements'
-import { GET_USER } from 'graphql/queries/user'
+import AuthContext from 'contexts/auth/AuthContext'
+
+const mock = {
+	first_name: '',
+	last_name: '',
+	avatar_bg_color: '',
+	is_admin: false
+}
 
 const Navbar: React.FC = () => {
-	const client = useApolloClient()
-	const history = useHistory()
-	const [user, setUser] = useState(null)
-	const token = window.localStorage.getItem('auth_token')
-	const [getUser, { data, called, loading }] = useLazyQuery(GET_USER, { partialRefetch: true })
-
-	useEffect(() => {
-		if(!token) return setUser(null)
-		
-		getUser({ variables: { token } })
-
-		if(data?.getUser && called && !loading) {
-			setUser(data.getUser)
-		}
-	}, [token, data])
-
-	const mock = {
-		first_name: '',
-		last_name: '',
-		avatar_bg_color: '',
-		is_admin: false
-	}
+	const { user, signOut } = useContext(AuthContext)
 
 	return (
 		<NavWrapper>
@@ -48,12 +32,7 @@ const Navbar: React.FC = () => {
 				trigger={<Avatar user={user || mock}/>}
 				placement={PLACEMENTS.LEFT}
 				items={[
-					{ text: 'Sign Out', onClick: () => {
-						client.resetStore()
-						localStorage.removeItem('auth_token')
-						setUser(null)
-						history.push('/')
-					} }
+					{ text: 'Sign Out', onClick: signOut }
 				]}
 			/>}
 		</NavWrapper>
