@@ -1,4 +1,5 @@
-import React from 'react'
+import AuthContext from 'contexts/auth/AuthContext'
+import React, { useContext } from 'react'
 import { Redirect, Route } from 'react-router-dom'
 
 interface Props {
@@ -6,9 +7,9 @@ interface Props {
 }
 
 const ProtectedRoute: React.FC<Props> = props => {
-	const token = window.localStorage.getItem('auth_token')
+	const { isAuthenticated, loading } = useContext(AuthContext)
 	
-	if(!token) return <Redirect to='/' />
+	if(!isAuthenticated && !loading) return <Redirect to='/' />
 
 	return (
 		<Route {...props} />

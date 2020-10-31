@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react'
-import { useLazyQuery, useQuery } from '@apollo/client'
+import React, { useContext, useEffect } from 'react'
+import { useLazyQuery } from '@apollo/client'
 import { useHistory } from 'react-router-dom'
 
 import { GET_BOARDS } from 'graphql/queries/board'
 import { BoardCard, CardsWrapper } from './Boards.styled'
-import useAuth from 'hooks/useAuth'
+import AuthContext from 'contexts/auth/AuthContext'
 
 const Boards: React.FC = () => {
 	const history = useHistory()
-	const { user } = useAuth()
+	const { user } = useContext(AuthContext)
 
 	const [getBoards, { data, loading }] = useLazyQuery(GET_BOARDS)
 
