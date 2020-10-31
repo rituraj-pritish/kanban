@@ -13,12 +13,13 @@ const LabelWrapper = styled.div`
 
 interface Props {
   isRequired?: boolean,
-  children: React.ReactNode
+	children: React.ReactNode,
+	className?: string
 }
 
-const Label: React.FC<Props> = ({ isRequired, children }) => {
+const Label: React.FC<Props> = ({ isRequired, children, className }) => {
 	return (
-		<LabelWrapper>
+		<LabelWrapper className={className}>
 			<span>
 				{children} 
 			</span>

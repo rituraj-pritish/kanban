@@ -5,6 +5,7 @@ import { useLocation, useParams, useHistory } from 'react-router-dom'
 import { GET_CARD } from 'graphql/queries/card'
 import Modal from 'components/ui/Modal'
 import Spinner from 'components/ui/Spinner'
+import CardDetailsForm from './CardDetailsForm'
 
 interface RouteParams {
 	boardId: string
@@ -40,11 +41,7 @@ const CardDetails: React.FC = () => {
 		if(loading) return <Spinner centerOfParent loading/>
 		if(!called) return
 
-		const { title } = data.getCard
-
-		return (
-			<div>{title}</div>
-		)
+		return <CardDetailsForm initialValues={data.getCard} />
 	}
 
 	return (
