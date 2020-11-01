@@ -20,6 +20,17 @@ module.exports = {
 			return true
 		},
 
+		updateCard: async (_, params) => {
+			const { id, ...details } = params
+
+			const card = await Card.findById(id)
+
+			Object.keys(details).forEach(key => {
+				card[key] = details[key]
+			})
+			card.save()
+		},
+
 		deleteCard: async ( _, { list_id, id }) => {
 			const list = await List.findById(list_id)
 

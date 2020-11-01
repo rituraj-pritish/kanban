@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import RichTextEditor from 'react-rte'
 import { EditorWrapper } from './TextEditor.styled'
 
@@ -11,20 +11,26 @@ const TextEditor: React.FC<Props> = ({
 	value,
 	onChange
 }) => {
-	const [state, setState] = useState(value || RichTextEditor.createEmptyValue())
+	const initialValue = value 
+		? () => RichTextEditor.createValueFromString(value, 'html')
+		: () => RichTextEditor.createEmptyValue()
+	const [state, setState] = useState(initialValue)
 
 	// @ts-expect-error
 	const handleChange = state => {
 		setState(state)
-		onChange(state)
+		onChange(state.toString('html'))
 	}
+
 	return (
-		<EditorWrapper>
-			<RichTextEditor
-				value={state}
-				onChange={handleChange}
-			/>
-		</EditorWrapper>
+		<>
+			<EditorWrapper>
+				<RichTextEditor
+					value={state}
+					onChange={handleChange}
+				/>
+			</EditorWrapper>
+		</>
 	)
 }
 

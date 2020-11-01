@@ -7,5 +7,10 @@ export const StyledLabel = styled(Label)`
 `
 
 export const AdapterWrapper = styled.div`
-  
+`
+
+export const Content = styled.div`
+  min-height: ${theme.spacing(2)};
+  padding: ${theme.spacing(0.4)} ${theme.spacing(0.6)};
+  background: ${theme.colors.inputBg};
 `

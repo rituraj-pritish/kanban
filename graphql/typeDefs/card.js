@@ -2,7 +2,8 @@ module.exports = {
 	types: `
     type Card {
       _id: ID!,
-      title: String!
+      title: String!,
+      description: String
     }
   `, 
 
@@ -19,6 +20,12 @@ module.exports = {
     deleteCard(
       list_id: ID!,
       id: ID!
+    ): Boolean,
+
+    updateCard(
+      id: ID!,
+      title: String,
+      description: String
     ): Boolean,
 
     updateCardIndex(

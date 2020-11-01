@@ -24,6 +24,20 @@ export const DELETE_CARD = gql`
   }
 `
 
+export const UPDATE_CARD = gql`
+  mutation(
+    $id: ID!,
+    $description: String,
+    $title: String!
+  ) {
+    updateCard(
+      id: $id,
+      title: $title,
+      description: $description
+    )
+  }
+`
+
 export const UPDATE_CARD_INDEX = gql`
   mutation(
     $old_index: Int!,

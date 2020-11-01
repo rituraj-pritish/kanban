@@ -5,6 +5,7 @@ export const GET_CARD = gql`
     getCard(id: $id) {
       _id
       title
+      description
     }
   }
 `
