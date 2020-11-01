@@ -25,7 +25,7 @@ const TextFieldAdapter: React.FC<Props> = ({
 			{
 				inputType === 'textarea' 
 					? <TextArea {...input} {...otherProps} /> 
-					:<Input {...input} type={inputType} {...otherProps} mb={0} mt='0.5rem' />
+					:<Input {...input} type={inputType} {...otherProps} />
 			}
 			<Error>{showError && error}</Error>
 		</AdapterWrapper>

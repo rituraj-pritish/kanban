@@ -39,13 +39,22 @@ const CardDetails: React.FC = () => {
 		setIsOpen(false)
 	}
 
-	//@ts-expect-error
-	const handleSubmit = values => {
+	const handleSubmit = (values: {
+		title: string,
+		description: string
+	}, { getState }: {getState: () => { pristine: boolean }}) => {
+		const formState = getState()
+
+		if(formState.pristine) return
+		
 		updateCard({ variables: {
 			id: cardId,
 			title: values.title,
 			description: values.description
-		} })
+		}, refetchQueries: [{
+			query: GET_CARD,
+			variables: { id: cardId }
+		}] })
 	}
 
 	const render = () => {

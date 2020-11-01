@@ -3,7 +3,9 @@ import { FieldRenderProps } from 'react-final-form'
 
 import Error from 'components/ui/forms/Error'
 import TextEditor from 'components/TextEditor'
-import { AdapterWrapper, Content, StyledLabel } from './TextEditorAdapter.styled'
+import { AdapterWrapper, ButtonsWrapper, Content, StyledLabel } from './TextEditorAdapter.styled'
+import Button from 'components/ui/Button'
+import { VARIANTS } from 'constants/button'
 
 type Props = FieldRenderProps<string, any>
 
@@ -11,7 +13,8 @@ const TextEditorAdapter: React.FC<Props> = ({
 	label,
 	input,
 	isRequired,
-	meta
+	meta,
+	onBlur
 }) => {
 	const [editMode, setEditMode] = useState(false)
 	const [oldState, setOldState] = useState(input.value)
@@ -32,17 +35,26 @@ const TextEditorAdapter: React.FC<Props> = ({
 				<Error>{showError && error}</Error>      
 			</AdapterWrapper>
 			{editMode && 
-				<>
-					<button onClick={() => {
-						setEditMode(false)
-						input.onChange(input.value)
-						setOldState(input.value)
-					}}>Save</button>
-					<button onClick={() => {
-						setEditMode(false)
-						input.onChange(oldState)
-					}}>Cancel</button>
-				</>
+				<ButtonsWrapper>
+					<Button 
+						variant={VARIANTS.PRIMARY}
+						onClick={() => {
+							setEditMode(false)
+							input.onChange(input.value)
+							setOldState(input.value)
+							onBlur()
+						}}>
+							Save
+					</Button>
+					<Button 
+						variant={VARIANTS.CANCEL}
+						onClick={() => {
+							setEditMode(false)
+							input.onChange(oldState)
+						}}>
+							Cancel
+					</Button>
+				</ButtonsWrapper>
 			}
 		</>
 	)

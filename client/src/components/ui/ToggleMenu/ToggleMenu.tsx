@@ -24,7 +24,7 @@ const ToggleMenu: React.FC<Props> = ({ items, trigger, placement = PLACEMENTS.RI
 	}
 	
 	return (
-		<MenuWrapper>
+		<MenuWrapper onMouseLeave={() => setShowMenu(false)}>
 			{trigger 
 				?<div onClick={handleClick}>{trigger}</div> 
 			 :<Trigger onClick={handleClick}>

@@ -1,8 +1,9 @@
-import TextEditorAdapter from 'components/ui/forms/TextEditorAdapter/TextEditorAdapter'
-import TextFieldAdapter from 'components/ui/forms/TextFieldAdapter'
-import { required } from 'helpers/validators'
 import React from 'react'
 import { Field, Form } from 'react-final-form'
+
+import { required } from 'helpers/validators'
+import TextEditorAdapter from 'components/ui/forms/TextEditorAdapter/TextEditorAdapter'
+import TextFieldAdapter from 'components/ui/forms/TextFieldAdapter'
 
 type Props = {
   initialValues: {
@@ -11,7 +12,9 @@ type Props = {
 	onSubmit: (values: {
 		title: string,
 		description: string
-	}) => void
+	}, 
+	formState: {getState: () => {pristine: boolean}}
+	) => void
 }
 
 const CardDetailsForm: React.FC<Props> = ({ initialValues, onSubmit }) => {
@@ -28,13 +31,14 @@ const CardDetailsForm: React.FC<Props> = ({ initialValues, onSubmit }) => {
 							isRequired
 							validate={required}
 							component={TextFieldAdapter}
+							onBlur={handleSubmit}
 						/>
 						<Field
 							name='description'
 							label='Description'
 							component={TextEditorAdapter}
+							onBlur={handleSubmit}
 						/>
-						<button type='submit'>Submit</button>
 					</form>
 				)
 			}}

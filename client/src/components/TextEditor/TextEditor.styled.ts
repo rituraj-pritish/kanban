@@ -17,6 +17,10 @@ export const EditorWrapper = styled.div`
       background: ${theme.colors.inputBg};
       flex-grow: 1;
 
+      .DraftEditor-root {
+        font-family: 'Montserrat'
+      }
+
       .public-DraftEditor-content {
         min-height: ${theme.spacing(18)};
       }

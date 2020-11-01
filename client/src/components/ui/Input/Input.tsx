@@ -1,3 +1,4 @@
+import { darken } from 'polished'
 import React from 'react'
 import styled from 'styled-components'
 import theme from 'theme'
@@ -13,6 +14,10 @@ const StyledInput = styled.input`
 
 	&:focus, &:active {
 		outline: none;
+	}
+
+	&:hover {
+		background: ${darken(0.01, theme.colors.inputBg)};
 	}
 `
 
