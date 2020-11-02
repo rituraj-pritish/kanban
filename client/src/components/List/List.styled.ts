@@ -23,3 +23,8 @@ export const ListTitle = styled.div`
 export const ListDivider = styled.div`
   padding: ${theme.spacing(0.01)};
 `
+
+export const CardsContainer = styled.div`
+  max-height: calc(100vh - 256px);
+  overflow: auto;
+`
