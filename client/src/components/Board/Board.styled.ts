@@ -1,12 +1,22 @@
 import styled from 'styled-components'
+import theme from 'theme'
 
 export const BoardWrapper = styled.div`
   display: flex;
-  width: calc(100vw - 32px);
   height: calc(100vh - 68px);
   overflow: auto;
 
-  & > div {
+  // lists wrapper
+  & > div:first-child {
     display: flex;
+
+    // first list
+    & > div:first-child {
+      margin-left: ${theme.spacing()};
+    }
   }
+`
+
+export const NewButtonWrapper = styled.div`
+  padding-right: ${theme.spacing()};
 `

@@ -28,7 +28,7 @@ const App: React.FC = () => {
 	}, [])
 
 	return (
-		<div style={{ padding: '0 1rem', overflowY: 'hidden' }}>
+		<div style={{ overflowY: 'hidden' }}>
 			<ThemeProvider theme={theme}>
 				<Router>
 					<AuthState>

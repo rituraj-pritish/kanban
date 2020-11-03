@@ -57,7 +57,7 @@ const List: React.FC<Props> = ({
 								</CardsContainer>
 							}
 						</Droppable>
-						<NewCardButton listId={_id} boardId={board_id} />
+						<NewCardButton removeMargin={!cards.length} listId={_id} boardId={board_id} />
 					</ListWrapper>
 				</div>
 			}

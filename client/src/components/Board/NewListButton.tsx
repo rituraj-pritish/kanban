@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 import { CREATE_LIST } from 'graphql/mutations/list'
 import NewButton from 'components/NewButton'
 import { GET_BOARD } from 'graphql/queries/board'
+import { NewButtonWrapper } from './Board.styled'
 
 interface RouteParams {
 	boardId: string
@@ -38,13 +39,15 @@ const NewListButton: React.FC<Props> = () => {
 	}
 
 	return (
-		<NewButton
-			havePaddingIfOpen
-			onSubmit={handleAddClick}
-			placeholder="Enter list name"
-		>
+		<NewButtonWrapper>
+			<NewButton
+				havePaddingIfOpen
+				onSubmit={handleAddClick}
+				placeholder="Enter list name"
+			>
       Add new list
-		</NewButton>
+			</NewButton>
+		</NewButtonWrapper>
 	)
 }
 

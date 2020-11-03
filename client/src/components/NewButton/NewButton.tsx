@@ -19,7 +19,8 @@ interface Props {
 	onCancel?: () => void,
 	onSubmit: (text: string) => void,
 	placeholder: string,
-	children: React.ReactNode
+	children: React.ReactNode,
+	className?: string
 }
 
 const NewButton: React.FC<Props> = ({
@@ -27,7 +28,8 @@ const NewButton: React.FC<Props> = ({
 	onCancel = () => {},
 	onSubmit,
 	placeholder,
-	children
+	children,
+	className
 }) => {
 	const [ ref, showInput, setShowInput ] = useComponentVisible(false)
 	const [text, setText] = useState<string>('')
@@ -56,7 +58,7 @@ const NewButton: React.FC<Props> = ({
 	}, [enterPress])
 
 	return (
-		<RootWrapper havePadding={havePaddingIfOpen} showInput={showInput}>
+		<RootWrapper className={className} havePadding={havePaddingIfOpen} showInput={showInput}>
 			{showInput ? 
 				<div ref={ref}>
 					<StyledInput

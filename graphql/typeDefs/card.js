@@ -3,7 +3,9 @@ module.exports = {
     type Card {
       _id: ID!,
       title: String!,
-      description: String
+      description: String,
+      created_at: String!,
+      updated_at: String!
     }
   `, 
 
