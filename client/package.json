@@ -8,6 +8,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "@types/react-rte": "^0.16.1",
+    "dayjs": "^1.9.5",
     "final-form": "^4.20.1",
     "polished": "^3.6.5",
     "react": "^16.13.1",

@@ -2,6 +2,8 @@ import styled from 'styled-components'
 import theme from 'theme'
 import { lighten } from 'polished'
 import NewButton from 'components/NewButton'
+import IconButton from 'components/ui/IconButton'
+import Input from 'components/ui/Input'
 
 export const ListWrapper = styled.div`
   border-radius: ${theme.borderRadius};
@@ -14,6 +16,15 @@ export const ListWrapper = styled.div`
   flex-direction: column;
 `
 
+export const StyledInput = styled(Input)`
+  margin: 0;
+`
+
+export const StyledIconButton = styled(IconButton)`
+  margin: 0 ${theme.spacing(0.3)};
+  opacity: 0;
+`
+
 export const ListTitle = styled.div`
   display: flex;
   align-items: center;
@@ -23,6 +34,14 @@ export const ListTitle = styled.div`
   background: ${lighten(0.03, theme.colors.primaryLight)};
   border-radius: ${theme.borderRadius};
   margin-bottom: ${theme.spacing(0.5)};
+
+  & > div {
+    display: flex;
+  }
+
+  &:hover ${StyledIconButton} {
+    opacity: 1;
+  }
 `
 
 export const ListDivider = styled.div`
@@ -31,7 +50,6 @@ export const ListDivider = styled.div`
 
 export const CardsContainer = styled.div`
   overflow-y: auto;
-  overflow-x: visible;
 
   // first card in list
   & > div:nth-child(2) {

@@ -6,6 +6,8 @@ export const GET_CARD = gql`
       _id
       title
       description
+      created_at
+      updated_at
     }
   }
 `

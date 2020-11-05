@@ -4,8 +4,8 @@ import { Droppable, Draggable } from 'react-beautiful-dnd'
 import DRAG_DROP_TYPES from 'constants/dragDropTypes'
 import Card from 'components/Card'
 import NewCardButton from './NewCardButton'
-import { ListWrapper, ListTitle, ListDivider, CardsContainer } from './List.styled'
-import ListToggleMenu from './ListToggleMenu'
+import { ListWrapper, ListDivider, CardsContainer } from './List.styled'
+import ListTitle from './ListTitle'
 
 interface Card {
 	_id: string,
@@ -36,11 +36,12 @@ const List: React.FC<Props> = ({
 			{provided => 
 				<div ref={provided.innerRef} {...provided.draggableProps}>
 					<ListWrapper>
-						<ListTitle {...provided.dragHandleProps}>
-							<span>{title}</span>
-							<ListToggleMenu listId={_id} boardId={board_id} />
-						</ListTitle>
-
+						<ListTitle
+							listId={_id} 
+							boardId={board_id}
+							provided={provided}
+							title={title}
+						/>
 						<Droppable droppableId={_id} type={DRAG_DROP_TYPES.CARD}>
 							{provided => 
 								<CardsContainer ref={provided.innerRef} {...provided.droppableProps}>

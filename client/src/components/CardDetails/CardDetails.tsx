@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useLazyQuery, useMutation } from '@apollo/client'
 import { useLocation, useParams, useHistory } from 'react-router-dom'
+import dayjs from 'helpers/dayjs'
 
 import { GET_CARD } from 'graphql/queries/card'
 import Modal from 'components/ui/Modal'
@@ -61,7 +62,19 @@ const CardDetails: React.FC = () => {
 		if(loading) return <Spinner centerOfParent loading/>
 		if(!called) return
 
-		return <CardDetailsForm onSubmit={handleSubmit} initialValues={data.getCard} />
+		const { created_at, updated_at } = data.getCard
+
+		return (
+			<>
+				<CardDetailsForm 
+					onSubmit={handleSubmit} 
+					initialValues={data.getCard}
+				/>
+				Created {dayjs(created_at).fromNow()}
+				<br/>
+				Updated {dayjs(updated_at).fromNow()}
+			</>
+		)
 	}
 
 	return (
