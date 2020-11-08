@@ -25,16 +25,14 @@ const Navbar: React.FC = () => {
 			</Link>
 
 			<FlexGrow/>
-
-			{!user && <Link to='/?auth=signin'>Sign In</Link>}
 			
-			{user && <ToggleMenu 
+			<ToggleMenu 
 				trigger={<Avatar user={user || mock}/>}
 				placement={PLACEMENTS.LEFT}
 				items={[
 					{ text: 'Sign Out', onClick: signOut }
 				]}
-			/>}
+			/>
 		</NavWrapper>
 	)
 }
