@@ -1,11 +1,11 @@
 import React, { useEffect, useReducer } from 'react'
 import { useApolloClient, useLazyQuery } from '@apollo/client'
+import { useHistory } from 'react-router-dom'
 
 import { AUTH_ERROR, AUTH_SUCCESS, SIGNOUT } from 'contexts/types'
 import authReducer from './authReducer'
 import AuthContext from './AuthContext'
 import { GET_USER } from 'graphql/queries/user'
-import { useHistory } from 'react-router-dom'
 
 const initialState = {
 	isAuthenticated: false,

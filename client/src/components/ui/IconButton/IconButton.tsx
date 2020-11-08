@@ -4,12 +4,22 @@ import { ButtonWrapper } from './IconButton.styled'
 interface Props {
 	icon: React.ReactNode,
 	onClick(e: React.MouseEvent<HTMLElement>): void,
-	className?: string
+	className?: string,
+	isCircular?: boolean 
 }
 
-const IconButton: React.FC<Props> = ({ icon, onClick, className }) => {
+const IconButton: React.FC<Props> = ({ 
+	icon, 
+	onClick, 
+	className, 
+	isCircular 
+}) => {
 	return (
-		<ButtonWrapper onClick={onClick} className={className} >
+		<ButtonWrapper 
+			isCircular={isCircular}
+			onClick={onClick} 
+			className={className} 
+		>
 			{icon}
 		</ButtonWrapper>
 	)

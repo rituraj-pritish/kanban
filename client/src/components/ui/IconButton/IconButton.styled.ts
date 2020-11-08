@@ -4,11 +4,15 @@ import theme from 'theme'
 
 const ICON_SIZE = theme.spacing(1.75)
 
-export const ButtonWrapper = styled.div`
+type ButtonWrapper = {
+  isCircular?: boolean
+}
+
+export const ButtonWrapper = styled.div<ButtonWrapper>`
   cursor: pointer;
   width: ${ICON_SIZE};
   height: ${ICON_SIZE};
-  border-radius: ${theme.borderRadius};
+  border-radius: ${({ isCircular }) => isCircular ? '50%' : theme.borderRadius};
   ${theme.styles.centerElement}
 
   &:hover {

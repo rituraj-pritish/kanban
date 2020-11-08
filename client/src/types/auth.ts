@@ -3,5 +3,6 @@ export type User = {
   last_name: string,
   avatar_bg_color: string,
   is_admin: boolean,
-  _id: string
+  _id: string,
+  name: string
 }

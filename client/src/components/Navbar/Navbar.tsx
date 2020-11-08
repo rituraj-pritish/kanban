@@ -1,38 +1,19 @@
-import React, { useContext } from 'react'
-
-import { NavWrapper } from './Navbar.styled'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import Avatar from 'components/Avatar'
-import ToggleMenu from 'components/ui/ToggleMenu'
-import { FlexGrow } from 'components/CommonStyles'
-import PLACEMENTS from 'constants/placements'
-import AuthContext from 'contexts/auth/AuthContext'
 
-const mock = {
-	first_name: '',
-	last_name: '',
-	avatar_bg_color: '',
-	is_admin: false
-}
+import { ReactComponent as Logo } from 'assets/Logo.svg'
+import { FlexGrow } from 'components/CommonStyles'
+import { NavWrapper } from './Navbar.styled'
 
 const Navbar: React.FC = () => {
-	const { user, signOut } = useContext(AuthContext)
 
 	return (
 		<NavWrapper>
 			<Link to='/'>
-				LOGO
+				<Logo/>
 			</Link>
 
 			<FlexGrow/>
-			
-			<ToggleMenu 
-				trigger={<Avatar user={user || mock}/>}
-				placement={PLACEMENTS.LEFT}
-				items={[
-					{ text: 'Sign Out', onClick: signOut }
-				]}
-			/>
 		</NavWrapper>
 	)
 }

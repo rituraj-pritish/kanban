@@ -1,5 +1,6 @@
   
 import { AUTH_ERROR, AUTH_SUCCESS, SIGNOUT } from 'contexts/types'
+import getFullName from 'helpers/getFullName'
 
 import { User } from 'types/auth'
 
@@ -24,7 +25,10 @@ export default (state: State, { type, payload }: {type: string, payload: any}): 
 			...state,
 			loading: false,
 			isAuthenticated: true,
-			user: payload,
+			user: {
+				...payload,
+				name: getFullName(payload.first_name, payload.last_name)
+			},
 		}
 	default:
 		return state

@@ -1,30 +1,47 @@
-import React, { useEffect, useState } from 'react'
-import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
+import React, { useContext, useState } from 'react'
+import CollapseButton from './CollapseButton'
 
-import IconButton from 'components/ui/IconButton'
-import { CollapseButton, SidebarWrapper } from './Sidebar.styled'
+import Avatar from 'components/Avatar'
+import ToggleMenu from 'components/ui/ToggleMenu'
+import PLACEMENTS from 'constants/placements'
+import { Divider, SidebarWrapper, UserDetails } from './Sidebar.styled'
+import AuthContext from 'contexts/auth/AuthContext'
+
+const mock = {
+	first_name: '',
+	last_name: '',
+	avatar_bg_color: '',
+	is_admin: false,
+	name: ''
+}
 
 const Sidebar: React.FC = () => {
 	const isSidebarCollapsed = window.localStorage.getItem('isCollapsed')
 	const [isCollapsed, setIsCollapsed] = useState(isSidebarCollapsed ? true : false)
-
-	useEffect(() => {
-		if(isCollapsed) {
-			window.localStorage.setItem('isCollapsed', 'true')
-		} else {
-			window.localStorage.removeItem('isCollapsed')
-		}
-	}, [isCollapsed])
+	const { user, signOut } = useContext(AuthContext)
 	
 	return (
 		<SidebarWrapper isCollapsed={isCollapsed}>
-      Sidebar
-			<CollapseButton isCollapsed={isCollapsed}>
-				<IconButton 
-					icon={isCollapsed ? <FiChevronRight/> : <FiChevronLeft/>}
-					onClick={() => isCollapsed ? setIsCollapsed(false) : setIsCollapsed(true)}
-				/>
-			</CollapseButton>
+
+			<UserDetails>
+				{/* <ToggleMenu 
+					trigger={<Avatar user={user || mock}/>}
+					placement={PLACEMENTS.LEFT}
+					items={[
+						{ text: 'Sign Out', onClick: signOut }
+					]}
+				/> */}
+				<Avatar user={user || mock}/>
+				<div>
+					{user?.name}
+				</div>
+			</UserDetails>
+			<Divider/>
+			
+			<CollapseButton 
+				isCollapsed={isCollapsed}
+				setIsCollapsed={setIsCollapsed}
+			/>
 		</SidebarWrapper>
 	)
 }
