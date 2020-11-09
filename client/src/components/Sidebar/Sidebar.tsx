@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react'
-import CollapseButton from './CollapseButton'
+import { MdDashboard } from 'react-icons/md'
+import { HiViewBoards } from 'react-icons/hi'
 
+import CollapseButton from './CollapseButton'
 import Avatar from 'components/Avatar'
-import ToggleMenu from 'components/ui/ToggleMenu'
-import PLACEMENTS from 'constants/placements'
 import { Divider, SidebarWrapper, UserDetails } from './Sidebar.styled'
 import AuthContext from 'contexts/auth/AuthContext'
+import SidebarLink from './SidebarLink'
 
 const mock = {
 	first_name: '',
@@ -19,11 +20,24 @@ const Sidebar: React.FC = () => {
 	const isSidebarCollapsed = window.localStorage.getItem('isCollapsed')
 	const [isCollapsed, setIsCollapsed] = useState(isSidebarCollapsed ? true : false)
 	const { user, signOut } = useContext(AuthContext)
+
+	const links = [
+		{
+			text: 'Dashboard' ,
+			link: '/' ,
+			icon: <MdDashboard/>
+		},
+		{
+			text: 'Board' ,
+			link: '/board' ,
+			icon: <HiViewBoards/>
+		}
+	]
 	
 	return (
 		<SidebarWrapper isCollapsed={isCollapsed}>
 
-			<UserDetails>
+			<UserDetails isCollapsed={isCollapsed}>
 				{/* <ToggleMenu 
 					trigger={<Avatar user={user || mock}/>}
 					placement={PLACEMENTS.LEFT}
@@ -31,12 +45,14 @@ const Sidebar: React.FC = () => {
 						{ text: 'Sign Out', onClick: signOut }
 					]}
 				/> */}
-				<Avatar user={user || mock}/>
-				<div>
+				<Avatar size={35} user={user || mock}/>
+				{!isCollapsed && <div>
 					{user?.name}
-				</div>
+				</div>}
 			</UserDetails>
 			<Divider/>
+
+			{links.map((item, idx) => <SidebarLink key={idx} {...item} />)}
 			
 			<CollapseButton 
 				isCollapsed={isCollapsed}
