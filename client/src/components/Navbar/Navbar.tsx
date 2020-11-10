@@ -6,10 +6,9 @@ import { FlexGrow } from 'components/CommonStyles'
 import { NavWrapper } from './Navbar.styled'
 
 const Navbar: React.FC = () => {
-
 	return (
 		<NavWrapper>
-			<Link to='/'>
+			<Link to='/dashboard'>
 				<Logo/>
 			</Link>
 

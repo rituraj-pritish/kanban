@@ -47,10 +47,13 @@ export const UserDetails = styled.div<UserDetails>`
   display: flex;
   align-items: center;
   margin-bottom: 12px;
-  justify-content: ${({ isCollapsed }) => isCollapsed && 'center'};
+  overflow: hidden;
 
   & > div:first-child {
-    margin-right: ${({ isCollapsed }) => !isCollapsed && theme.spacing(0.5)};
+    margin-right: ${theme.spacing(0.5)};
+    margin-left: ${({ isCollapsed }) => isCollapsed && theme.spacing(0.5)};
+    min-width: 35px;
+    transition: margin-left 0.2s;
   }
 `
 

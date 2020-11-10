@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 
 import theme from 'theme'
@@ -8,7 +8,7 @@ import Routes from 'components/Routes/Routes'
 
 const App: React.FC = () => {
 	return (
-		<div style={{ overflowY: 'hidden' }}>
+		<div style={{ overflow: 'hidden' }}>
 			<ThemeProvider theme={theme}>
 				<Router>
 					<AuthState>

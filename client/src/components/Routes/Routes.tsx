@@ -10,6 +10,7 @@ import Navbar from 'components/Navbar'
 import AuthContext from 'contexts/auth/AuthContext'
 import Sidebar from 'components/Sidebar'
 import { RoutesWrapper, RouteWrapper } from './Routes.styled'
+import Boards from 'components/Boards'
 
 const Routes: React.FC = () => {
 	const { isAuthenticated } = useContext(AuthContext)
@@ -23,6 +24,7 @@ const Routes: React.FC = () => {
 					<Switch>
 						<ProtectedRoute exact path='/dashboard' component={Dashboard} />
 						<ProtectedRoute exact path='/board/:boardId' component={Board} />
+						<ProtectedRoute exact path='/boards' component={Boards}/>
 					</Switch>
 				</RouteWrapper>
 			</div>

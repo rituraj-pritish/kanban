@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { MdDashboard } from 'react-icons/md'
 import { HiViewBoards } from 'react-icons/hi'
+import { IoMdSettings } from 'react-icons/io'
 
 import CollapseButton from './CollapseButton'
 import Avatar from 'components/Avatar'
@@ -24,13 +25,18 @@ const Sidebar: React.FC = () => {
 	const links = [
 		{
 			text: 'Dashboard' ,
-			link: '/' ,
+			link: '/dashboard' ,
 			icon: <MdDashboard/>
 		},
 		{
-			text: 'Board' ,
-			link: '/board' ,
+			text: 'Boards' ,
+			link: '/boards' ,
 			icon: <HiViewBoards/>
+		},
+		{
+			text: 'Settings' ,
+			link: '/settings' ,
+			icon: <IoMdSettings/>
 		}
 	]
 	
@@ -46,9 +52,9 @@ const Sidebar: React.FC = () => {
 					]}
 				/> */}
 				<Avatar size={35} user={user || mock}/>
-				{!isCollapsed && <div>
+				<div>
 					{user?.name}
-				</div>}
+				</div>
 			</UserDetails>
 			<Divider/>
 

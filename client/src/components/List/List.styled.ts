@@ -11,7 +11,7 @@ export const ListWrapper = styled.div`
   background: ${theme.colors.primaryLight};
   padding: ${theme.spacing(0.5)};
   margin-right: ${theme.spacing()};
-  max-height: calc(100% - ${theme.spacing()});
+  max-height: calc(100% - ${theme.spacing(1.5)});
   display: flex;
   flex-direction: column;
 `
@@ -49,6 +49,7 @@ export const ListDivider = styled.div`
 `
 
 export const CardsContainer = styled.div`
+  border-radius: ${theme.borderRadius};
   overflow-y: auto;
 
   // first card in list
