@@ -6,5 +6,11 @@ export const NavWrapper = styled.div`
   border-radius: ${theme.borderRadius};
   height: 50px;
   border: 1px solid ${theme.colors.primaryLight};
-  ${theme.styles.centerElement}
+  display: flex;
+
+  & > div {
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
 `

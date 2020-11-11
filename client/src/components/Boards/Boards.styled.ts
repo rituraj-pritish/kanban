@@ -11,5 +11,5 @@ export const BoardCard = styled.div`
   border-radius: ${theme.borderRadius};
   cursor: pointer;
   background: #eee;
-  padding: ${theme.spacing(0.5)};
+  padding: ${theme.spacing()};
 `

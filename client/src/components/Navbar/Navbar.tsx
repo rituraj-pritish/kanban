@@ -1,18 +1,13 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 
-import { ReactComponent as Logo } from 'assets/Logo.svg'
-import { FlexGrow } from 'components/CommonStyles'
 import { NavWrapper } from './Navbar.styled'
+import BoardNav from './BoardNav'
 
 const Navbar: React.FC = () => {
 	return (
 		<NavWrapper>
-			<Link to='/dashboard'>
-				<Logo/>
-			</Link>
-
-			<FlexGrow/>
+			<Route exact path='/board/:boardId' component={BoardNav}/>
 		</NavWrapper>
 	)
 }
