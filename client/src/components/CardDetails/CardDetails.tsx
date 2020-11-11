@@ -5,9 +5,10 @@ import dayjs from 'helpers/dayjs'
 
 import { GET_CARD } from 'graphql/queries/card'
 import Modal from 'components/ui/Modal'
-import Spinner from 'components/ui/Spinner'
 import CardDetailsForm from './CardDetailsForm'
 import { UPDATE_CARD } from 'graphql/mutations/card'
+import { DetailsWrapper, Divider, LeftSection, RightSection } from './CardDetails.styled'
+import CardDetailsSkeleton from './CardDetailsSkeleton'
 
 interface RouteParams {
 	boardId: string
@@ -59,21 +60,29 @@ const CardDetails: React.FC = () => {
 	}
 
 	const render = () => {
-		if(loading) return <Spinner centerOfParent loading/>
 		if(!called) return
+		if(loading) return <CardDetailsSkeleton/>
 
 		const { created_at, updated_at } = data.getCard
 
 		return (
-			<>
-				<CardDetailsForm 
-					onSubmit={handleSubmit} 
-					initialValues={data.getCard}
-				/>
+			<DetailsWrapper>
+				<LeftSection>
+					<CardDetailsForm 
+						onSubmit={handleSubmit} 
+						initialValues={data.getCard}
+					/>
 				Created {dayjs(created_at).fromNow()}
-				<br/>
+					<br/>
 				Updated {dayjs(updated_at).fromNow()}
-			</>
+				</LeftSection>
+
+				<Divider/>
+
+				<RightSection>
+					<div/>
+				</RightSection>
+			</DetailsWrapper>
 		)
 	}
 
