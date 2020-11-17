@@ -10,8 +10,11 @@ module.exports = {
 
 	Mutation: {
 		createCard: async (_, { title, list_id }) => {
+			const createdAt = new Date().toISOString()
 			const card = await new Card({
-				title
+				title,
+				created_at: createdAt,
+				updated_at: createdAt
 			}).save()
 			const list = await List.findById(list_id)
 			list.cards.push(card._id)
@@ -28,6 +31,7 @@ module.exports = {
 			Object.keys(details).forEach(key => {
 				card[key] = details[key]
 			})
+			card.updated_at = new Date().toISOString()
 			card.save()
 		},
 

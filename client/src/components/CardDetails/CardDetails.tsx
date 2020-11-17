@@ -72,9 +72,9 @@ const CardDetails: React.FC = () => {
 						onSubmit={handleSubmit} 
 						initialValues={data.getCard}
 					/>
-				Created {dayjs(created_at).fromNow()}
+					Created {dayjs(created_at).fromNow()}
 					<br/>
-				Updated {dayjs(updated_at).fromNow()}
+					Updated {dayjs(updated_at).fromNow()}
 				</LeftSection>
 
 				<Divider/>

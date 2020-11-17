@@ -23,7 +23,7 @@ type CollapseButtonWrapper = {
 export const CollapseButtonWrapper = styled.div<CollapseButtonWrapper>`
   position: absolute;
   right: -18px;
-  top: 105px;
+  top: 100px;
 
   & > div {
     background: ${theme.colors.greyLight};
@@ -46,7 +46,7 @@ type UserDetails = {
 export const UserDetails = styled.div<UserDetails>`
   display: flex;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: -2px;
   overflow: hidden;
 
   & > div:first-child {

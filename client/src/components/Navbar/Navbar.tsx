@@ -8,6 +8,7 @@ const Navbar: React.FC = () => {
 	return (
 		<NavWrapper>
 			<Route exact path='/board/:boardId' component={BoardNav}/>
+			<Route exact path='/boards' component={() => <div>Boards</div>}/>
 		</NavWrapper>
 	)
 }

@@ -44,7 +44,6 @@ const Boards: React.FC = () => {
 
 	return (
 		<>
-			<div>Boards</div>
 			<CardsWrapper>
 				{data?.getBoards.map(
 					({ _id, name }: {_id: string, name: string}) => 
