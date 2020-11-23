@@ -2,6 +2,7 @@ import React from 'react'
 import { useQuery } from '@apollo/client'
 import { useHistory, useParams } from 'react-router-dom'
 import { IoMdArrowRoundBack } from 'react-icons/io'
+import Skeleton from 'react-loading-skeleton'
 
 import { GET_BOARD } from 'graphql/queries/board'
 import IconButton from 'components/ui/IconButton'
@@ -29,7 +30,7 @@ const BoardNav: React.FC = () => {
 					icon={<IoMdArrowRoundBack size={25} />}
 					onClick={() => history.push('/boards')}
 				/>
-				{data?.getBoard?.name}
+				{data?.getBoard?.name || <Skeleton width={100} height={22}/>}
 			</div>
 
 			<BoardNavToggleMenu/>

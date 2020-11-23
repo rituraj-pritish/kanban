@@ -12,6 +12,7 @@ import NewListButton from './NewListButton'
 import { BoardWrapper } from './Board.styled'
 import onDragEnd from 'helpers/onDragEnd'
 import CardDetails from 'components/CardDetails'
+import Skeleton from 'react-loading-skeleton'
 
 interface Card {
 	_id: string,
@@ -45,7 +46,13 @@ const Board: React.FC = () => {
 		}
 	}, [loading, data])
 
-	if (loading) return <div>loading</div>
+	if (loading) return (
+		<>
+			<Skeleton height={500} width={288} style={{ marginRight: '1rem' }}/>
+			<Skeleton height={350} width={288} style={{ marginRight: '1rem' }}/>
+			<Skeleton height={200} width={288}/>
+		</>
+	)
 
 	const handleDragEnd = (result: any) => {
 		onDragEnd(
