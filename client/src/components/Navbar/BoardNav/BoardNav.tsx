@@ -6,6 +6,9 @@ import { IoMdArrowRoundBack } from 'react-icons/io'
 import { GET_BOARD } from 'graphql/queries/board'
 import IconButton from 'components/ui/IconButton'
 
+import { BoardNavWrapper } from '../Navbar.styled'
+import BoardNavToggleMenu from './BoardNavToggleMenu'
+
 type RouteParams = {
   boardId: string
 }
@@ -20,13 +23,17 @@ const BoardNav: React.FC = () => {
   
 
 	return (
-		<div>
-			<IconButton 
-				icon={<IoMdArrowRoundBack size={25} />}
-				onClick={() => history.push('/boards')}
-			/>
-			{data?.getBoard?.name}
-		</div>
+		<BoardNavWrapper>
+			<div>
+				<IconButton 
+					icon={<IoMdArrowRoundBack size={25} />}
+					onClick={() => history.push('/boards')}
+				/>
+				{data?.getBoard?.name}
+			</div>
+
+			<BoardNavToggleMenu/>
+		</BoardNavWrapper>
 	)
 }
 

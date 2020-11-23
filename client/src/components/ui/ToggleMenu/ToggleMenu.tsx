@@ -1,7 +1,7 @@
 import React from 'react'
 
 import useComponentVisible from 'hooks/useComponentVisible'
-import { Trigger, MenuWrapper, Menu } from './ToggleMenu.styled'
+import { Trigger, MenuWrapper, Menu, TriggerWrapper } from './ToggleMenu.styled'
 import PLACEMENTS from 'constants/placements'
 
 interface item {
@@ -26,7 +26,7 @@ const ToggleMenu: React.FC<Props> = ({ items, trigger, placement = PLACEMENTS.RI
 	return (
 		<MenuWrapper onMouseLeave={() => setShowMenu(false)}>
 			{trigger 
-				?<div onClick={handleClick}>{trigger}</div> 
+				?<TriggerWrapper onClick={handleClick}>{trigger}</TriggerWrapper> 
 			 :<Trigger onClick={handleClick}>
 			 	<span/><span/><span/>
 			 </Trigger>

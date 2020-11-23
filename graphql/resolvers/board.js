@@ -29,6 +29,11 @@ module.exports = {
 			}).save()
 
 			return true
+		},
+
+		deleteBoard: async (_, { id }) => {
+			await Board.findByIdAndDelete(id)
+			return true
 		}
 	}
 }

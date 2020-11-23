@@ -52,3 +52,7 @@ export const Menu = styled.div<Menu>`
     }
   }
 `
+
+export const TriggerWrapper = styled.div`
+  cursor: pointer;
+`

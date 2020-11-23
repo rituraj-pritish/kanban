@@ -17,6 +17,10 @@ module.exports = {
     createBoard(
       name: String!,
       user_id: ID!
+    ): Boolean,
+
+    deleteBoard(
+      id: ID!
     ): Boolean
   `
 }
