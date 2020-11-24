@@ -1,5 +1,6 @@
 export const VARIANTS = {
 	PRIMARY: 'primary',
 	SECONDARY: 'secondary',
-	CANCEL: 'cancel'
+	CANCEL: 'cancel',
+	DANGER: 'danger'
 }

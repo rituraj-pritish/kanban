@@ -5,6 +5,8 @@ import { VARIANTS } from 'constants/button'
 
 const getBgColor = (variant: string) => {
 	switch(variant) {
+	case VARIANTS.DANGER:
+		return '#EF6767'
 	case VARIANTS.CANCEL:
 		return '#BCB8BF'
 	default:
