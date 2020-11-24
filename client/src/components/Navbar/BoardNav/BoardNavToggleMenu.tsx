@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { IoMdSettings } from 'react-icons/io'
 import { useMutation } from '@apollo/client'
 import { useHistory, useParams } from 'react-router-dom'
@@ -9,12 +9,18 @@ import PLACEMENTS from 'constants/placements'
 import IconButton from 'components/ui/IconButton'
 import { GET_BOARDS } from 'graphql/queries/board'
 import AuthContext from 'contexts/auth/AuthContext'
+import Dialog from 'components/ui/Dialog'
 
 type RouteParams = {
   boardId: string
 }
 
-const BoardNavToggleMenu: React.FC = () => {
+type Props = {
+	boardName: string
+}
+
+const BoardNavToggleMenu: React.FC<Props> = ({ boardName }) => {
+	const [showDialog, setShowDialog] = useState<boolean>(false)
 	const { boardId } = useParams<RouteParams>()
 	const { user } = useContext(AuthContext)
 	const history = useHistory()
@@ -34,18 +40,29 @@ const BoardNavToggleMenu: React.FC = () => {
 	}
   
 	return (
-		<ToggleMenu
-			placement={PLACEMENTS.LEFT}
-			trigger={
-				<IconButton 
-					icon={<IoMdSettings/>}
-					onClick={() => {}}
-				/>		
-			}
-			items={[
-				{ text: 'Delete board', onClick: handleDeleteBoard }
-			]}
-		/>
+		<>
+			<ToggleMenu
+				placement={PLACEMENTS.LEFT}
+				trigger={
+					<IconButton 
+						icon={<IoMdSettings/>}
+						onClick={() => {}}
+					/>		
+				}
+				items={[
+					{ text: 'Delete board', onClick: () => setShowDialog(true) }
+				]}
+			/>
+			<Dialog
+				confirmDelete
+				confirmText={boardName}
+				title='Delete board'
+				text={`Are you sure you want to delete the board <b>${boardName}</b> ?`}
+				onClose={() => setShowDialog(false)}
+				onConfirm={handleDeleteBoard}
+				isOpen={showDialog}
+			/>
+		</>
 	)
 }
 

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Redirect, Route, Switch } from 'react-router-dom'
 
 import Dashboard from 'components/Dashboard'
 import Board from 'components/Board'
@@ -14,7 +14,7 @@ import Boards from 'components/Boards'
 
 const Routes: React.FC = () => {
 	const { isAuthenticated } = useContext(AuthContext)
-  
+
 	const authenticatedComponents = 
 		<RoutesWrapper>
     	<Sidebar/>
@@ -34,6 +34,7 @@ const Routes: React.FC = () => {
 	const notAuthenticatedComponents = 
     <>
     	<AuthModal/>
+    	{/* <Redirect from='*' to='/' /> */}
     	<Route exact path='/' component={Home} />
     </>
   

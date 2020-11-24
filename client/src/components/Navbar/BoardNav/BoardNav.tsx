@@ -33,7 +33,7 @@ const BoardNav: React.FC = () => {
 				{data?.getBoard?.name || <Skeleton width={100} height={22}/>}
 			</div>
 
-			<BoardNavToggleMenu/>
+			<BoardNavToggleMenu boardName={data?.getBoard?.name}/>
 		</BoardNavWrapper>
 	)
 }
