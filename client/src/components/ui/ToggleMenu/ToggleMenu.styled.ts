@@ -23,12 +23,17 @@ export const Trigger = styled.div`
   }
 `
 
-export const MenuWrapper = styled.div`
-  position: relative;
+type MenuWrapper = {
+  usePosition: boolean
+}
+
+export const MenuWrapper = styled.div<MenuWrapper>`
+  position: ${({ usePosition }) => !usePosition && 'relative'};   
 `
 
 interface Menu {
-  placement: string
+  placement: string,
+  position: number[] | null
 }
 
 export const Menu = styled.div<Menu>`
@@ -40,6 +45,8 @@ export const Menu = styled.div<Menu>`
   padding: ${theme.spacing(0.5)} 0;
   z-index: 5;
   right: ${({ placement }) => placement === PLACEMENTS.LEFT && 0};
+  top: ${({ position }) => position && position[1] - 80 + 'px'};
+  left: ${({ position }) => position && position[0] - 15 + 'px'};
 
   & > div {
     background: ${lighten(0.1, theme.colors.greyLight)};

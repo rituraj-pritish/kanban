@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { MutableRefObject } from 'react'
 
 import ToggleMenu from 'components/ui/ToggleMenu'
 import { useMutation } from '@apollo/client'
@@ -8,14 +8,15 @@ import { GET_BOARD } from 'graphql/queries/board'
 
 interface Props {
   listId: string,
-  cardId: string
+	cardId: string,
+	menuRef: React.RefObject<HTMLDivElement>
 }
 
 interface RouteParams {
   boardId: string
 }
 
-const CardToggleMenu: React.FC<Props> = ({ cardId, listId }) => {
+const CardToggleMenu: React.FC<Props> = ({ cardId, listId, menuRef }) => {
 	const { boardId } = useParams<RouteParams>()
 
 	const [deleteCard, { data, loading }] = useMutation(DELETE_CARD, {
@@ -33,6 +34,8 @@ const CardToggleMenu: React.FC<Props> = ({ cardId, listId }) => {
   
 	return (
 		<ToggleMenu
+			ref={menuRef}
+			usePosition
 			items={[
 				{ text: 'Copy link', 
 					//todo change with BASE_URL

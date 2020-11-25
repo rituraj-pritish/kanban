@@ -1,9 +1,9 @@
+import React, { useLayoutEffect, useRef, useState } from 'react'
+
 import { VARIANTS } from 'constants/button'
 import KEYS from 'constants/keys'
 import useKeyPress from 'hooks/useKeyPress'
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import Button from '../Button'
-
 import Modal from '../Modal'
 import { ButtonsWrapper, StyledInput, Text, Title } from './Dialog.styled'
 
@@ -33,7 +33,7 @@ const Dialog: React.FC<Props> = ({
 	const showInput = hasInput || confirmDelete
 	const enterPress = useKeyPress(KEYS.ENTER)
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		if(showInput && isOpen && inputRef.current) {
 			inputRef.current.focus()
 		}
