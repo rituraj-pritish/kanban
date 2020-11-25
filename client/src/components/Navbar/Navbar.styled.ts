@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import theme from 'theme'
 
 export const NavWrapper = styled.div`
+  background: white;
   padding: 0 ${theme.spacing()};
   border-radius: ${theme.borderRadius};
   height: 50px;

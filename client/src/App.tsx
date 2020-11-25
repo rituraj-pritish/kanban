@@ -8,7 +8,7 @@ import Routes from 'components/Routes/Routes'
 
 const App: React.FC = () => {
 	return (
-		<div style={{ overflow: 'hidden' }}>
+		<div style={{ overflow: 'hidden', background: '#f7f8ff' }}>
 			<ThemeProvider theme={theme}>
 				<Router>
 					<AuthState>

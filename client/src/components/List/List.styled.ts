@@ -51,6 +51,7 @@ export const ListDivider = styled.div`
 export const CardsContainer = styled.div`
   border-radius: ${theme.borderRadius};
   overflow-y: auto;
+  margin-right: ${theme.spacing(-0.25)};
 
   // first card in list
   & > div:nth-child(2) {

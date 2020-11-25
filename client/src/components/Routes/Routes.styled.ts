@@ -6,12 +6,16 @@ export const RoutesWrapper = styled.div`
   width: calc(100vw - ${theme.spacing(0.8)});
   height: calc(100vh - ${theme.spacing(0.8)});
   padding: ${theme.spacing(0.4)};
-
+  
   & > div:nth-child(2) {
     display: flex;
     flex-direction: column;
     flex: 1;
     overflow: hidden;
+    
+    & > div {
+      background: white;
+    }
   }
 `
 

@@ -6,8 +6,8 @@ export default {
 	borderRadius: '0.4rem',
 
 	colors: {
-		primary: '#A85EDA',
-		primaryLight: '#EDDEF7',
+		primary: '#9196E4',
+		primaryLight: '#EFF0FE',
 		greyLight: '#DCDCDC',
 		inputBg: '#F7F7F7'
 	},

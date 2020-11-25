@@ -9,6 +9,7 @@ interface CardWrapper {
 export const CardWrapper = styled.div<CardWrapper>`
   padding-top: ${theme.spacing(0.5)};
   cursor: pointer !important;
+  margin-right: ${theme.spacing(0.25)};
 
   & > div {
     display: flex;
