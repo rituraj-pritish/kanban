@@ -13,7 +13,7 @@ import { RoutesWrapper, RouteWrapper } from './Routes.styled'
 import Boards from 'components/Boards'
 
 const Routes: React.FC = () => {
-	const { isAuthenticated } = useContext(AuthContext)
+	const { isAuthenticated, loading } = useContext(AuthContext)
 
 	const authenticatedComponents = 
 		<RoutesWrapper>
@@ -34,8 +34,8 @@ const Routes: React.FC = () => {
 	const notAuthenticatedComponents = 
     <>
     	<AuthModal/>
-    	{/* <Redirect from='*' to='/' /> */}
     	<Route exact path='/' component={Home} />
+    	{!loading && <Redirect from='*' to='/' />}
     </>
   
   
