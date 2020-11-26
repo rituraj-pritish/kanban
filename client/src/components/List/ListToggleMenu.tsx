@@ -1,18 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import ToggleMenu from 'components/ui/ToggleMenu'
 import { useMutation } from '@apollo/client'
 import { DELETE_LIST } from 'graphql/mutations/list'
 import { GET_BOARD } from 'graphql/queries/board'
+import Dialog from 'components/ui/Dialog'
 
 interface Props {
   boardId: string,
-  listId: string
+	listId: string,
+	listName: string
 }
 
 const ListToggleMenu: React.FC<Props> = ({
 	boardId,
-	listId
+	listId,
+	listName
 }) => {
 	const [deleteList, { data, loading }] = useMutation(DELETE_LIST, {
 		variables: {
@@ -26,13 +29,26 @@ const ListToggleMenu: React.FC<Props> = ({
 			}
 		}]
 	})
+
+	const [showDialog, setShowDialog] = useState<boolean>(false)
   
 	return (
-		<ToggleMenu 
-			items={[
-				{ text: 'Delete list', onClick: deleteList }
-			]}
-		/>
+		<>
+			<ToggleMenu 
+				items={[
+					{ text: 'Delete list', onClick: () => setShowDialog(true) }
+				]}
+			/>
+			<Dialog
+				isOpen={showDialog}
+				onClose={() => setShowDialog(false)}
+				title='Delete List'
+				text={`Are you sure you want to delete the list <b>${listName}</b> ?`}
+				//@ts-expect-error
+				onConfirm={deleteList}
+				confirmDelete
+			/>
+		</>
 	)
 }
 

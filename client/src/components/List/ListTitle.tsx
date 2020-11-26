@@ -44,7 +44,7 @@ const Title: React.FC<Props> = ({ title, listId, boardId, provided }) => {
 						? <StyledIconButton icon={<BiPencil/>} onClick={() => setEditMode(true)} />
 						: <StyledIconButton icon={<BiCheck/>} onClick={handleSave} />
 				}
-				<ListToggleMenu listId={listId} boardId={boardId} />
+				<ListToggleMenu listName={title} listId={listId} boardId={boardId} />
 			</div>
 		</ListTitle>
 	)

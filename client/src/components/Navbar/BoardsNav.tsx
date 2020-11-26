@@ -16,7 +16,7 @@ const BoardsNav: React.FC = () => {
 	const [createBoard, res] = useMutation(CREATE_BOARD)
 
 	const handleSubmit = (name: string | undefined) => {
-		createBoard({
+		return createBoard({
 			variables: { name: name, user_id: user?._id , is_admin: true },
 			refetchQueries: [{
 				query: GET_BOARDS,
@@ -25,7 +25,6 @@ const BoardsNav: React.FC = () => {
 				}
 			}]
 		})
-			.then(() => setShowDialog(false))
 	}
   
 	return (

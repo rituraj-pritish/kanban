@@ -14,7 +14,8 @@ type Props = {
   onClose: () => void,
   onConfirm: (text?: string) => void,
   hasInput?: boolean,
-  confirmDelete?: boolean,
+	confirmDelete?: boolean,
+	confirmDeleteWithText?: boolean,
   confirmText?: string
 }
 
@@ -26,12 +27,15 @@ const Dialog: React.FC<Props> = ({
 	onConfirm,
 	hasInput = false,
 	confirmDelete = false,
+	confirmDeleteWithText = false,
 	confirmText
 }) => {
 	const [inputText, setInputText] = useState<string>('')
 	const inputRef = useRef<HTMLInputElement>()
-	const showInput = hasInput || confirmDelete
 	const enterPress = useKeyPress(KEYS.ENTER)
+	const [isLoading, setIsLoading] = useState<boolean>(false)
+
+	const showInput = hasInput || confirmDeleteWithText
 
 	useLayoutEffect(() => {
 		if(showInput && isOpen && inputRef.current) {
@@ -39,21 +43,37 @@ const Dialog: React.FC<Props> = ({
 		}
 	}, [isOpen, inputRef])
 
-	useLayoutEffect(() => {
-		if(showInput && !inputText) return
-
+	const handleConfirm = () => {
+		setIsLoading(true)
 		if(showInput) {
 			onConfirm(inputText)
+			//@ts-expect-error
+				.finally(() => {
+					setIsLoading(false)
+					onClose()
+				})
 			return
 		}
 
 		onConfirm()
+		//@ts-expect-error
+			.finally(() => {
+				setIsLoading(false)
+				onClose()
+			})
+	}
+
+	useLayoutEffect(() => {
+		if(!enterPress) return
+		if(showInput && !inputText) return
+
+		handleConfirm()
 	}, [enterPress])
   
 	const isPrimaryButtonDisabled = () => {
 		if(hasInput) return !inputText
     
-		if(confirmDelete) {
+		if(confirmDeleteWithText) {
 			return confirmText !== inputText  
 		}
     
@@ -88,9 +108,10 @@ const Dialog: React.FC<Props> = ({
 				</Button>
 				<Button
 					disabled={isPrimaryButtonDisabled()}
-					variant={confirmDelete ? VARIANTS.DANGER : VARIANTS.PRIMARY}					
-					//@ts-expect-error
-					onClick={showInput ? () => onConfirm(inputText) : onConfirm} 
+					variant={confirmDelete || confirmDeleteWithText
+						 ? VARIANTS.DANGER : VARIANTS.PRIMARY}					
+					onClick={handleConfirm} 
+					isLoading={isLoading}
 				>
           Confirm
 				</Button>

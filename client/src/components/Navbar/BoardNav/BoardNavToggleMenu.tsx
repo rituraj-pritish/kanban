@@ -54,7 +54,7 @@ const BoardNavToggleMenu: React.FC<Props> = ({ boardName }) => {
 				]}
 			/>
 			<Dialog
-				confirmDelete
+				confirmDeleteWithText
 				confirmText={boardName}
 				title='Delete board'
 				text={`Are you sure you want to delete the board <b>${boardName}</b> ?`}
