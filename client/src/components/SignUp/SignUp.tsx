@@ -1,6 +1,6 @@
 import React from 'react'
 import { useMutation } from '@apollo/client'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 import { SIGN_UP } from 'graphql/mutations/user'
 import SignUpForm from './SignUpForm'
@@ -32,9 +32,9 @@ const SignIn: React.FC<Props> = ({ closeAuthModal }) => {
 			<SignUpForm onSubmit={handleSubmit} />
 			<div>
 				Already have an account{' '}
-				<span onClick={() => history.push('/?auth=signin')} >
+				<Link onClick={() => history.push('/?auth=signin')} to='/?auth=signin' >
 					sign in
-				</span>
+				</Link>
 			</div>
 		</>
 	)

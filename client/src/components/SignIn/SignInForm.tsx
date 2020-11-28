@@ -4,6 +4,7 @@ import { Form, Field } from 'react-final-form'
 import TextFieldAdapter from 'components/ui/forms/TextFieldAdapter'
 import Button from 'components/ui/Button'
 import { required } from 'helpers/validators'
+import { FlexEndWrapper } from 'components/CommonStyles'
 
 interface Props {
   onSubmit: (values: { email: string, password: string }) => void
@@ -17,7 +18,7 @@ const SignInForm: React.FC<Props> = ({ onSubmit }) => {
 				password: '123456'
 			}}
 			onSubmit={onSubmit}
-			render={({ handleSubmit }) => {
+			render={({ handleSubmit, submitting }) => {
 				return (
 					<form onSubmit={handleSubmit}>
 						<Field
@@ -35,7 +36,12 @@ const SignInForm: React.FC<Props> = ({ onSubmit }) => {
 							component={TextFieldAdapter}			
 							isRequired
 						/>
-						<Button type='submit' >Submit</Button>
+						<FlexEndWrapper>
+							<Button 
+								type='submit'
+								isLoading={submitting}
+							>Submit</Button>
+						</FlexEndWrapper>
 					</form>
 				)
 			}}

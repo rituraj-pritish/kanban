@@ -3,6 +3,7 @@ import { MdDashboard } from 'react-icons/md'
 import { HiViewBoards } from 'react-icons/hi'
 import { IoMdSettings } from 'react-icons/io'
 import { useHistory } from 'react-router-dom'
+import { FiLogOut } from 'react-icons/fi'
 
 import { ReactComponent as Logo } from 'assets/Logo.svg' 
 import CollapseButton from './CollapseButton'
@@ -11,6 +12,7 @@ import { Divider, SidebarWrapper, UserDetails, LogoWrapper } from './Sidebar.sty
 import AuthContext from 'contexts/auth/AuthContext'
 import SidebarLink from './SidebarLink'
 import { FlexGrow } from 'components/CommonStyles'
+import IconButton from 'components/ui/IconButton'
 
 const mock = {
 	first_name: '',
@@ -59,12 +61,15 @@ const Sidebar: React.FC = () => {
 
 			<FlexGrow/>
 
-			<UserDetails isCollapsed={isCollapsed}>
-				<Avatar user={user || mock} size={35}/>
-				<div>
-					{user?.name}
-				</div>
-			</UserDetails>
+			<div>
+				<IconButton icon={<FiLogOut/>} onClick={signOut} />
+				<UserDetails isCollapsed={isCollapsed}>
+					<Avatar user={user || mock} size={35}/>
+					<div>
+						{user?.name}
+					</div>
+				</UserDetails>
+			</div>
 			
 			<CollapseButton 
 				isCollapsed={isCollapsed}

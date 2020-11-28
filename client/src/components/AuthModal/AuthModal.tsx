@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
+import { ReactComponent as Logo } from 'assets/Logo.svg' 
 import Modal from 'components/ui/Modal'
 import SignIn from 'components/SignIn'
 import SignUp from 'components/SignUp'
+import { LogoWrapper } from './AuthModal.styled'
 
 const SIGN_IN = 'signin'
 const SIGN_UP = 'signup'
@@ -37,9 +39,11 @@ const AuthModal: React.FC = () => {
 			isOpen={isOpen} 
 			onRequestClose={onRequestClose} 
 			modalStyles={{
-				width: '30rem'
+				width: '30rem',
+				height: 'fit-content'
 			}}
 		>
+			<LogoWrapper><Logo/></LogoWrapper>
 			{currentForm === SIGN_IN 
 				? <SignIn closeAuthModal={() => setIsOpen(false)} /> 
 				: <SignUp closeAuthModal={() => setIsOpen(false)} />

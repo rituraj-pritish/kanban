@@ -4,6 +4,7 @@ import { Form, Field } from 'react-final-form'
 import TextFieldAdapter from 'components/ui/forms/TextFieldAdapter'
 import Button from 'components/ui/Button'
 import { required } from 'helpers/validators'
+import { FlexEndWrapper } from 'components/CommonStyles'
 
 interface Props {
   onSubmit: (values: { 
@@ -18,7 +19,7 @@ const SignUpForm: React.FC<Props> = ({ onSubmit }) => {
 	return (
 		<Form
 			onSubmit={onSubmit}
-			render={({ handleSubmit }) => {
+			render={({ handleSubmit, submitting }) => {
 				return (
 					<form onSubmit={handleSubmit}>
 						<Field
@@ -58,7 +59,9 @@ const SignUpForm: React.FC<Props> = ({ onSubmit }) => {
 							component={TextFieldAdapter}			
 							isRequired
 						/>
-						<Button type='submit' >Submit</Button>
+						<FlexEndWrapper>
+							<Button type='submit' isLoading={submitting} >Submit</Button>
+						</FlexEndWrapper>
 					</form>
 				)
 			}}

@@ -3,7 +3,7 @@ import { useLazyQuery } from '@apollo/client'
 
 import { SIGN_IN } from 'graphql/queries/user'
 import SignInForm from './SignInForm'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import AuthContext from 'contexts/auth/AuthContext'
 import { AUTH_SUCCESS } from 'contexts/types'
 
@@ -46,9 +46,9 @@ const SignIn: React.FC<Props> = ({ closeAuthModal }) => {
 			<SignInForm onSubmit={handleSubmit} />
 			<div>
 				Don't have an account{' '}
-				<span onClick={() => history.push('/?auth=signup')} >
+				<Link onClick={() => history.push('/?auth=signup')} to='/?auth=signup' >
 					sign up
-				</span>
+				</Link>
 			</div>
 		</>
 	)
