@@ -6,6 +6,7 @@ import SignInForm from './SignInForm'
 import { Link, useHistory } from 'react-router-dom'
 import AuthContext from 'contexts/auth/AuthContext'
 import { AUTH_SUCCESS } from 'contexts/types'
+import GoogleAuthButton from '../GoogleAuthButton'
 
 interface Values {
 	email: string,
@@ -43,13 +44,14 @@ const SignIn: React.FC<Props> = ({ closeAuthModal }) => {
   
 	return (
 		<>
-			<SignInForm onSubmit={handleSubmit} />
+			<SignInForm onSubmit={handleSubmit} isLoading={loading} />
 			<div>
 				Don't have an account{' '}
 				<Link onClick={() => history.push('/?auth=signup')} to='/?auth=signup' >
 					sign up
 				</Link>
 			</div>
+			<GoogleAuthButton/>
 		</>
 	)
 }

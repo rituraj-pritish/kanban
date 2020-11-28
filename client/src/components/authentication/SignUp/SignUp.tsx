@@ -4,6 +4,7 @@ import { Link, useHistory } from 'react-router-dom'
 
 import { SIGN_UP } from 'graphql/mutations/user'
 import SignUpForm from './SignUpForm'
+import GoogleAuthButton from '../GoogleAuthButton'
 
 interface Values {
   name: string,
@@ -20,22 +21,22 @@ const SignIn: React.FC<Props> = ({ closeAuthModal }) => {
 	const history = useHistory()
 	const [signUp, { data, loading }] = useMutation(SIGN_UP)
 
-	
-	console.log('data', data)
-
 	const handleSubmit = (values: Values) => {
 		signUp({ variables: values })
 	}
   
 	return (
 		<>
-			<SignUpForm onSubmit={handleSubmit} />
+			<SignUpForm onSubmit={handleSubmit} isLoading={loading} />
 			<div>
 				Already have an account{' '}
 				<Link onClick={() => history.push('/?auth=signin')} to='/?auth=signin' >
 					sign in
 				</Link>
 			</div>
+			<GoogleAuthButton
+				buttonText='Sign up with Google'
+			/>
 		</>
 	)
 }

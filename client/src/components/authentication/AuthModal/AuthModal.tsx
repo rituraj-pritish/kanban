@@ -3,8 +3,8 @@ import { useHistory } from 'react-router-dom'
 
 import { ReactComponent as Logo } from 'assets/Logo.svg' 
 import Modal from 'components/ui/Modal'
-import SignIn from 'components/SignIn'
-import SignUp from 'components/SignUp'
+import SignIn from 'components/authentication/SignIn'
+import SignUp from 'components/authentication/SignUp'
 import { LogoWrapper } from './AuthModal.styled'
 
 const SIGN_IN = 'signin'

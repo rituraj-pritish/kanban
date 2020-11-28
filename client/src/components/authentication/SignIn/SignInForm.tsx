@@ -7,10 +7,11 @@ import { required } from 'helpers/validators'
 import { FlexEndWrapper } from 'components/CommonStyles'
 
 interface Props {
+	isLoading: boolean,
   onSubmit: (values: { email: string, password: string }) => void
 }
 
-const SignInForm: React.FC<Props> = ({ onSubmit }) => {
+const SignInForm: React.FC<Props> = ({ onSubmit, isLoading }) => {
 	return (
 		<Form
 			initialValues={{
@@ -18,7 +19,7 @@ const SignInForm: React.FC<Props> = ({ onSubmit }) => {
 				password: '123456'
 			}}
 			onSubmit={onSubmit}
-			render={({ handleSubmit, submitting }) => {
+			render={({ handleSubmit }) => {
 				return (
 					<form onSubmit={handleSubmit}>
 						<Field
@@ -39,7 +40,7 @@ const SignInForm: React.FC<Props> = ({ onSubmit }) => {
 						<FlexEndWrapper>
 							<Button 
 								type='submit'
-								isLoading={submitting}
+								isLoading={isLoading}
 							>Submit</Button>
 						</FlexEndWrapper>
 					</form>

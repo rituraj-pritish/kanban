@@ -3,7 +3,7 @@ import { Redirect, Route, Switch } from 'react-router-dom'
 
 import Dashboard from 'components/Dashboard'
 import Board from 'components/Board'
-import AuthModal from 'components/AuthModal'
+import AuthModal from 'components/authentication/AuthModal'
 import Home from 'components/Home'
 import ProtectedRoute from 'components/ProtectedRoute'
 import Navbar from 'components/Navbar'
