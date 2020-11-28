@@ -35,7 +35,7 @@ const BoardNavToggleMenu: React.FC<Props> = ({ boardName }) => {
 	})
   
 	const handleDeleteBoard = () => {
-		deleteBoard()
+		return deleteBoard()
 			.then(() => history.push('/boards'))
 	}
   
@@ -56,6 +56,7 @@ const BoardNavToggleMenu: React.FC<Props> = ({ boardName }) => {
 			<Dialog
 				confirmDeleteWithText
 				confirmText={boardName}
+				deleteSubject='board'
 				title='Delete board'
 				text={`Are you sure you want to delete the board <b>${boardName}</b> ?`}
 				onClose={() => setShowDialog(false)}

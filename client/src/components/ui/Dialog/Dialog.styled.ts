@@ -30,3 +30,8 @@ export const ButtonsWrapper = styled.div`
 export const StyledInput = styled(Input)`
   margin: 0;
 `
+
+export const SubText = styled.div`
+  margin-top: ${theme.spacing(-0.5)};
+  margin-bottom: ${theme.spacing()};
+`

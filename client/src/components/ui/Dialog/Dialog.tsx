@@ -1,11 +1,11 @@
-import React, { useLayoutEffect, useRef, useState } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 
 import { VARIANTS } from 'constants/button'
 import KEYS from 'constants/keys'
 import useKeyPress from 'hooks/useKeyPress'
 import Button from '../Button'
 import Modal from '../Modal'
-import { ButtonsWrapper, StyledInput, Text, Title } from './Dialog.styled'
+import { ButtonsWrapper, StyledInput, Text, Title, SubText } from './Dialog.styled'
 
 type Props = {
 	isOpen: boolean,
@@ -16,7 +16,8 @@ type Props = {
   hasInput?: boolean,
 	confirmDelete?: boolean,
 	confirmDeleteWithText?: boolean,
-  confirmText?: string
+  confirmText?: string,
+  deleteSubject?: string
 }
 
 const Dialog: React.FC<Props> = ({
@@ -28,20 +29,14 @@ const Dialog: React.FC<Props> = ({
 	hasInput = false,
 	confirmDelete = false,
 	confirmDeleteWithText = false,
-	confirmText
+	confirmText,
+	deleteSubject
 }) => {
 	const [inputText, setInputText] = useState<string>('')
-	const inputRef = useRef<HTMLInputElement>()
 	const enterPress = useKeyPress(KEYS.ENTER)
 	const [isLoading, setIsLoading] = useState<boolean>(false)
 
 	const showInput = hasInput || confirmDeleteWithText
-
-	useLayoutEffect(() => {
-		if(showInput && isOpen && inputRef.current) {
-			inputRef.current.focus()
-		}
-	}, [isOpen, inputRef])
 
 	const handleConfirm = () => {
 		setIsLoading(true)
@@ -97,8 +92,9 @@ const Dialog: React.FC<Props> = ({
 		>
 			<Title>{title}</Title>
 			<Text dangerouslySetInnerHTML={{ __html: text }} />
+			{confirmText && <SubText>{`Type name of the ${deleteSubject} to continue.`}</SubText>}
 			{/* @ts-expect-error */}
-			{showInput && <StyledInput ref={inputRef} onChange={e => setInputText(e.target.value)} />}   
+			{showInput && <StyledInput autoFocus onChange={e => setInputText(e.target.value)} />}   
 			<ButtonsWrapper>
 				<Button 
 					variant={VARIANTS.CANCEL} 
