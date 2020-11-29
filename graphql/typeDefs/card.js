@@ -48,6 +48,22 @@ module.exports = {
       card_id: ID!,
       old_list: ID!,
       new_list: ID!
+    ): Boolean,
+
+    addComment(
+      card_id: ID!,
+      comment: String!
+    ): Boolean,
+
+    updateComment(
+      comment_id: ID!,
+      card_id: ID!,
+      comment: String!
+    ): Boolean,
+
+    deleteComment(
+      card_id: ID!,
+      comment_id: ID!
     ): Boolean
   `
 }

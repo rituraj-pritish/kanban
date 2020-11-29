@@ -69,6 +69,42 @@ module.exports = {
 				oldList.save()
 				newList.save()
 			}
+		},
+
+		addComment: async (_, { card_id, comment }, { current_user }) => {
+			const card = await Card.findById(card_id)
+
+			card.comments.push({
+				comment,
+				comment_by: current_user
+			})
+
+			await card.save()
+			return true
+		},
+
+		updateComment: async (_, { card_id, comment_id, comment }) => {
+			const card = await Card.findById(card_id)
+
+			card.comments.forEach(com => {
+				if(com._id === comment_id) return com
+
+				return {
+					...com,
+					comment
+				}
+			})
+
+			await card.save()
+			return true
+		},
+
+		deleteComment: async (_, { card_id, comment_id }) => {
+			const card = await Card.findById(card_id)
+			const comments = card.comments.filter(({ _id }) => _id !== comment_id)
+			card.comments = comments
+			await card.save()
+			return true
 		}
 	}
 }

@@ -9,6 +9,7 @@ import CardDetailsForm from './CardDetailsForm'
 import { UPDATE_CARD } from 'graphql/mutations/card'
 import { DetailsWrapper, Divider, LeftSection, RightSection } from './CardDetails.styled'
 import CardDetailsSkeleton from './CardDetailsSkeleton'
+import CardDetailsBottomSection from './CardDetailsBottomSection'
 
 interface RouteParams {
 	boardId: string
@@ -63,7 +64,7 @@ const CardDetails: React.FC = () => {
 		if(!called) return
 		if(loading) return <CardDetailsSkeleton/>
 
-		const { created_at, updated_at } = data.getCard
+		const { created_at, updated_at, comments, history, _id } = data.getCard
 
 		return (
 			<DetailsWrapper>
@@ -73,6 +74,11 @@ const CardDetails: React.FC = () => {
 						initialValues={data.getCard}
 					/>
 				
+					<CardDetailsBottomSection 
+						comments={comments} 
+						history={history} 
+						cardId={_id}
+					/>
 				</LeftSection>
 
 				<Divider/>

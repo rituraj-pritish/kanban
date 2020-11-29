@@ -55,3 +55,29 @@ export const UPDATE_CARD_INDEX = gql`
     )
   }
 `
+
+export const ADD_COMMENT = gql`
+  mutation(
+    $card_id: ID!,
+    $comment: String!
+  ) {
+    addComment(
+      card_id: $card_id,
+      comment: $comment
+    )
+  }
+`
+
+export const UPDATE_COMMENT = gql`
+  mutation(
+    $card_id: ID!,
+    $comment_id: ID!,
+    $comment: String!
+  ) {
+    addComment(
+      card_id: $card_id,
+      comment_id: $comment_id,
+      comment: $comment
+    )
+  }
+`
