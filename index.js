@@ -13,19 +13,19 @@ const server = new ApolloServer({
 	introspection: true,
 	playground: true,
 	context: async ({ req }) => {
-		let authToken = null
-		let currentUser = null
+		let auth_token = null
+		let current_user = null
 		
 		try {
-			authToken = req.headers['authorization']
+			auth_token = req.headers['authorization']
 
-			if (authToken) currentUser = await utils.getUserIdFromToken(authToken)
+			if (auth_token) current_user = await utils.getUserIdFromToken(auth_token)
 		} catch (err) {
 			//todo error handling
 			console.warn('Unable to authorize with token')
 		}
 
-		return { authToken, currentUser }
+		return { auth_token, current_user }
 	}
 })
 

@@ -59,7 +59,7 @@ const Dialog: React.FC<Props> = ({
 	}
 
 	useLayoutEffect(() => {
-		if(!enterPress) return
+		if(!enterPress || !isOpen) return
 		if(showInput && !inputText) return
 
 		handleConfirm()

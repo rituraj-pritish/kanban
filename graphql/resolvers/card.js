@@ -9,12 +9,16 @@ module.exports = {
 	},
 
 	Mutation: {
-		createCard: async (_, { title, list_id }) => {
+		createCard: async (_, { title, list_id }, { current_user } ) => {
 			const createdAt = new Date().toISOString()
 			const card = await new Card({
 				title,
 				created_at: createdAt,
-				updated_at: createdAt
+				updated_at: createdAt,
+				history: [{
+					type: 'create',
+					done_by: current_user
+				}]
 			}).save()
 			const list = await List.findById(list_id)
 			list.cards.push(card._id)

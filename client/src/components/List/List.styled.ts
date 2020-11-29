@@ -68,3 +68,18 @@ export const StyledNewButton = styled(NewButton)<StyledNewButton>`
     margin-top: ${({ removeMargin }) => removeMargin && 0};
   }
 `
+
+const SIZE = '25px'
+
+export const TotalCards = styled.div`
+  ${theme.styles.centerElement}
+  display: inline-flex;
+  margin-left: ${theme.spacing()};
+  font-weight: 500;
+  font-size: ${theme.spacing(0.95)};
+  background: ${lighten(0.1, theme.colors.primary)};
+  border-radius: 50%;
+  width: ${SIZE};
+  height: ${SIZE};
+  color: white;
+`

@@ -34,6 +34,7 @@ const NewButton: React.FC<Props> = ({
 	const [ ref, showInput, setShowInput ] = useComponentVisible(false)
 	const [text, setText] = useState<string>('')
 	const enterPress = useKeyPress(KEYS.ENTER)
+	const escPress = useKeyPress(KEYS.ESCAPE)
 
 	const inputRef = useRef<HTMLTextAreaElement>(null)
 
@@ -56,6 +57,14 @@ const NewButton: React.FC<Props> = ({
 			setText('')
 		}
 	}, [enterPress])
+
+	useLayoutEffect(() => {
+		if(escPress) {
+			if(onCancel) onCancel()
+			setShowInput(false)
+			setText('')
+		}
+	}, [escPress])
 
 	return (
 		<RootWrapper className={className} havePadding={havePaddingIfOpen} showInput={showInput}>

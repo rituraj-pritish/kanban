@@ -1,17 +1,18 @@
 import React, { useRef, useState } from 'react'
 import { BiPencil, BiCheck } from 'react-icons/bi'
 
-import { ListTitle, StyledIconButton, StyledInput } from './List.styled'
+import { ListTitle, StyledIconButton, StyledInput, TotalCards } from './List.styled'
 import ListToggleMenu from './ListToggleMenu'
 
 type Props = {
   title: string,
   listId: string,
   provided: any,
-  boardId: string
+	boardId: string,
+	totalCards: number
 }
 
-const Title: React.FC<Props> = ({ title, listId, boardId, provided }) => {
+const Title: React.FC<Props> = ({ title, listId, boardId, provided, totalCards }) => {
 	const [text, setText] = useState(title)
 	const [editMode, setEditMode] = useState(false)
 	const inputRef = useRef(null)
@@ -36,7 +37,12 @@ const Title: React.FC<Props> = ({ title, listId, boardId, provided }) => {
 							setText(e.target.value)
 						}}
 					/>
-					: <span>{title}</span>
+					: <span>
+						{title} 
+						<TotalCards>
+							{totalCards}
+						</TotalCards>
+					</span>
 			}
 			<div>
 				{

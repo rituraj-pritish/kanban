@@ -37,6 +37,7 @@ const List: React.FC<Props> = ({
 				<div ref={provided.innerRef} {...provided.draggableProps}>
 					<ListWrapper>
 						<ListTitle
+							totalCards={cards.length}
 							listId={_id} 
 							boardId={board_id}
 							provided={provided}

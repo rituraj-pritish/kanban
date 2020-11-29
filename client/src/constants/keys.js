@@ -1,5 +1,6 @@
 const KEYS = {
-	ENTER: 'Enter'
+	ENTER: 'Enter',
+	ESCAPE: 'Escape'
 }
 
 export default KEYS

@@ -1,11 +1,23 @@
 module.exports = {
 	types: `
+    type Comment {
+      comment_by: ID,
+      comment: String
+    },
+
+    type History {
+      activity: String,
+      type: String
+    },
+
     type Card {
       _id: ID!,
       title: String!,
       description: String,
       created_at: String!,
-      updated_at: String!
+      updated_at: String!,
+      comments: [Comment],
+      history: [History]
     }
   `, 
 
