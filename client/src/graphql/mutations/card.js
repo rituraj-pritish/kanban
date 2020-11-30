@@ -74,10 +74,22 @@ export const UPDATE_COMMENT = gql`
     $comment_id: ID!,
     $comment: String!
   ) {
-    addComment(
+    updateComment(
       card_id: $card_id,
       comment_id: $comment_id,
       comment: $comment
+    )
+  }
+`
+
+export const DELETE_COMMENT = gql`
+  mutation(
+    $card_id: ID!,
+    $comment_id: ID!
+  ) {
+    deleteComment(
+      card_id: $card_id,
+      comment_id: $comment_id
     )
   }
 `

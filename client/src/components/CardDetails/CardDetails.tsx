@@ -65,7 +65,7 @@ const CardDetails: React.FC = () => {
 		if(loading) return <CardDetailsSkeleton/>
 
 		const { created_at, updated_at, comments, history, _id } = data.getCard
-
+	
 		return (
 			<DetailsWrapper>
 				<LeftSection>

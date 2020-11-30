@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { History } from 'types/card'
+
 type Props = {
 	history: History[],
 	cardId: string

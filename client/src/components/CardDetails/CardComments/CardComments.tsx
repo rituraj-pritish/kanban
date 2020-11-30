@@ -1,11 +1,15 @@
 import { useMutation } from '@apollo/client'
-import Button from 'components/ui/Button'
-import Input from 'components/ui/Input'
-import { ADD_COMMENT } from 'graphql/mutations/card'
 import React, { useState } from 'react'
 
+import { ADD_COMMENT } from 'graphql/mutations/card'
+import { Comment as CommentType } from 'types/card'
+import Button from 'components/ui/Button'
+import Input from 'components/ui/Input'
+
+import Comment from './Comment'
+
 type Props = {
-	comments: Comment[],
+	comments: CommentType[],
 	cardId: string
 }
 
@@ -15,6 +19,11 @@ const CardComments: React.FC<Props> = ({ comments, cardId }) => {
 
 	return (
 		<div>
+			{
+				comments && comments.map(comment => 
+					<Comment key={comment._id} {...comment} cardId={cardId} />
+				)
+			}
 			<Input 
 				value={text} 
 				onChange={(

@@ -86,13 +86,17 @@ module.exports = {
 		updateComment: async (_, { card_id, comment_id, comment }) => {
 			const card = await Card.findById(card_id)
 
-			card.comments.forEach(com => {
+			const comments = card.comments.map(com => {
 				if(com._id === comment_id) return com
-
+		
 				return {
 					...com,
 					comment
 				}
+			})
+			
+			card.update({
+				comments
 			})
 
 			await card.save()

@@ -6,6 +6,15 @@ export const GET_CARD = gql`
       _id
       title
       description
+      comments {
+        _id
+        comment
+        comment_by
+      }
+      history {
+        activity
+        done_by
+      }
       created_at
       updated_at
     }

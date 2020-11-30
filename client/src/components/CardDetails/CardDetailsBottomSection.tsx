@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 
+import { Comment, History } from 'types/card'
 import Button from 'components/ui/Button'
 import CardComments from './CardComments'
 import CardHistory from './CardHistory'
