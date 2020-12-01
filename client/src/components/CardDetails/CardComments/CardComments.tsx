@@ -7,6 +7,7 @@ import Button from 'components/ui/Button'
 import Input from 'components/ui/Input'
 
 import Comment from './Comment'
+import { GET_CARD } from 'graphql/queries/card'
 
 type Props = {
 	comments: CommentType[],
@@ -14,7 +15,12 @@ type Props = {
 }
 
 const CardComments: React.FC<Props> = ({ comments, cardId }) => {
-	const [addComment, data] = useMutation(ADD_COMMENT)
+	const [addComment, data] = useMutation(ADD_COMMENT, {
+		refetchQueries: [{
+			query: GET_CARD,
+			variables: { id: cardId }
+		}]
+	})
 	const [text, setText] = useState<string>('')
 
 	return (
@@ -38,7 +44,9 @@ const CardComments: React.FC<Props> = ({ comments, cardId }) => {
 						comment: text,
 						card_id: cardId
 					}
-				})}
+				})
+					.then(() => setText(''))
+				}
 			>
 				Comment
 			</Button>		

@@ -2,9 +2,10 @@ import { useMutation } from '@apollo/client'
 import Button from 'components/ui/Button'
 import Input from 'components/ui/Input'
 import { DELETE_COMMENT, UPDATE_COMMENT } from 'graphql/mutations/card'
+import { GET_CARD } from 'graphql/queries/card'
 import React, { useState } from 'react'
 
-import { ActionButtons } from './CardComments.styled'
+import { ActionButtons, CommentWrapper } from './CardComments.styled'
 
 type Props = {
   [x: string]: any,
@@ -17,10 +18,16 @@ const Comment: React.FC<Props> = ({
 	comment_by,
 	cardId
 }) => {
+	const refetchQuery = {
+		refetchQueries: [{
+			query: GET_CARD,
+			variables: { id: cardId }
+		}]
+	}
 	const [showInput, setShowInput] = useState<boolean>(false)
 	const [text, setText] = useState<string>(comment)
-	const [updateComment, updateData] = useMutation(UPDATE_COMMENT)
-	const [deleteComment, deleteData] = useMutation(DELETE_COMMENT)
+	const [updateComment, updateData] = useMutation(UPDATE_COMMENT, refetchQuery)
+	const [deleteComment, deleteData] = useMutation(DELETE_COMMENT, refetchQuery)
   
 	const handleUpdate = () => {
 		updateComment({
@@ -44,7 +51,11 @@ const Comment: React.FC<Props> = ({
   
 	return (
 		<div>
-			{!showInput && comment}
+			{!showInput && 
+			<CommentWrapper>
+				comment
+			</CommentWrapper>
+			}
 			{showInput && <Input 
 				autoFocus
 				value={text} 

@@ -85,19 +85,12 @@ module.exports = {
 
 		updateComment: async (_, { card_id, comment_id, comment }) => {
 			const card = await Card.findById(card_id)
+			const comment_index = card.comments.findIndex(({ _id }) => _id.toString() === comment_id)
 
-			const comments = card.comments.map(com => {
-				if(com._id === comment_id) return com
-		
-				return {
-					...com,
-					comment
-				}
-			})
-			
-			card.update({
-				comments
-			})
+			card.comments[comment_index] = {
+				...card.comments[comment_index]._doc,
+				comment
+			}
 
 			await card.save()
 			return true
@@ -105,7 +98,7 @@ module.exports = {
 
 		deleteComment: async (_, { card_id, comment_id }) => {
 			const card = await Card.findById(card_id)
-			const comments = card.comments.filter(({ _id }) => _id !== comment_id)
+			const comments = card.comments.filter(({ _id }) => _id.toString() !== comment_id)
 			card.comments = comments
 			await card.save()
 			return true

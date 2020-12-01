@@ -11,3 +11,7 @@ export const ActionButtons = styled.div`
     cursor: pointer;
   }
 `
+
+export const CommentWrapper = styled.div`
+  padding: ${theme.spacing()} ${theme.spacing(0.5)};
+`
