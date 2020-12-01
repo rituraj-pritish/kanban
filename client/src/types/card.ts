@@ -7,6 +7,11 @@ export type Comment = {
 }
 
 export type History = {
+	_id: string,
 	done_by: string,
-	activity?: string 
+	type: string,
+	done_on: string,
+	from: string,
+	to: string,
+	field: string
 }

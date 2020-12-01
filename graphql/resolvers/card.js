@@ -17,7 +17,8 @@ module.exports = {
 				updated_at: createdAt,
 				history: [{
 					type: 'create',
-					done_by: current_user
+					done_by: current_user,
+					done_on: createdAt
 				}]
 			}).save()
 			const list = await List.findById(list_id)
@@ -35,6 +36,7 @@ module.exports = {
 			Object.keys(details).forEach(key => {
 				card[key] = details[key]
 			})
+
 			card.updated_at = new Date().toISOString()
 			card.save()
 		},
@@ -76,7 +78,8 @@ module.exports = {
 
 			card.comments.push({
 				comment,
-				comment_by: current_user
+				comment_by: current_user,
+				date: new Date().toDateString()
 			})
 
 			await card.save()

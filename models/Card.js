@@ -4,16 +4,20 @@ const cardSchema = new mongoose.Schema({
 	title: { type: String, required: true },
 	description: { type: String },
 	comments: [
-		{
+		{	
+			date: { type: String, required: true },
 			comment_by:	{ type: mongoose.Schema.Types.ObjectId, required: true },
 			comment: { type: String, required: true }
 		}
 	],
 	history: [
 		{
-			activity: { type: String },
 			type: { type: String, required: true },
 			done_by: { type: mongoose.Schema.Types.ObjectId, required: true },
+			done_on: { type: String, required: true },
+			from: String,
+			to: String,
+			field: String
 		}
 	],
 	created_at: { type: String, required: true },

@@ -10,10 +10,15 @@ export const GET_CARD = gql`
         _id
         comment
         comment_by
+        date
       }
       history {
-        activity
+        type
         done_by
+        done_on
+        from
+        to
+        field
       }
       created_at
       updated_at

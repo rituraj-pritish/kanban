@@ -20,7 +20,7 @@ const CardDetailsBottomSection: React.FC<Props> = ({
 	history,
 	cardId
 }) => {
-	const [tab, setTab] = useState(COMMENTS)
+	const [tab, setTab] = useState(HISTORY)
   
 	return (
 		<div>
@@ -37,7 +37,7 @@ const CardDetailsBottomSection: React.FC<Props> = ({
 
 			{tab === COMMENTS 
 				? <CardComments comments={comments} cardId={cardId}/>
-				: <CardHistory history={history} cardId={cardId}/>
+				: <CardHistory history={history}/>
 			}    
 		</div>
 	)

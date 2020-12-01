@@ -15,3 +15,18 @@ export const ActionButtons = styled.div`
 export const CommentWrapper = styled.div`
   padding: ${theme.spacing()} ${theme.spacing(0.5)};
 `
+
+export const AddCommentWrapper = styled.div`
+  display: flex;
+
+  // avatar
+  & > div:first-child {
+    margin-top: ${theme.spacing(0.7)};
+    margin-right: ${theme.spacing(0.7)};
+  }
+
+  // input and button
+  & > div:last-child {
+    flex-grow: 1;
+  }
+`
