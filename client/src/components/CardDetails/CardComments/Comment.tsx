@@ -8,7 +8,7 @@ import AuthContext from 'contexts/auth/AuthContext'
 import { DELETE_COMMENT, UPDATE_COMMENT } from 'graphql/mutations/card'
 import { GET_CARD } from 'graphql/queries/card'
 import dayjs from 'helpers/dayjs'
-import { ActionButtons, CommentWrapper } from './CardComments.styled'
+import { ActionButtons, CommentWrapper, Text, TopSection, Wrapper } from './CardComments.styled'
 
 type Props = {
   [x: string]: any,
@@ -56,33 +56,39 @@ const Comment: React.FC<Props> = ({
   
 	return (
 		<div>
-			{!showInput && 
-			<>
+			<Wrapper>
 				<Avatar user={user} />
+
 				<CommentWrapper>
-					<div>{user?.name}</div>
-					comment
-					{dayjs(date).fromNow()}
+					<TopSection>
+						<span>{user?.name}</span>
+						<span>{dayjs(date).fromNow()}</span>
+					</TopSection>
+
+					{!showInput && <Text>
+						{comment}
+					</Text>}
+
+					{showInput && <Input 
+						autoFocus
+						value={text} 
+						onChange={(
+							e: React.ChangeEvent<HTMLTextAreaElement>): void => {
+							setText(e.target.value)
+						}}
+					/>}
+
+					{!showInput && <ActionButtons>
+						<div onClick={() => setShowInput(true)} >
+								Edit
+						</div>
+						<div onClick={handleDelete}>
+								Delete
+						</div>
+					</ActionButtons>}
+					{showInput && <Button onClick={handleUpdate}>Save</Button>}
 				</CommentWrapper>
-			</>
-			}
-			{showInput && <Input 
-				autoFocus
-				value={text} 
-				onChange={(
-					e: React.ChangeEvent<HTMLTextAreaElement>): void => {
-					setText(e.target.value)
-				}}
-			/>}
-			{!showInput && <ActionButtons>
-				<div onClick={() => setShowInput(true)} >
-        Edit
-				</div>
-				<div onClick={handleDelete}>
-        Delete
-				</div>
-			</ActionButtons>}
-			{showInput && <Button onClick={handleUpdate}>Save</Button>}
+			</Wrapper>
 		</div>
 	)
 }

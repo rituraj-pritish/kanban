@@ -75,11 +75,12 @@ module.exports = {
 
 		addComment: async (_, { card_id, comment }, { current_user }) => {
 			const card = await Card.findById(card_id)
-
+			const date = new Date().toISOString()
+			
 			card.comments.push({
 				comment,
 				comment_by: current_user,
-				date: new Date().toDateString()
+				date
 			})
 
 			await card.save()

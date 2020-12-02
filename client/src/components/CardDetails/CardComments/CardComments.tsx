@@ -10,7 +10,7 @@ import Comment from './Comment'
 import { GET_CARD } from 'graphql/queries/card'
 import Avatar from 'components/Avatar'
 import AuthContext from 'contexts/auth/AuthContext'
-import { AddCommentWrapper } from './CardComments.styled'
+import { AddCommentWrapper, RootWrapper } from './CardComments.styled'
 
 type Props = {
 	comments: CommentType[],
@@ -28,7 +28,7 @@ const CardComments: React.FC<Props> = ({ comments, cardId }) => {
 	const [text, setText] = useState<string>('')
 
 	return (
-		<div>
+		<RootWrapper>
 			{
 				comments && comments.map(comment => 
 					<Comment key={comment._id} {...comment} cardId={cardId} />
@@ -59,7 +59,7 @@ const CardComments: React.FC<Props> = ({ comments, cardId }) => {
 					</Button>		
 				</div>
 			</AddCommentWrapper>
-		</div>
+		</RootWrapper>
 	)
 }
 

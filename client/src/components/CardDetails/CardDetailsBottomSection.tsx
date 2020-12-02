@@ -5,6 +5,7 @@ import Button from 'components/ui/Button'
 import CardComments from './CardComments'
 import CardHistory from './CardHistory'
 import { VARIANTS } from 'constants/button'
+import { BottomSectionWrapper } from './CardDetails.styled'
 
 const HISTORY = 'HISTORY'
 const COMMENTS = 'COMMENTS'
@@ -23,7 +24,7 @@ const CardDetailsBottomSection: React.FC<Props> = ({
 	const [tab, setTab] = useState(HISTORY)
   
 	return (
-		<div>
+		<BottomSectionWrapper>
 			<Button 
 				variant={VARIANTS.CANCEL}
 				onClick={() => setTab(COMMENTS)}
@@ -39,7 +40,7 @@ const CardDetailsBottomSection: React.FC<Props> = ({
 				? <CardComments comments={comments} cardId={cardId}/>
 				: <CardHistory history={history}/>
 			}    
-		</div>
+		</BottomSectionWrapper>
 	)
 }
 

@@ -13,6 +13,9 @@ export const Divider = styled.div`
 `
 
 export const LeftSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 65%;
 `
 
@@ -26,4 +29,9 @@ export const RightSection = styled.div`
     height: 2.5rem;
     background: ${theme.colors.greyLight};
   }
+`
+
+export const BottomSectionWrapper = styled.div`
+  margin-right: ${theme.spacing(-0.5)};
+  height: 50%;
 `

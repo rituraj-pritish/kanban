@@ -97,8 +97,9 @@ const CardDetails: React.FC = () => {
 			isOpen={isOpen} 
 			onRequestClose={onRequestClose}
 			modalStyles={{
-				width: '48rem',
-				height: '50rem'
+				width: '55rem',
+				height: '80vh',
+				overflow: 'hidden'
 			}}
 		>
 			{render()}
