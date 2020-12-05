@@ -1,5 +1,6 @@
 const Card = require('../../models/Card')
 const List = require('../../models/List')
+const ACTIVITIES = require('../../constants/activities')
 
 module.exports = {
 	Query: {
@@ -16,7 +17,7 @@ module.exports = {
 				created_at: createdAt,
 				updated_at: createdAt,
 				history: [{
-					type: 'create',
+					type: ACTIVITIES.CREATE,
 					done_by: current_user,
 					done_on: createdAt
 				}]
@@ -38,7 +39,7 @@ module.exports = {
 			})
 
 			card.updated_at = new Date().toISOString()
-			card.save()
+			await card.save()
 		},
 
 		deleteCard: async ( _, { list_id, id }) => {
@@ -52,15 +53,18 @@ module.exports = {
 
 		updateCardIndex: async (
 			_, 
-			{ old_index, new_index, card_id, old_list, new_list }
+			{ old_index, new_index, card_id, old_list, new_list },
+			{ current_user }
 		) => {
+			const card = await Card.findById(card_id)
+
 			if(old_list === new_list) {
 				const list = await List.findById(old_list)
 
 				list.cards.splice(old_index, 1)
 				list.cards.splice(new_index, 0, card_id)
 
-				list.save()
+				await list.save()
 			} else {
 				const oldList = await List.findById(old_list)
 				const newList = await List.findById(new_list)
@@ -68,8 +72,18 @@ module.exports = {
 				oldList.cards.splice(old_index, 1)
 				newList.cards.splice(new_index, 0, card_id)
 
-				oldList.save()
-				newList.save()
+				card.history.push({
+					type: ACTIVITIES.MOVE,
+					done_by: current_user,
+					done_on: new Date().toISOString(),
+					from: old_list,
+					to: new_list
+				})
+	
+				await card.save()
+
+				await oldList.save()
+				await newList.save()
 			}
 		},
 

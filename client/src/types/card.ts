@@ -1,4 +1,6 @@
-
+export type Card = {
+	
+}
 
 export type Comment = {
 	comment_by: string,

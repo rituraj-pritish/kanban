@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
 
 import { Comment, History } from 'types/card'
-import Button from 'components/ui/Button'
 import CardComments from './CardComments'
 import CardHistory from './CardHistory'
-import { VARIANTS } from 'constants/button'
-import { BottomSectionWrapper } from './CardDetails.styled'
+import { BottomSectionWrapper, Tab, Tabs } from './CardDetails.styled'
 
 const HISTORY = 'HISTORY'
 const COMMENTS = 'COMMENTS'
@@ -25,20 +23,20 @@ const CardDetailsBottomSection: React.FC<Props> = ({
   
 	return (
 		<BottomSectionWrapper>
-			<Button 
-				variant={VARIANTS.CANCEL}
-				onClick={() => setTab(COMMENTS)}
-				disabled={tab === COMMENTS}
-			>Comments</Button>
-			<Button 
-				variant={VARIANTS.CANCEL}
-				onClick={() => setTab(HISTORY)}
-				disabled={tab === HISTORY}
-			>History</Button>
+			<Tabs>
+				<Tab 
+					onClick={() => setTab(COMMENTS)}
+					isActive={tab === COMMENTS}
+				>Comments</Tab>
+				<Tab 
+					onClick={() => setTab(HISTORY)}
+					isActive={tab === HISTORY}
+				>History</Tab>
+			</Tabs>
 
 			{tab === COMMENTS 
 				? <CardComments comments={comments} cardId={cardId}/>
-				: <CardHistory history={history}/>
+				: <CardHistory history={history} cardId={cardId}/>
 			}    
 		</BottomSectionWrapper>
 	)

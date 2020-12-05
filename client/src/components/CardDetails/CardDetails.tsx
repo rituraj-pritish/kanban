@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { useLazyQuery, useMutation } from '@apollo/client'
 import { useLocation, useParams, useHistory } from 'react-router-dom'
-import dayjs from 'helpers/dayjs'
 
 import { GET_CARD } from 'graphql/queries/card'
 import Modal from 'components/ui/Modal'
 import CardDetailsForm from './CardDetailsForm'
 import { UPDATE_CARD } from 'graphql/mutations/card'
-import { DetailsWrapper, Divider, LeftSection, RightSection } from './CardDetails.styled'
+import { DetailsWrapper, Divider, LeftSection } from './CardDetails.styled'
 import CardDetailsSkeleton from './CardDetailsSkeleton'
 import CardDetailsBottomSection from './CardDetailsBottomSection'
+import RightSection from './RightSection'
 
 interface RouteParams {
 	boardId: string
@@ -64,7 +64,7 @@ const CardDetails: React.FC = () => {
 		if(!called) return
 		if(loading) return <CardDetailsSkeleton/>
 
-		const { created_at, updated_at, comments, history, _id } = data.getCard
+		const { comments, history, _id } = data.getCard
 	
 		return (
 			<DetailsWrapper>
@@ -83,11 +83,7 @@ const CardDetails: React.FC = () => {
 
 				<Divider/>
 
-				<RightSection>
-					Created {dayjs(created_at).fromNow()}
-					<br/>
-					Updated {dayjs(updated_at).fromNow()}
-				</RightSection>
+				<RightSection {...data.getCard} />
 			</DetailsWrapper>
 		)
 	}

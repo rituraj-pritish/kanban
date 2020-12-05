@@ -1,4 +1,5 @@
 import DRAG_DROP_TYPES from 'constants/dragDropTypes'
+import { GET_CARD } from 'graphql/queries/card'
 
 interface Result {
   type: string,
@@ -23,7 +24,7 @@ export default (
 	result: Result, 
 	columns: List[]| null, 
 	setColumns: (columns: List[]) => void,
-	updateListIndex: (params: {[key: string]: any}) => void,
+	updateListIndex: (param1: {[key: string]: any}) => void,
 	updateCardIndex: (params: {[key: string]: any}) => void,
 	boardId: string
 ): void => {
@@ -64,7 +65,11 @@ export default (
 				card_id: draggableId,
 				old_list: source.droppableId,
 				new_list: destination.droppableId
-			}
+			},
+			refetchQueries: [{
+				query: GET_CARD,
+				variables: { id: draggableId }
+			}]
 		})
 
 		const sourceList = columns.find(({ _id }: {_id: string}) => _id === source.droppableId)
