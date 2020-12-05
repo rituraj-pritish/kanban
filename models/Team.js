@@ -1,9 +1,9 @@
 const mongoose = require('mongoose')
 const REFS = require('../constants/refs')
 
-const listSchema = new mongoose.Schema({
+const teamSchema = new mongoose.Schema({
 	name: { type: String, required: true },
 	members: [{ type: mongoose.Schema.Types.ObjectId, ref: REFS.USER }]
 })
 
-module.exports = Team = mongoose.model('team', listSchema)
+module.exports = Team = mongoose.model(REFS.TEAM, teamSchema)

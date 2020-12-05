@@ -2,6 +2,7 @@ import React from 'react'
 
 import dayjs from 'helpers/dayjs'
 import { RootWrapper } from './RightSection.styled'
+import Labels from './Labels'
 
 type Props = {
   created_at: string,
@@ -14,6 +15,7 @@ const RightSection: React.FC<Props> = ({
 }) => {
 	return (
 		<RootWrapper>
+			<Labels/>
       Created {dayjs(created_at).fromNow()}
 			<br/>
       Updated {dayjs(updated_at).fromNow()}

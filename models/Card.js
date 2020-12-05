@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const REFS = require('../constants/refs')
 
 const cardSchema = new mongoose.Schema({
 	title: { type: String, required: true },
@@ -20,8 +21,9 @@ const cardSchema = new mongoose.Schema({
 			field: String
 		}
 	],
+	labels: [{ type: mongoose.Schema.Types.ObjectId, ref: REFS.LABEL }],
 	created_at: { type: String, required: true },
 	updated_at: { type: String, required: true }
 })
 
-module.exports = Card = mongoose.model('card', cardSchema)
+module.exports = Card = mongoose.model(REFS.CARD, cardSchema)

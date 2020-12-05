@@ -7,4 +7,4 @@ const listSchema = new mongoose.Schema({
 	cards: [{ type: mongoose.Schema.Types.ObjectId, ref: REFS.CARD }]
 })
 
-module.exports = List = mongoose.model('list', listSchema)
+module.exports = List = mongoose.model(REFS.LIST, listSchema)

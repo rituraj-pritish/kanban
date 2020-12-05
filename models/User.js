@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const REFS = require('../constants/refs')
 
 const userSchema = new mongoose.Schema({
 	first_name: { type: String, required: true },
@@ -9,4 +10,4 @@ const userSchema = new mongoose.Schema({
 	date_created: { type: String, required: true, default: new Date().toISOString() }
 })
 
-module.exports = User = mongoose.model('user', userSchema)
+module.exports = User = mongoose.model(REFS.USER, userSchema)
