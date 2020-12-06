@@ -1,5 +1,11 @@
 module.exports = {
 	types: `
+    type Label {
+      _id: ID!,
+      name: String!,
+      bg_color: String!
+    },
+  
     type Comment {
       _id: ID!,
       comment_by: ID!,
@@ -24,7 +30,8 @@ module.exports = {
       created_at: String!,
       updated_at: String!,
       comments: [Comment],
-      history: [History]
+      history: [History],
+      labels: [Label]
     }
   `, 
 

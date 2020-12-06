@@ -1,4 +1,5 @@
 import React from 'react'
+import { CSSObject } from 'styled-components'
 
 import useComponentVisible from 'hooks/useComponentVisible'
 import { Content, Label, RootWrapper } from './AddToCard.styled'
@@ -6,12 +7,14 @@ import { Content, Label, RootWrapper } from './AddToCard.styled'
 type Props = {
 	label: string,
 	icon: React.ReactNode,
-	children: React.ReactNode
+	children: React.ReactNode,
+	contentStyles?: CSSObject | undefined
 }
 
 const AddToCard: React.FC<Props> = ({
 	label,
 	icon,
+	contentStyles,
 	children
 }) => {
 	const [ref, showContent, setShowContent] = useComponentVisible(false)
@@ -22,7 +25,7 @@ const AddToCard: React.FC<Props> = ({
 				<div>{icon}</div>
 				<div>{label}</div>
 			</Label>
-			{showContent && <Content ref={ref} >{children}</Content>}
+			{showContent && <Content contentStyles={contentStyles} ref={ref} >{children}</Content>}
 		</RootWrapper>
 	)
 }

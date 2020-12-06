@@ -4,7 +4,8 @@ module.exports = {
       _id: ID!,
       name: String!,
       user_id: ID!,
-      lists: [List]
+      lists: [List],
+      labels: [Label]
     }
   `,
 

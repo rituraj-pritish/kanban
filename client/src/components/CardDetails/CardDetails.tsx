@@ -95,7 +95,7 @@ const CardDetails: React.FC = () => {
 			modalStyles={{
 				width: '55rem',
 				height: '80vh',
-				overflow: 'hidden'
+				overflow: 'visible'
 			}}
 		>
 			{render()}

@@ -1,5 +1,5 @@
 import { darken } from 'polished'
-import styled from 'styled-components'
+import styled, { CSSObject } from 'styled-components'
 import theme from 'theme'
 
 export const RootWrapper = styled.div`
@@ -28,7 +28,11 @@ export const Label = styled.div`
   }
 `
 
-export const Content = styled.div`
+type Content = {
+  contentStyles: CSSObject | undefined
+}
+
+export const Content = styled.div<Content>`
   background: white;
   position: absolute;
   padding: ${theme.spacing(0.5)};
@@ -36,4 +40,5 @@ export const Content = styled.div`
   border: 1px solid lightgray;
   width: -webkit-fill-available;
   top: ${theme.spacing(2.5)};
+  ${({ contentStyles }) => contentStyles && contentStyles};
 `

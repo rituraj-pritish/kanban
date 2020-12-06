@@ -1,8 +1,11 @@
 const Board = require('../../models/Board')
+const List = require('../../models/List')
+const Card = require('../../models/Card')
 
 module.exports = {
 	Query: {
 		getBoard: async (_, { id }) => {
+			console.log('id', id)
 			const board = await Board.findById(id)
 				.populate({
 					path: 'lists',
@@ -32,7 +35,15 @@ module.exports = {
 		},
 
 		deleteBoard: async (_, { id }) => {
-			await Board.findByIdAndDelete(id)
+			const board = await Board.findById(id)
+			board.lists.forEach( async listId => {
+				const list = await List.findById(listId)
+
+				list.cards.forEach( async cardId => await Card.findByIdAndDelete(cardId))
+				await list.deleteOne()
+			})
+
+			await board.deleteOne()
 			return true
 		}
 	}

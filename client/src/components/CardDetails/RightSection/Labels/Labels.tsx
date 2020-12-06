@@ -5,7 +5,13 @@ import AddToCard from '../AddToCard'
 
 const Labels: React.FC = () => {
 	return (
-		<AddToCard label='Labels' icon={<AiFillTags/>}>
+		<AddToCard 
+			label='Labels' 
+			icon={<AiFillTags/>}
+			contentStyles={{
+				width: '20rem'
+			}}
+		>
       content
 		</AddToCard>
 	)

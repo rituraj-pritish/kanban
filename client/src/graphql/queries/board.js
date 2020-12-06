@@ -14,6 +14,7 @@ export const GET_BOARD = gql`
     getBoard(id: $id) {
       _id
       name
+      
       lists {
         _id
         title
@@ -23,6 +24,13 @@ export const GET_BOARD = gql`
           _id
           title
         }
+
+      }
+
+      labels {
+        _id,
+        name,
+        bg_color
       }
     }
   }
