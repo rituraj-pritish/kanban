@@ -20,6 +20,7 @@ export const GET_CARD = gql`
         to
         field
       }
+      labels
       created_at
       updated_at
     }

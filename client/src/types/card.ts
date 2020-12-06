@@ -2,6 +2,12 @@ export type Card = {
 	
 }
 
+export type Label = {
+	_id: string,
+	name: string,
+	bg_color: string
+}
+
 export type Comment = {
 	comment_by: string,
 	comment: string,

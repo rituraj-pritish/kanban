@@ -2,11 +2,11 @@ import React from 'react'
 
 import dayjs from 'helpers/dayjs'
 import { RootWrapper } from './RightSection.styled'
-import Labels from './Labels'
+import Labels from '../Labels'
 
 type Props = {
   created_at: string,
-  updated_at: string
+	updated_at: string
 }
 
 const RightSection: React.FC<Props> = ({

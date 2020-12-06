@@ -31,7 +31,7 @@ module.exports = {
       updated_at: String!,
       comments: [Comment],
       history: [History],
-      labels: [Label]
+      labels: [String]
     }
   `, 
 
@@ -78,6 +78,16 @@ module.exports = {
     deleteComment(
       card_id: ID!,
       comment_id: ID!
+    ): Boolean,
+
+    addLabel(
+      card_id: ID!,
+      label_id: ID!
+    ): Boolean,
+
+    removeLabel(
+      card_id: ID!,
+      label_id: ID!
     ): Boolean
   `
 }

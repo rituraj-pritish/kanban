@@ -56,6 +56,8 @@ export const UPDATE_CARD_INDEX = gql`
   }
 `
 
+// comments
+
 export const ADD_COMMENT = gql`
   mutation(
     $card_id: ID!,
@@ -90,6 +92,32 @@ export const DELETE_COMMENT = gql`
     deleteComment(
       card_id: $card_id,
       comment_id: $comment_id
+    )
+  }
+`
+
+// labels
+
+export const ADD_LABEL = gql`
+  mutation(
+    $card_id: ID!,
+    $label_id: ID!
+  ) {
+    addLabel(
+      card_id: $card_id,
+      label_id: $label_id
+    )
+  }
+`
+
+export const REMOVE_LABEL = gql`
+    mutation(
+    $card_id: ID!,
+    $label_id: ID!
+  ) {
+    removeLabel(
+      card_id: $card_id,
+      label_id: $label_id
     )
   }
 `

@@ -17,7 +17,7 @@ const AddToCard: React.FC<Props> = ({
 	contentStyles,
 	children
 }) => {
-	const [ref, showContent, setShowContent] = useComponentVisible(false)
+	const [ref, showContent, setShowContent] = useComponentVisible(true)
 
 	return (
 		<RootWrapper>

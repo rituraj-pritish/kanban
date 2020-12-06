@@ -87,6 +87,8 @@ module.exports = {
 			}
 		},
 
+		// comments
+
 		addComment: async (_, { card_id, comment }, { current_user }) => {
 			const card = await Card.findById(card_id)
 			const date = new Date().toISOString()
@@ -120,6 +122,23 @@ module.exports = {
 			card.comments = comments
 			await card.save()
 			return true
-		}
+		},
+
+		// labels
+
+		addLabel: async (_, { label_id, card_id }, { current_user }) => {
+			const card = await Card.findById(card_id)
+			card.labels.push(label_id)
+			await card.save()
+			return true
+		},
+
+		removeLabel: async (_, { label_id, card_id }, { current_user }) => {
+			const card = await Card.findById(card_id)
+			const labels = card.labels
+			card.labels = labels.filter(({ _id }) => _id.toString() !== label_id.toString())
+			await card.save()
+			return true
+		},
 	}
 }

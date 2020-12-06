@@ -10,6 +10,7 @@ import { DetailsWrapper, Divider, LeftSection } from './CardDetails.styled'
 import CardDetailsSkeleton from './CardDetailsSkeleton'
 import CardDetailsBottomSection from './CardDetailsBottomSection'
 import RightSection from './RightSection'
+import LabelRenderer from './Labels/LabelRenderer'
 
 interface RouteParams {
 	boardId: string
@@ -65,14 +66,17 @@ const CardDetails: React.FC = () => {
 		if(loading) return <CardDetailsSkeleton/>
 
 		const { comments, history, _id } = data.getCard
-	
+
 		return (
 			<DetailsWrapper>
 				<LeftSection>
-					<CardDetailsForm 
-						onSubmit={handleSubmit} 
-						initialValues={data.getCard}
-					/>
+					<div>
+						<LabelRenderer {...data.getCard} />
+						<CardDetailsForm 
+							onSubmit={handleSubmit} 
+							initialValues={data.getCard}
+						/>
+					</div>
 				
 					<CardDetailsBottomSection 
 						comments={comments} 
