@@ -13,18 +13,7 @@ import { BoardWrapper } from './Board.styled'
 import onDragEnd from 'helpers/onDragEnd'
 import CardDetails from 'components/CardDetails'
 import Skeleton from 'react-loading-skeleton'
-
-interface Card {
-	_id: string,
-	title: string
-}
-
-interface ListInterface {
-	_id: string,
-	board_id: string,
-	title: string,
-	cards: Card[]
-}
+import { List as ListType } from 'types/board'
 
 interface RouteParams {
 	boardId: string
@@ -32,7 +21,7 @@ interface RouteParams {
 
 const Board: React.FC = () => {
 	const { boardId } = useParams<RouteParams>()
-	const [columns, setColumns] = useState<ListInterface[] | null>(null)
+	const [columns, setColumns] = useState<ListType[] | null>(null)
 	const [updateCardIndex, updateCardData] = useMutation(UPDATE_CARD_INDEX)
 	const [updateListIndex, updateListData] = useMutation(UPDATE_LIST_INDEX)
 

@@ -23,6 +23,7 @@ export const GET_BOARD = gql`
         cards {
           _id
           title
+          labels
         }
 
       }

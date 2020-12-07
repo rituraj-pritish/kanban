@@ -1,23 +1,24 @@
 import React, { RefObject, useRef } from 'react'
 import { Draggable } from 'react-beautiful-dnd'
-
-import { CardWrapper } from './Card.styled'
 import { useHistory, useParams } from 'react-router-dom'
-import CardToggleMenu from './CardToggleMenu'
+
 import DRAG_DROP_TYPES from 'constants/dragDropTypes'
+import CardToggleMenu from './CardToggleMenu'
+import { CardWrapper, StyledLabelRenderer } from './Card.styled'
 
 interface Props {
 	title: string,
 	index: number,
 	_id: string,
-	listId: string
+	listId: string,
+	labels: [string]
 }
 
 interface RouteParams {
 	boardId: string
 }
 
-const Card: React.FC<Props> = ({ listId, title, index, _id }) => {
+const Card: React.FC<Props> = ({ listId, title, index, _id, labels }) => {
 	const { boardId } = useParams<RouteParams>()
 	const history = useHistory()
 	const menuRef = useRef<RefObject<HTMLDivElement>>()
@@ -40,7 +41,8 @@ const Card: React.FC<Props> = ({ listId, title, index, _id }) => {
 					onMouseLeave={() => menuRef.current?.closeMenu()}
 				>
 					<div>
-						{title}
+						<StyledLabelRenderer labels={labels} _id={_id} forCard />
+						<div>{title}</div>
 						{/* @ts-expect-error */}
 						<CardToggleMenu menuRef={menuRef} cardId={_id} listId={listId} />
 					</div>

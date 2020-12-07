@@ -3,7 +3,8 @@ import { Card } from './card'
 export type List = {
   _id: string,
   title: string,
-  cards: Card[]
+  cards: Card[],
+  board_id: string
 }
 
 export type Board = {

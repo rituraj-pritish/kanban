@@ -1,5 +1,5 @@
 import { lighten } from 'polished'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import theme from 'theme'
 
 type LabelWrapperProps = {
@@ -20,7 +20,8 @@ export const LabelWrapper = styled.div<LabelWrapperProps>`
 `
 
 type LabelProps = {
-  bgColor: string
+  bgColor: string,
+  forCard: boolean
 }
 
 export const Label = styled.div<LabelProps>`
@@ -33,30 +34,37 @@ export const Label = styled.div<LabelProps>`
   margin-right: ${theme.spacing(0.6)};
   position: relative;
 
-  // remove icon
-  & > div:last-child {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    justify-content: center;
-    align-items: center;
-    display: none;
-  }
+  ${({ forCard }) => forCard && css`
+    font-size: ${theme.spacing(0.8)};
+    height: fit-content;
+  `};
 
-  &:hover {
-    background: ${({ bgColor }) => lighten(0.37, bgColor)}; 
-    width: initial;
-
-    & > div:first-child {
-      opacity: 0
-    } 
-
+  ${({ forCard, bgColor }) => !forCard && css`
+    // remove icon
     & > div:last-child {
-      display: flex;
-    } 
-  }
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      justify-content: center;
+      align-items: center;
+      display: none;
+    }
+
+    &:hover {
+      background: ${lighten(0.37, bgColor)}; 
+      width: initial;
+
+      & > div:first-child {
+        opacity: 0
+      } 
+
+      & > div:last-child {
+        display: flex;
+      } 
+    }
+  `};
 `
 
 export const LabelsWrapper = styled.div`

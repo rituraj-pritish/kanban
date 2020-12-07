@@ -1,5 +1,7 @@
 export type Card = {
-	
+	_id: string,
+	title: string,
+	labels: [string]
 }
 
 export type Label = {

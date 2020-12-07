@@ -1,23 +1,12 @@
 import DRAG_DROP_TYPES from 'constants/dragDropTypes'
 import { GET_CARD } from 'graphql/queries/card'
+import { List } from 'types/board'
 
 interface Result {
   type: string,
   destination: {droppableId: string, index: number},
   source: {droppableId: string, index: number},
   draggableId: string
-}
-
-interface Card {
-	_id: string,
-	title: string
-}
-
-interface List {
-	_id: string,
-	board_id: string,
-	title: string,
-	cards: Card[]
 }
 
 export default (

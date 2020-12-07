@@ -56,6 +56,11 @@ export const CardsContainer = styled.div`
   // first card in list
   & > div:nth-child(2) {
     padding-top: 0;
+
+    // toggle menu
+    & > div > div:last-child {
+      top: ${theme.spacing(0.5)};
+    }
   }
 `
 

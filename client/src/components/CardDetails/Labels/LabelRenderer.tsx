@@ -11,7 +11,9 @@ import { GET_CARD } from 'graphql/queries/card'
 
 type Props = {
 	labels: [string],
-	_id: string
+	_id: string,
+	forCard?: boolean,
+	className?: string
 }
 
 type RouteParams = {
@@ -24,7 +26,9 @@ type LabelsById = {
 
 const LabelRenderer: React.FC<Props> = ({
 	labels,
-	_id: cardId
+	_id: cardId,
+	forCard = false,
+	className
 }) => {
 	
 	const { boardId } = useParams<RouteParams>()
@@ -57,17 +61,18 @@ const LabelRenderer: React.FC<Props> = ({
 	}
 
 	return (
-		<LabelsWrapper>
+		<LabelsWrapper className={className}>
 			{labels.map(id => {
 				const { bg_color, name } = labelsById[id]
 				return (
 					<Label 
-						onClick={() => handleRemove(id)} 
+						forCard={forCard}
+						onClick={!forCard ? () => handleRemove(id) : undefined} 
 						key={id} 
 						bgColor={bg_color}
 					>
 						<div>{name}</div>
-						<div><VscChromeClose/></div>
+						{!forCard && <div><VscChromeClose/></div>}
 					</Label>
 				)
 			})}

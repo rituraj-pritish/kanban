@@ -6,22 +6,11 @@ import Card from 'components/Card'
 import NewCardButton from './NewCardButton'
 import { ListWrapper, ListDivider, CardsContainer } from './List.styled'
 import ListTitle from './ListTitle'
-
-interface Card {
-	_id: string,
-	title: string
-}
-
-interface List {
-	_id: string,
-	board_id: string,
-	title: string,
-	cards: Card[]
-}
+import { Card as CardType } from 'types/card'
 
 interface Props {
 	_id: string,
-	cards: Card[],
+	cards: CardType[],
 	title: string,
 	index: number,
 	board_id: string
