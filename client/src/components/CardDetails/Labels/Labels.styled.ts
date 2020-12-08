@@ -70,3 +70,29 @@ export const Label = styled.div<LabelProps>`
 export const LabelsWrapper = styled.div`
   display: flex;
 `
+
+export const AddLabelsWrapper = styled.div`
+  button {
+    width: 100%;
+    margin-top: ${theme.spacing(0.5)};
+  }
+`
+
+export const ColorsWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 ${theme.spacing(-0.25)};
+`
+
+export const ColorBox = styled.div`
+  height: ${theme.spacing(2.5)};
+  width: ${theme.spacing(4.5)};
+  border-radius: ${theme.borderRadius};
+  cursor: pointer;
+  margin: ${theme.spacing(0.25)};
+  ${theme.styles.centerElement}
+
+  &:hover {
+    opacity: 0.8;
+  }
+`

@@ -22,6 +22,17 @@ module.exports = {
 
     deleteBoard(
       id: ID!
+    ): Boolean,
+
+    createLabel(
+      board_id: ID!,
+      name: String!,
+      bg_color: String!
+    ): Boolean,
+
+    deleteLabel(
+      board_id: ID!,
+      label_id: ID!
     ): Boolean
   `
 }

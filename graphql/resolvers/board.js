@@ -45,6 +45,25 @@ module.exports = {
 
 			await board.deleteOne()
 			return true
+		},
+
+		// labels
+		createLabel: async (_, { board_id, name, bg_color }) => {
+			const board = await Board.findById(board_id)
+			board.labels.push({
+				name,
+				bg_color
+			})
+			await board.save()
+			return true
+		},
+
+		deleteLabel: async (_, { board_id, label_id }) => {
+			const board = await Board.findById(board_id)
+			const labels = board.labels
+			board.labels = labels.filter(({ _id }) => _id.toString() !== label_id.toString())
+			await board.save()
+			return true
 		}
 	}
 }
