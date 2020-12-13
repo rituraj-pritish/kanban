@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useApolloClient, useMutation } from '@apollo/client'
 import { AiFillTags } from 'react-icons/ai'
 import { useParams } from 'react-router-dom'
+import { BiPencil } from 'react-icons/bi'
 
 import AddToCard from '../RightSection/AddToCard'
 import { GET_BOARD } from 'graphql/queries/board'
@@ -12,6 +13,7 @@ import useSearchParams from 'hooks/useSearchParams'
 import { GET_CARD } from 'graphql/queries/card'
 import Button from 'components/ui/Button'
 import CreateNewLabel from './CreateNewLabel'
+import IconButton from 'components/ui/IconButton'
 
 type RouteParams = {
 	boardId: string
@@ -24,6 +26,7 @@ const Labels: React.FC = () => {
 	const { selected: cardId } = useSearchParams(['selected'])
 	const [addLabel, data] = useMutation(ADD_LABEL)
 	const [isCreating, setIsCreating] = useState<boolean>(false)
+	const [editingLabel, setEditingLabel] = useState<Label | null>(null)
 
 
 	const { getBoard: { labels } } = client.readQuery({
@@ -44,30 +47,50 @@ const Labels: React.FC = () => {
 		})
 	}
 
+	const getTitle = () => {
+		if(editingLabel) return editingLabel.name
+		if(isCreating) return 'Create Label'
+		return 'Labels'
+	}
+
+	const getBackFunction = () => {
+		if(editingLabel) return () => setEditingLabel(null)
+		if(isCreating) return () => setIsCreating(false)
+		return undefined
+	}
+
 	return (
 		<AddToCard 
-			title={isCreating ? 'Create Label' : 'Labels'}
+			title={getTitle()}
 			label='Labels' 
 			icon={<AiFillTags/>}
-			onBack={isCreating ? () => setIsCreating(false) : undefined}
+			onBack={getBackFunction()}
 			contentStyles={{
 				width: '20rem'
 			}}
 		>
 			{
-				!isCreating
+				!isCreating && !editingLabel
 					?  
 					<AddLabelsWrapper>
 						{
-							labels.map(({ name, bg_color, _id }: Label) => 
-								<LabelWrapper key={_id} bgColor={bg_color} onClick={() => handleClick(_id)}>
-									<div>{name}</div>
-								</LabelWrapper>
-							)
+							labels.map((item: Label) => {
+								const { name, bg_color, _id } = item
+
+								return (
+									<LabelWrapper key={_id} bgColor={bg_color} >
+										<div onClick={() => handleClick(_id)}>{name}</div>
+										<IconButton icon={<BiPencil/>} onClick={() => setEditingLabel(item)} />
+									</LabelWrapper>
+								)
+							})
 						}
 						<Button onClick={() => setIsCreating(true)}>Create new label</Button>
 					</AddLabelsWrapper>
-					: <CreateNewLabel setIsCreating={setIsCreating} />
+					: <CreateNewLabel 
+						hideForm={editingLabel ? () => setEditingLabel(null) : () => setIsCreating(false)} 
+						label={editingLabel}
+					/>
 				
 			}
 		

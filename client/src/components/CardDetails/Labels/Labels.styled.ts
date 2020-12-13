@@ -7,16 +7,26 @@ type LabelWrapperProps = {
 }
 
 export const LabelWrapper = styled.div<LabelWrapperProps>`
-  background: ${({ bgColor }) => lighten(0.4, bgColor)}; 
+  display: flex;
+  align-items: center;
   color: ${({ bgColor }) => bgColor}; 
   margin: ${theme.spacing(0.4)} 0;
-  padding: ${theme.spacing(0.2)} ${theme.spacing(0.6)};
   border-radius: ${theme.borderRadius};
   cursor: pointer;
 
-  &:hover {
-    background: ${({ bgColor }) => lighten(0.37, bgColor)}; 
+  // label name
+  & > div:first-child {
+    border-radius: ${theme.borderRadius};
+    padding: ${theme.spacing(0.2)} ${theme.spacing(0.6)};
+    background: ${({ bgColor }) => lighten(0.4, bgColor)}; 
+    flex-grow: 1;
+    margin-right: ${theme.spacing(0.5)};
+
+    &:hover {
+      background: ${({ bgColor }) => lighten(0.37, bgColor)}; 
+    }
   }
+
 `
 
 type LabelProps = {

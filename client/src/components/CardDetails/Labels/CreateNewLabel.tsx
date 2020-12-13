@@ -7,9 +7,10 @@ import { ColorBox, ColorsWrapper } from './Labels.styled'
 import { FlexBox, HDivider } from 'components/GlobalStyles'
 import Button from 'components/ui/Button'
 import { useMutation } from '@apollo/client'
-import { CREATE_LABEL } from 'graphql/mutations/board'
+import { CREATE_LABEL, UPDATE_LABEL } from 'graphql/mutations/board'
 import { GET_BOARD } from 'graphql/queries/board'
 import { useParams } from 'react-router-dom'
+import { Label as LabelType } from 'types/card'
 
 const COLORS = ['yellow', 'red', 'blue', 'green', 'magenta', 'purple', 'grey']
 
@@ -18,16 +19,19 @@ type RouteParams = {
 }
 
 type Props = {
-	setIsCreating: (state: boolean) => void
+	label?: LabelType | null,
+	hideForm: () => void
 }
 
 const CreateNewLabel: React.FC<Props> = ({
-	setIsCreating
+	hideForm,
+	label
 }) => {
 	const { boardId } = useParams<RouteParams>()
-	const [text, setText] = useState<string>('')
-	const [selectedColor, setSelectedColor] = useState<string>('')
+	const [text, setText] = useState<string>(label ? label.name : '')
+	const [selectedColor, setSelectedColor] = useState<string>(label ? label.bg_color : '')
 	const [createLabel, data] = useMutation(CREATE_LABEL)
+	const [updateLabel, updateData] = useMutation(UPDATE_LABEL)
 
 	const handleCreate = () => {
 		createLabel({
@@ -41,7 +45,23 @@ const CreateNewLabel: React.FC<Props> = ({
 				variables: { id: boardId }
 			}]
 		})
-			.then(() => setIsCreating(false))
+			.then(() => hideForm())
+	}
+
+	const handleUpdate = () => {
+		updateLabel({
+			variables: {
+				board_id: boardId,
+				label_id: label?._id,
+				name: text,
+				bg_color: selectedColor
+			},
+			refetchQueries: [{
+				query: GET_BOARD,
+				variables: { id: boardId }
+			}]
+		})
+			.then(() => hideForm())
 	}
 
 	return (
@@ -72,9 +92,9 @@ const CreateNewLabel: React.FC<Props> = ({
 			<FlexBox justify='flex-end'>
 				<Button
 					disabled={!text || !selectedColor}
-					onClick={handleCreate}
+					onClick={label ? handleUpdate : handleCreate}
 				>
-					Create
+					{!label ? 'Create' : 'Update'}
 				</Button>
 			</FlexBox>
 		</div>

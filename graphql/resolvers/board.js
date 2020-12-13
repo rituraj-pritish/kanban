@@ -58,6 +58,22 @@ module.exports = {
 			return true
 		},
 
+		updateLabel: async (_, { board_id, label_id , name, bg_color }) => {
+			const board = await Board.findById(board_id)
+			board.labels = board.labels.map(label => {
+				if(label._id.toString() !== label_id.toString()) {
+					return label
+				}
+				return {
+					...label,
+					name,
+					bg_color
+				}
+			})
+			await board.save()
+			return true
+		},
+
 		deleteLabel: async (_, { board_id, label_id }) => {
 			const board = await Board.findById(board_id)
 			const labels = board.labels

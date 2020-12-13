@@ -33,6 +33,13 @@ module.exports = {
     deleteLabel(
       board_id: ID!,
       label_id: ID!
-    ): Boolean
+    ): Boolean,
+
+    updateLabel(
+      board_id: ID!,
+      label_id: ID!,
+      name: String!,
+      bg_color: String!
+    ): Boolean,
   `
 }

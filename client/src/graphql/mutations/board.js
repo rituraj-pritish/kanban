@@ -33,6 +33,22 @@ export const CREATE_LABEL = gql`
   }
 `
 
+export const UPDATE_LABEL = gql`
+  mutation(
+    $board_id: ID!,
+    $label_id: ID!,
+    $name: String!,
+    $bg_color: String!
+  ) {
+    updateLabel(
+      board_id: $board_id,
+      label_id: $label_id,
+      name: $name,
+      bg_color: $bg_color
+    )
+  }
+`
+
 export const DELETE_LABEL = gql`
   mutation(
     $board_id: ID!,
