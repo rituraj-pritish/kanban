@@ -60,16 +60,15 @@ module.exports = {
 
 		updateLabel: async (_, { board_id, label_id , name, bg_color }) => {
 			const board = await Board.findById(board_id)
-			board.labels = board.labels.map(label => {
-				if(label._id.toString() !== label_id.toString()) {
-					return label
-				}
-				return {
-					...label,
-					name,
-					bg_color
-				}
-			})
+			const label_index = board.labels.findIndex(({ _id }) => 
+				_id.toString() === label_id.toString())
+			
+			board.labels[label_index] = {
+				...board.labels[label_index]._doc,
+				name,
+				bg_color
+			}
+			
 			await board.save()
 			return true
 		},

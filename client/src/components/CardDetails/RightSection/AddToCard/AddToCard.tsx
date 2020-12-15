@@ -22,7 +22,7 @@ const AddToCard: React.FC<Props> = ({
 	children,
 	onBack
 }) => {
-	const [ref, showContent, setShowContent] = useComponentVisible(true)
+	const [ref, showContent, setShowContent] = useComponentVisible(false)
 
 	return (
 		<RootWrapper>
