@@ -11,6 +11,7 @@ const App: React.FC = () => {
 	useEffect(() => {
 		checkAuthToken()
 	}, [])
+	
 	return (
 		<div style={{ overflow: 'hidden', background: '#f7f8ff' }}>
 			<ThemeProvider theme={theme}>
