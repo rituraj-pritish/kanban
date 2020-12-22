@@ -19,7 +19,6 @@ const Button: React.FC<Props> = ({
 	...otherProps }) => {
 	return (
 		<StyledButton variant={variant} disabled={disabled} {...otherProps} >
-			{/* @ts-expect-error */}
 			{isLoading ? <PulseLoader color='white' size={8} /> : children}
 		</StyledButton>
 	)

@@ -13,7 +13,7 @@ const BoardsNav: React.FC = () => {
 	const { user } = useContext(AuthContext)
   
 	const [showDialog, setShowDialog] = useState<boolean>(false)
-	const [createBoard, res] = useMutation(CREATE_BOARD)
+	const [createBoard] = useMutation(CREATE_BOARD)
 
 	const handleSubmit = (name: string | undefined) => {
 		return createBoard({

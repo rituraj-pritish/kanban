@@ -64,11 +64,11 @@ export const CardsContainer = styled.div`
   }
 `
 
-type StyledNewButton = {
+type StyledNewButtonProps = {
   removeMargin: boolean
 }
 
-export const StyledNewButton = styled(NewButton)<StyledNewButton>`
+export const StyledNewButton = styled(NewButton)<StyledNewButtonProps>`
   & > div {
     margin-top: ${({ removeMargin }) => removeMargin && 0};
   }

@@ -22,9 +22,8 @@ type RouteParams = {
 const Labels: React.FC = () => {
 	const { boardId } = useParams<RouteParams>()
 	const client = useApolloClient()
-	//@ts-expect-error
 	const { selected: cardId } = useSearchParams(['selected'])
-	const [addLabel, data] = useMutation(ADD_LABEL)
+	const [addLabel] = useMutation(ADD_LABEL)
 	const [isCreating, setIsCreating] = useState<boolean>(false)
 	const [editingLabel, setEditingLabel] = useState<Label | null>(null)
 

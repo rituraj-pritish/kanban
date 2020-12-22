@@ -1,4 +1,4 @@
-import React, { MutableRefObject } from 'react'
+import React, { RefObject } from 'react'
 
 import ToggleMenu from 'components/ui/ToggleMenu'
 import { useMutation } from '@apollo/client'
@@ -10,7 +10,7 @@ import { ToggleMenuWrapper } from './Card.styled'
 interface Props {
   listId: string,
 	cardId: string,
-	menuRef: React.RefObject<HTMLDivElement>
+	menuRef: RefObject<HTMLDivElement>
 }
 
 interface RouteParams {
@@ -20,7 +20,7 @@ interface RouteParams {
 const CardToggleMenu: React.FC<Props> = ({ cardId, listId, menuRef }) => {
 	const { boardId } = useParams<RouteParams>()
 
-	const [deleteCard, { data, loading }] = useMutation(DELETE_CARD, {
+	const [deleteCard] = useMutation(DELETE_CARD, {
 		variables: {
 			id: cardId,
 			list_id: listId
@@ -37,7 +37,6 @@ const CardToggleMenu: React.FC<Props> = ({ cardId, listId, menuRef }) => {
 		<ToggleMenuWrapper>
 			<ToggleMenu
 				ref={menuRef}
-				// usePosition
 				items={[
 					{ text: 'Copy link', 
 					//todo change with BASE_URL

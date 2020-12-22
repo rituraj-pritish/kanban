@@ -17,7 +17,7 @@ const ListToggleMenu: React.FC<Props> = ({
 	listId,
 	listName
 }) => {
-	const [deleteList, { data, loading }] = useMutation(DELETE_LIST, {
+	const [deleteList] = useMutation(DELETE_LIST, {
 		variables: {
 			id: listId,
 			board_id: boardId
@@ -44,8 +44,7 @@ const ListToggleMenu: React.FC<Props> = ({
 				onClose={() => setShowDialog(false)}
 				title='Delete List'
 				text={`Are you sure you want to delete the list <b>${listName}</b> ?`}
-				//@ts-expect-error
-				onConfirm={deleteList}
+				onConfirm={() => deleteList()}
 				confirmDelete
 			/>
 		</>

@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useState } from 'react'
+import React, { ForwardRefRenderFunction, useImperativeHandle, useState } from 'react'
 
 import useComponentVisible from 'hooks/useComponentVisible'
 import { Trigger, MenuWrapper, Menu, TriggerWrapper } from './ToggleMenu.styled'
@@ -16,7 +16,7 @@ interface Props {
 	placement?: string
 }
 
-const ToggleMenu: React.FC<Props & React.RefAttributes<HTMLDivElement>> = forwardRef(({ 
+const ToggleMenu: ForwardRefRenderFunction<HTMLDivElement, Props> = ({ 
 	usePosition = false, 
 	items, 
 	trigger, 
@@ -34,11 +34,9 @@ const ToggleMenu: React.FC<Props & React.RefAttributes<HTMLDivElement>> = forwar
 		}
 	}
 
-	//@ts-expect-error
+	// @ts-expect-error
 	useImperativeHandle(forwardedRef, () => ({
-		closeMenu() {
-			setShowMenu(false)
-		}
+		closeMenu: () => setShowMenu(false)
 	}))
 
 	return (
@@ -72,6 +70,8 @@ const ToggleMenu: React.FC<Props & React.RefAttributes<HTMLDivElement>> = forwar
 			</Menu>}
 		</MenuWrapper>
 	)
-})
+}
 
-export default ToggleMenu
+const MenuWithRef = React.forwardRef(ToggleMenu)
+
+export default MenuWithRef

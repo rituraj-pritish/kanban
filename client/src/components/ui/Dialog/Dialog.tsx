@@ -12,7 +12,7 @@ type Props = {
   title: string,
   text: string,
   onClose: () => void,
-  onConfirm: (text?: string) => void,
+	onConfirm: (text?: string) => Promise<unknown>,
   hasInput?: boolean,
 	confirmDelete?: boolean,
 	confirmDeleteWithText?: boolean,
@@ -42,7 +42,6 @@ const Dialog: React.FC<Props> = ({
 		setIsLoading(true)
 		if(showInput) {
 			onConfirm(inputText)
-			//@ts-expect-error
 				.finally(() => {
 					setIsLoading(false)
 					onClose()
@@ -51,7 +50,6 @@ const Dialog: React.FC<Props> = ({
 		}
 
 		onConfirm()
-		//@ts-expect-error
 			.finally(() => {
 				setIsLoading(false)
 				onClose()
@@ -93,8 +91,14 @@ const Dialog: React.FC<Props> = ({
 			<Title>{title}</Title>
 			<Text dangerouslySetInnerHTML={{ __html: text }} />
 			{confirmText && <SubText>{`Type name of the ${deleteSubject} to continue.`}</SubText>}
-			{/* @ts-expect-error */}
-			{showInput && <StyledInput autoFocus onChange={e => setInputText(e.target.value)} />}   
+			{showInput && 
+				<StyledInput 
+					autoFocus 
+					onChange={
+						(e: React.ChangeEvent<HTMLInputElement>) => setInputText(e.target.value)
+					} 
+				/>
+			}   
 			<ButtonsWrapper>
 				<Button 
 					variant={VARIANTS.CANCEL} 

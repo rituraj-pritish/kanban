@@ -3,7 +3,6 @@ import styled, { css } from 'styled-components/macro'
 import theme from 'theme'
 import ReactModal from 'react-modal'
 import { FaTimes } from 'react-icons/fa'
-import { lighten } from 'polished'
 
 function ReactModalAdapter ({ className, modalClassName, ...props }) {
 	return (

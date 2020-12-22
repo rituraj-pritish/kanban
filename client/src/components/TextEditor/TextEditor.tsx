@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import RichTextEditor from 'react-rte'
+import RichTextEditor, { EditorValue } from 'react-rte'
 import { EditorWrapper } from './TextEditor.styled'
 
 type Props = {
@@ -16,8 +16,7 @@ const TextEditor: React.FC<Props> = ({
 		: () => RichTextEditor.createEmptyValue()
 	const [state, setState] = useState(initialValue)
 
-	// @ts-expect-error
-	const handleChange = state => {
+	const handleChange = (state: EditorValue) => {
 		setState(state)
 		onChange(state.toString('html'))
 	}

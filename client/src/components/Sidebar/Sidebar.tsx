@@ -14,14 +14,6 @@ import SidebarLink from './SidebarLink'
 import { FlexGrow } from 'components/CommonStyles'
 import IconButton from 'components/ui/IconButton'
 
-const mock = {
-	first_name: '',
-	last_name: '',
-	avatar_bg_color: '',
-	is_admin: false,
-	name: ''
-}
-
 const Sidebar: React.FC = () => {
 	const history = useHistory()
 	const isSidebarCollapsed = window.localStorage.getItem('isCollapsed')
@@ -64,7 +56,7 @@ const Sidebar: React.FC = () => {
 			<div>
 				<IconButton icon={<FiLogOut/>} onClick={signOut} />
 				<UserDetails isCollapsed={isCollapsed}>
-					<Avatar user={user || mock} size={35}/>
+					<Avatar user={user} size={35}/>
 					<div>
 						{user?.name}
 					</div>
