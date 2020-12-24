@@ -39,7 +39,7 @@ const Sidebar: React.FC = () => {
 	]
 	
 	return (
-		<SidebarWrapper isCollapsed={isCollapsed}>
+		<SidebarWrapper isCollapsed={isCollapsed} data-testid='sidebar'>
 
 			<LogoWrapper>
 				<Logo onClick={() => history.push('/dashboard')} />

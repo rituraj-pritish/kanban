@@ -25,8 +25,12 @@ const CollapseButton: React.FC<Props> = ({
 		<CollapseButtonWrapper isCollapsed={isCollapsed}>
 			<IconButton 
 				isCircular
-				icon={isCollapsed ? <FiChevronRight/> : <FiChevronLeft/>}
+				icon={isCollapsed 
+					? <FiChevronRight data-testid='sidebar-chevron-right'/> 
+					: <FiChevronLeft data-testid='sidebar-chevron-left'/>
+				}
 				onClick={() => isCollapsed ? setIsCollapsed(false) : setIsCollapsed(true)}
+				data-testid='sidebar-trigger'
 			/>
 		</CollapseButtonWrapper>
 	)

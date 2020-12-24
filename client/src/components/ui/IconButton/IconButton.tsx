@@ -12,13 +12,15 @@ const IconButton: React.FC<Props> = ({
 	icon, 
 	onClick, 
 	className, 
-	isCircular 
+	isCircular,
+	...otherProps 
 }) => {
 	return (
 		<ButtonWrapper 
 			isCircular={isCircular}
 			onClick={onClick} 
 			className={className} 
+			{...otherProps}
 		>
 			{icon}
 		</ButtonWrapper>
