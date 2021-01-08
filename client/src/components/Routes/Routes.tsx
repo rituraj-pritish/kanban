@@ -37,7 +37,8 @@ const Routes: React.FC = () => {
     	<Route exact path='/' component={Home} />
     	{!loading && <Redirect from='*' to='/' />}
     </>
-  
+	
+	if(loading) return <div>loading...</div>
   
 	return isAuthenticated 
 		? authenticatedComponents 

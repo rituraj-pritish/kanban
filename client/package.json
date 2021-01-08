@@ -71,6 +71,7 @@
     "babel-loader": "^8.1.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-react": "^7.20.6",
+    "msw": "^0.24.2",
     "prettier": "^2.1.1",
     "react-is": "^16.13.1",
     "react-test-renderer": "^17.0.1",

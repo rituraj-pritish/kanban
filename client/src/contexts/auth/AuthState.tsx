@@ -18,7 +18,7 @@ const AuthState: React.FC = ({ children }) => {
 	const history = useHistory()
 	const [getUser, { data, called, loading }] = useLazyQuery(GET_USER)
   
-	const token = window.localStorage.getItem('auth_token')
+	const token = localStorage.getItem('auth_token')
 
 	useEffect(() => {
 		if(token && !loading && !called) { 

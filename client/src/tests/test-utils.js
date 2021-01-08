@@ -9,6 +9,8 @@ import theme from 'theme'
 import AuthState from 'contexts/auth/AuthState'
 import getApolloClient from 'getApolloClient'
 
+import './mockLocalStorage'
+
 const client = getApolloClient()
 
 const Providers = ({ children }) => {
