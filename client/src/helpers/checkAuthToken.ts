@@ -14,6 +14,7 @@ const handleError = () => {
 export default (): undefined => {
 	const authToken = localStorage.getItem('auth_token')
 
+	if (process.env.NODE_ENV === 'test') return
 	if (!authToken) return
 	
 	try {

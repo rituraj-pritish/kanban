@@ -3,17 +3,17 @@ import '@testing-library/jest-dom/extend-expect'
 import { render } from '@testing-library/react'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
+import { MockedProvider } from '@apollo/client/testing'
 
-import { ApolloProvider } from '@apollo/client'
 import theme from 'theme'
 import AuthState from 'contexts/auth/AuthState'
-import getApolloClient from 'getApolloClient'
+import mocks from './mocks'
 
-const client = getApolloClient()
+import './localStorage'
 
 const Providers = ({ children }) => {
 	return (
-		<ApolloProvider client={client}>
+		<MockedProvider mocks={mocks}>
 			<ThemeProvider theme={theme}>
 				<Router>
 					<AuthState>
@@ -21,7 +21,7 @@ const Providers = ({ children }) => {
 					</AuthState>
 				</Router>
 			</ThemeProvider>
-		</ApolloProvider>
+		</MockedProvider>
 	)
 }
 
