@@ -17,7 +17,8 @@ type Props = {
 	confirmDelete?: boolean,
 	confirmDeleteWithText?: boolean,
   confirmText?: string,
-  deleteSubject?: string
+  deleteSubject?: string,
+  placeholder?: string
 }
 
 const Dialog: React.FC<Props> = ({
@@ -30,7 +31,8 @@ const Dialog: React.FC<Props> = ({
 	confirmDelete = false,
 	confirmDeleteWithText = false,
 	confirmText,
-	deleteSubject
+	deleteSubject,
+	placeholder
 }) => {
 	const [inputText, setInputText] = useState<string>('')
 	const enterPress = useKeyPress(KEYS.ENTER)
@@ -93,6 +95,7 @@ const Dialog: React.FC<Props> = ({
 			{confirmText && <SubText>{`Type name of the ${deleteSubject} to continue.`}</SubText>}
 			{showInput && 
 				<StyledInput 
+					placeholder={placeholder}
 					autoFocus 
 					onChange={
 						(e: React.ChangeEvent<HTMLInputElement>) => setInputText(e.target.value)

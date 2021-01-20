@@ -33,7 +33,7 @@ const BoardsNav: React.FC = () => {
 				Boards
 
 				<Button onClick={() => setShowDialog(true)}>
-        New Board
+        	New Board
 				</Button>
 			</div>
 
@@ -41,6 +41,7 @@ const BoardsNav: React.FC = () => {
 				title='Add board'
 				text='Type name of the board'
 				hasInput
+				placeholder='Enter name of the board'
 				isOpen={showDialog}
 				onClose={() => setShowDialog(false)}
 				onConfirm={handleSubmit}
