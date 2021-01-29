@@ -34,6 +34,15 @@ module.exports = {
 			return true
 		},
 
+		updateBoard: async (_, { name, id }) => {
+			await Board.findById(id)
+				.update({
+					name
+				}).save()
+
+			return true
+		},
+
 		deleteBoard: async (_, { id }) => {
 			const board = await Board.findById(id)
 			board.lists.forEach( async listId => {

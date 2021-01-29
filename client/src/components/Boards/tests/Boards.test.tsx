@@ -6,7 +6,7 @@ import userEvent from '@testing-library/user-event'
 
 test('Boards', async () => {
 	localStorage.setItem('auth_token', 'token')
-	const { debug } = render(<App/>)
+	const { container } = render(<App/>)
 	await waitForElementToBeRemoved(() => screen.queryByText('loading...'))
 
 	userEvent.click(screen.getByText('Boards'))
@@ -18,14 +18,14 @@ test('Boards', async () => {
 	await waitForElement(() => screen.findByText('Add board'))
 	userEvent.type(
 		screen.getByPlaceholderText(/enter name of the board/i),
-		'New Board'
+		'Board 3'
 	)
 	userEvent.click(screen.getByText('Confirm'))
 	await waitForElementToBeRemoved(() => screen.queryByText('Add board'))
 
 	expect(await screen.findByText('Board 1')).toBeInTheDocument()
 	expect(await screen.findByText('Board 2')).toBeInTheDocument()
-	expect(await screen.findByText('New Board')).toBeInTheDocument()
+	expect(await screen.findByText('Board 3')).toBeInTheDocument()
 
-	debug()
+	expect(container).toMatchSnapshot()
 })

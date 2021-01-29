@@ -13,7 +13,7 @@ import './localStorage'
 
 const Providers = ({ children }) => {
 	return (
-		<MockedProvider mocks={mocks}>
+		<MockedProvider mocks={mocks} addTypename={false}>
 			<ThemeProvider theme={theme}>
 				<Router>
 					<AuthState>

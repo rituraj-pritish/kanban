@@ -20,6 +20,11 @@ module.exports = {
       user_id: ID!
     ): Boolean,
 
+    updateBoard(
+      id: ID!,
+      name: String!
+    ): Boolean,
+
     deleteBoard(
       id: ID!
     ): Boolean,
