@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.1.4",
+    "@popperjs/core": "^2.6.0",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "@types/jwt-decode": "^3.1.0",
@@ -20,6 +21,7 @@
     "react-icons": "^3.11.0",
     "react-loading-skeleton": "^2.1.1",
     "react-modal": "^3.11.2",
+    "react-popper": "^2.2.4",
     "react-router-dom": "^5.2.0",
     "react-rte": "^0.16.3",
     "react-scripts": "3.4.3",

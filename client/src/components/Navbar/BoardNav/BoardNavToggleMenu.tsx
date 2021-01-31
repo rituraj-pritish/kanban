@@ -1,15 +1,14 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { IoMdSettings } from 'react-icons/io'
-import { useMutation } from '@apollo/client'
-import { useHistory, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
-import { DELETE_BOARD } from 'graphql/mutations/board'
+import { GET_BOARDS } from 'graphql/queries/board'
 import ToggleMenu from 'components/ui/ToggleMenu'
 import PLACEMENTS from 'constants/placements'
 import IconButton from 'components/ui/IconButton'
-import { GET_BOARDS } from 'graphql/queries/board'
 import AuthContext from 'contexts/auth/AuthContext'
-import Dialog from 'components/ui/Dialog'
+import DeleteBoard from './DeleteBoard'
+import RenameBoard from './RenameBoard'
 
 type RouteParams = {
   boardId: string
@@ -20,25 +19,14 @@ type Props = {
 }
 
 const BoardNavToggleMenu: React.FC<Props> = ({ boardName }) => {
-	const [showDialog, setShowDialog] = useState<boolean>(false)
 	const { boardId } = useParams<RouteParams>()
 	const { user } = useContext(AuthContext)
-	const history = useHistory()
   
-  
-	const [deleteBoard, res] = useMutation(DELETE_BOARD, {
-		variables: { id: boardId },
-		refetchQueries: [{
-			query: GET_BOARDS,
-			variables: { user_id: user?._id }
-		}]
-	})
-  
-	const handleDeleteBoard = () => {
-		return deleteBoard()
-			.then(() => history.push('/boards'))
+	const refetchBoards = {
+		query: GET_BOARDS,
+		variables: { user_id: user?._id }
 	}
-  
+
 	return (
 		<>
 			<ToggleMenu
@@ -49,20 +37,11 @@ const BoardNavToggleMenu: React.FC<Props> = ({ boardName }) => {
 						onClick={() => {}}
 					/>		
 				}
-				items={[
-					{ text: 'Delete board', onClick: () => setShowDialog(true) }
-				]}
-			/>
-			<Dialog
-				confirmDeleteWithText
-				confirmText={boardName}
-				deleteSubject='board'
-				title='Delete board'
-				text={`Are you sure you want to delete the board <b>${boardName}</b> ?`}
-				onClose={() => setShowDialog(false)}
-				onConfirm={handleDeleteBoard}
-				isOpen={showDialog}
-			/>
+			>
+				<DeleteBoard boardName={boardName} boardId={boardId} refetchBoards={refetchBoards}/>
+				<RenameBoard boardName={boardName} boardId={boardId} refetchBoards={refetchBoards}/>
+			</ToggleMenu>
+
 		</>
 	)
 }

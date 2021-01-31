@@ -48,7 +48,7 @@ export const Menu = styled.div<Menu>`
   top: ${({ position }) => position && position[1] - 80 + 'px'};
   left: ${({ position }) => position && position[0] - 15 + 'px'};
 
-  & > div {
+  & > div:not(:first-of-type) {
     background: ${lighten(0.1, theme.colors.greyLight)};
     padding: ${theme.spacing(0.5)} ${theme.spacing()};
     cursor: pointer;
@@ -62,4 +62,10 @@ export const Menu = styled.div<Menu>`
 
 export const TriggerWrapper = styled.div`
   cursor: pointer;
+`
+
+export const RootWrapper = styled.div`
+  &:focus {
+    outline: none;
+  }
 `

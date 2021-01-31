@@ -12,15 +12,17 @@ interface item {
 interface Props {
 	usePosition?: boolean, 
 	trigger?: React.ReactNode,
-	items: item[],
-	placement?: string
+	items?: item[],
+	placement?: string,
+	children?: React.ReactNode
 }
 
 const ToggleMenu: ForwardRefRenderFunction<HTMLDivElement, Props> = ({ 
 	usePosition = false, 
 	items, 
 	trigger, 
-	placement = PLACEMENTS.RIGHT
+	placement = PLACEMENTS.RIGHT,
+	children
 }, forwardedRef) => {
 	const [ref, showMenu, setShowMenu] = useComponentVisible(false)
 	const [position, setPosition] = useState<number[] | null>(null)
@@ -39,6 +41,24 @@ const ToggleMenu: ForwardRefRenderFunction<HTMLDivElement, Props> = ({
 		closeMenu: () => setShowMenu(false)
 	}))
 
+	const renderMenu = () => {
+		if(children) {
+			return children
+		} else {
+			return items?.map(({ text, onClick }, idx) => 
+				<div 
+					onClick={(e: React.MouseEvent<HTMLElement>) => {
+						e.stopPropagation()
+						onClick()
+						setShowMenu(false)
+					}} 
+					key={idx}
+				>
+					{text}
+				</div>)
+		}
+	} 
+
 	return (
 		<MenuWrapper 
 			usePosition={usePosition} 
@@ -56,17 +76,7 @@ const ToggleMenu: ForwardRefRenderFunction<HTMLDivElement, Props> = ({
 				placement={placement} 
 				position={position}
 			>
-				{items.map(({ text, onClick }, idx) => 
-					<div 
-						onClick={(e: React.MouseEvent<HTMLElement>) => {
-							e.stopPropagation()
-							onClick()
-							setShowMenu(false)
-						}} 
-						key={idx}
-					>
-						{text}
-					</div>)}
+				{renderMenu()}
 			</Menu>}
 		</MenuWrapper>
 	)

@@ -18,7 +18,8 @@ type Props = {
 	confirmDeleteWithText?: boolean,
   confirmText?: string,
   deleteSubject?: string,
-  placeholder?: string
+  placeholder?: string,
+  value?: string
 }
 
 const Dialog: React.FC<Props> = ({
@@ -27,6 +28,7 @@ const Dialog: React.FC<Props> = ({
 	text,
 	onClose,
 	onConfirm,
+	value = '',
 	hasInput = false,
 	confirmDelete = false,
 	confirmDeleteWithText = false,
@@ -34,11 +36,11 @@ const Dialog: React.FC<Props> = ({
 	deleteSubject,
 	placeholder
 }) => {
-	const [inputText, setInputText] = useState<string>('')
+	const [inputText, setInputText] = useState<string>(value)
 	const enterPress = useKeyPress(KEYS.ENTER)
 	const [isLoading, setIsLoading] = useState<boolean>(false)
 
-	const showInput = hasInput || confirmDeleteWithText
+	const showInput = hasInput || confirmDeleteWithText || value
 
 	const handleConfirm = () => {
 		setIsLoading(true)
@@ -66,8 +68,12 @@ const Dialog: React.FC<Props> = ({
 	}, [enterPress])
   
 	const isPrimaryButtonDisabled = () => {
-		if(hasInput) return !inputText
-    
+		if(value && value === inputText) {
+			return true
+		} else if(hasInput) {
+			return !inputText
+		}
+		
 		if(confirmDeleteWithText) {
 			return confirmText !== inputText  
 		}
@@ -96,6 +102,7 @@ const Dialog: React.FC<Props> = ({
 			{showInput && 
 				<StyledInput 
 					placeholder={placeholder}
+					value={inputText}
 					autoFocus 
 					onChange={
 						(e: React.ChangeEvent<HTMLInputElement>) => setInputText(e.target.value)

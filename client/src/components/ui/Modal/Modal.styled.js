@@ -21,11 +21,11 @@ export const StyledModal = styled(ReactModalAdapter).attrs({
 })`
   & .Overlay {
     position: fixed;
-    z-index: 999;
     top: 0px;
     left: 0px;
     right: 0px;
     bottom: 0px;
+    z-index: 2;
     background-color: rgba(0, 0, 0, 0.6);
   }
   & .Modal {
