@@ -1,6 +1,6 @@
 import React from 'react'
 
-import ToggleMenu from './Toggle'
+import ToggleMenu from './ToggleMenu'
 
 export default { title: 'ToggleMenu' }
 

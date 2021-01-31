@@ -1,84 +1,89 @@
-import React, { ForwardRefRenderFunction, useImperativeHandle, useState } from 'react'
+import React, { ForwardRefRenderFunction, useImperativeHandle } from 'react'
+import { MdMoreHoriz } from 'react-icons/md'
+import { Manager, Reference } from 'react-popper'
 
+import { RootWrapper, Trigger } from './ToggleMenu.styled'
+import MenuPopper from './MenuPopper'
 import useComponentVisible from 'hooks/useComponentVisible'
-import { Trigger, MenuWrapper, Menu, TriggerWrapper } from './ToggleMenu.styled'
-import PLACEMENTS from 'constants/placements'
 
-interface item {
+type Item = {
 	text: string,
 	onClick: () => void
 }
 
-interface Props {
-	usePosition?: boolean, 
-	trigger?: React.ReactNode,
-	items?: item[],
+type Props = {
 	placement?: string,
+	items?: Item[],
+	trigger?: React.ReactNode,
 	children?: React.ReactNode
 }
 
-const ToggleMenu: ForwardRefRenderFunction<HTMLDivElement, Props> = ({ 
-	usePosition = false, 
-	items, 
-	trigger, 
-	placement = PLACEMENTS.RIGHT,
-	children
+const ToggleMenu: ForwardRefRenderFunction<HTMLDivElement, Props> = ({
+	placement = 'bottom-start',
+	items,
+	children,
+	trigger,
 }, forwardedRef) => {
-	const [ref, showMenu, setShowMenu] = useComponentVisible(false)
-	const [position, setPosition] = useState<number[] | null>(null)
+	const [ref, visible, setVisibility] = useComponentVisible(false)
 
-	const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+	const handleClick = (e: React.MouseEvent) => {
+		e.preventDefault()
 		e.stopPropagation()
-		setShowMenu(true)
+		setVisibility(!visible)
+	}
 
-		if(usePosition) {
-			setPosition([e.screenX, e.screenY])
+	const onBlur = (e: React.FocusEvent) => {
+		const currentTarget = e.currentTarget
+
+		setTimeout(function () {
+			if (!currentTarget.contains(document.activeElement)) {
+				setVisibility(false)
+			}
+		}, 0)
+	}
+
+	const renderMenu = () => {
+		if (children) {
+			return children
+		} else {
+			return items?.map(({ text, onClick }, idx) => 
+				<div
+					onClick={(e: React.MouseEvent) => {
+						handleClick(e)
+						onClick()
+					}}
+					key={idx}
+				>
+					{text}
+				</div>
+			)
 		}
 	}
 
 	// @ts-expect-error
 	useImperativeHandle(forwardedRef, () => ({
-		closeMenu: () => setShowMenu(false)
+		closeMenu: () => setVisibility(false)
 	}))
 
-	const renderMenu = () => {
-		if(children) {
-			return children
-		} else {
-			return items?.map(({ text, onClick }, idx) => 
-				<div 
-					onClick={(e: React.MouseEvent<HTMLElement>) => {
-						e.stopPropagation()
-						onClick()
-						setShowMenu(false)
-					}} 
-					key={idx}
-				>
-					{text}
-				</div>)
-		}
-	} 
-
 	return (
-		<MenuWrapper 
-			usePosition={usePosition} 
+		<RootWrapper
+			onBlur={onBlur}
+			onClick={() => setVisibility(false)}
+			ref={ref}
 		>
-			{trigger 
-				?<TriggerWrapper onClick={handleClick}>{trigger}</TriggerWrapper> 
-			 :<Trigger  onClick={handleClick}>
-			 	<span/><span/><span/>
-			 </Trigger>
-			}
-			 
-			{showMenu &&
-			<Menu 
-				ref={ref} 
-				placement={placement} 
-				position={position}
-			>
-				{renderMenu()}
-			</Menu>}
-		</MenuWrapper>
+			<Manager>
+				<Reference>
+					{({ ref }) => 
+						<Trigger ref={ref} onClick={handleClick}>
+							{trigger || <MdMoreHoriz size={18} />}
+						</Trigger>
+					}
+				</Reference>
+				{visible && 
+          <MenuPopper placement={placement}>{renderMenu()}</MenuPopper>
+				}
+			</Manager>
+		</RootWrapper>
 	)
 }
 

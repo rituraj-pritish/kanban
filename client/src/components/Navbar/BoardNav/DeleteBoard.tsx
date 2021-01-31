@@ -8,16 +8,19 @@ import Dialog from 'components/ui/Dialog'
 type Props = {
   boardId: string,
   boardName: string,
-  refetchBoards: PureQueryOptions
+	refetchBoards: PureQueryOptions,
+	closeDialog: () => void,
+	isOpen: boolean
 }
 
 const DeleteBoard: React.FC<Props> = ({
 	boardId,
 	boardName,
-	refetchBoards
+	refetchBoards,
+	closeDialog,
+	isOpen
 }) => {
 	const history = useHistory()
-	const [showDialog, setShowDialog] = useState<boolean>(false)
   
 	const [deleteBoard, res] = useMutation(DELETE_BOARD, {
 		variables: { id: boardId },
@@ -28,21 +31,19 @@ const DeleteBoard: React.FC<Props> = ({
 		return deleteBoard()
 			.then(() => history.push('/boards'))
 	}
-  
+
 	return (
-		<>
-			<div onClick={() => setShowDialog(true)} >Delete Board</div>
-			<Dialog
-				confirmDeleteWithText
-				confirmText={boardName}
-				deleteSubject='board'
-				title='Delete board'
-				text={`Are you sure you want to delete the board <b>${boardName}</b> ?`}
-				onClose={() => setShowDialog(false)}
-				onConfirm={handleDeleteBoard}
-				isOpen={showDialog}
-			/> 
-		</>
+		<Dialog
+			confirmDeleteWithText
+			confirmText={boardName}
+			deleteSubject='board'
+			title='Delete board'
+			text={`Are you sure you want to delete the board <b>${boardName}</b> ?`}
+			onClose={closeDialog}
+			onConfirm={handleDeleteBoard}
+			isOpen={isOpen}
+		/> 
+
 	)
 }
 

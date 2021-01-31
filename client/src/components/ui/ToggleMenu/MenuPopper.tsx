@@ -5,8 +5,14 @@ import { Menu } from './ToggleMenu.styled'
 
 const passRefProp = process.env.NODE_ENV !== 'test'
 
-export default function MenuPopper({ placement = 'bottom-start', children }) {
+type Props = {
+	placement?: string,
+	children: React.ReactNode
+}
+
+const MenuPopper: React.FC<Props> = ({ placement = 'bottom-start', children }) => {
 	return (
+	//@ts-expect-error
 		<Popper
 			placement={placement}
 			modifiers={{
@@ -16,6 +22,7 @@ export default function MenuPopper({ placement = 'bottom-start', children }) {
 			}}
 		>
 			{({ ref, style, placement, arrowProps }) => 
+			//@ts-expect-error
 				<Menu ref={ref} style={style} data-placement={placement}>
 					<div
 						ref={passRefProp ? arrowProps.ref : undefined}
@@ -27,3 +34,5 @@ export default function MenuPopper({ placement = 'bottom-start', children }) {
 		</Popper>
 	)
 }
+
+export default MenuPopper

@@ -14,7 +14,7 @@ import onDragEnd from 'helpers/onDragEnd'
 import CardDetails from 'components/CardDetails'
 import Skeleton from 'react-loading-skeleton'
 import { List as ListType } from 'types/board'
-import ToggleMenu from 'components/ui/ToggleMenu/Toggle'
+import ToggleMenu from 'components/ui/ToggleMenu/ToggleMenu'
 
 interface RouteParams {
 	boardId: string

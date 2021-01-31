@@ -1,10 +1,9 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { IoMdSettings } from 'react-icons/io'
 import { useParams } from 'react-router-dom'
 
 import { GET_BOARDS } from 'graphql/queries/board'
 import ToggleMenu from 'components/ui/ToggleMenu'
-import PLACEMENTS from 'constants/placements'
 import IconButton from 'components/ui/IconButton'
 import AuthContext from 'contexts/auth/AuthContext'
 import DeleteBoard from './DeleteBoard'
@@ -19,6 +18,8 @@ type Props = {
 }
 
 const BoardNavToggleMenu: React.FC<Props> = ({ boardName }) => {
+	const [showDeleteDialog, setShowDeleteDialog] = useState(false)
+	const [showRenameDialog, setShowRenameDialog] = useState(false)
 	const { boardId } = useParams<RouteParams>()
 	const { user } = useContext(AuthContext)
   
@@ -27,21 +28,36 @@ const BoardNavToggleMenu: React.FC<Props> = ({ boardName }) => {
 		variables: { user_id: user?._id }
 	}
 
+	const commonProps = {
+		boardId,
+		boardName,
+		refetchBoards
+	}
+
 	return (
 		<>
 			<ToggleMenu
-				placement={PLACEMENTS.LEFT}
 				trigger={
 					<IconButton 
 						icon={<IoMdSettings/>}
 						onClick={() => {}}
 					/>		
 				}
-			>
-				<DeleteBoard boardName={boardName} boardId={boardId} refetchBoards={refetchBoards}/>
-				<RenameBoard boardName={boardName} boardId={boardId} refetchBoards={refetchBoards}/>
-			</ToggleMenu>
-
+				items={[
+					{ text: 'Delete Board', onClick: () => setShowDeleteDialog(true) },
+					{ text: 'Rename Board', onClick: () => setShowRenameDialog(true) }
+				]}
+			/>
+			<DeleteBoard 
+				{...commonProps} 
+				closeDialog={() => setShowDeleteDialog(false)} 
+				isOpen={showDeleteDialog} 
+			/>
+			<RenameBoard 
+				{...commonProps} 
+				closeDialog={() => setShowRenameDialog(false)} 
+				isOpen={showRenameDialog} 
+			/>
 		</>
 	)
 }
