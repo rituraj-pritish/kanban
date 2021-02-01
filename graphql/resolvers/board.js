@@ -5,7 +5,6 @@ const Card = require('../../models/Card')
 module.exports = {
 	Query: {
 		getBoard: async (_, { id }) => {
-			console.log('id', id)
 			const board = await Board.findById(id)
 				.populate({
 					path: 'lists',
@@ -35,10 +34,9 @@ module.exports = {
 		},
 
 		updateBoard: async (_, { name, id }) => {
-			await Board.findById(id)
-				.update({
-					name
-				}).save()
+			const board = await Board.findById(id)
+			board.name = name
+			await board.save()
 
 			return true
 		},

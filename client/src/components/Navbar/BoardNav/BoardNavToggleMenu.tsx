@@ -44,19 +44,19 @@ const BoardNavToggleMenu: React.FC<Props> = ({ boardName }) => {
 					/>		
 				}
 				items={[
-					{ text: 'Delete Board', onClick: () => setShowDeleteDialog(true) },
-					{ text: 'Rename Board', onClick: () => setShowRenameDialog(true) }
+					{ text: 'Rename Board', onClick: () => setShowRenameDialog(true) },
+					{ text: 'Delete Board', onClick: () => setShowDeleteDialog(true) }
 				]}
-			/>
-			<DeleteBoard 
-				{...commonProps} 
-				closeDialog={() => setShowDeleteDialog(false)} 
-				isOpen={showDeleteDialog} 
 			/>
 			<RenameBoard 
 				{...commonProps} 
 				closeDialog={() => setShowRenameDialog(false)} 
 				isOpen={showRenameDialog} 
+			/>
+			<DeleteBoard 
+				{...commonProps} 
+				closeDialog={() => setShowDeleteDialog(false)} 
+				isOpen={showDeleteDialog} 
 			/>
 		</>
 	)

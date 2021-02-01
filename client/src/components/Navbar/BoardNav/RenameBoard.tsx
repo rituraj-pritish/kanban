@@ -20,7 +20,7 @@ const RenameBoard: React.FC<Props> = ({
 	isOpen
 }) => {
 	const [updateBoard] = useMutation(UPDATE_BOARD)
-  
+
 	return (
 		<Dialog
 			title='Rename board'
