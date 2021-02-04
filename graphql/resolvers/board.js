@@ -22,7 +22,7 @@ module.exports = {
 
 	Mutation: {
 		createBoard: async (_, { name, user_id, is_admin = false }) => {
-			await new Board({
+			const board = await new Board({
 				name,
 				users: {
 					user: user_id,
@@ -30,7 +30,7 @@ module.exports = {
 				}
 			}).save()
 
-			return true
+			return board
 		},
 
 		updateBoard: async (_, { name, id }) => {

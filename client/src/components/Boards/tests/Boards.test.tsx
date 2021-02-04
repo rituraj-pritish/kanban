@@ -1,12 +1,12 @@
 import React from 'react'
-import { render, screen, waitForElement, waitForElementToBeRemoved } from 'tests/test-utils'
-
-import App from 'App'
 import userEvent from '@testing-library/user-event'
+
+import { render, screen, waitForElement, waitForElementToBeRemoved } from 'tests/test-utils'
+import App from 'App'
 
 test('Boards', async () => {
 	localStorage.setItem('auth_token', 'token')
-	const { container } = render(<App/>)
+	const { container, debug } = render(<App/>)
 	await waitForElementToBeRemoved(() => screen.queryByText('loading...'))
 
 	userEvent.click(screen.getByText('Boards'))

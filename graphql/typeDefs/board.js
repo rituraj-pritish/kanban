@@ -18,7 +18,7 @@ module.exports = {
     createBoard(
       name: String!,
       user_id: ID!
-    ): Boolean,
+    ): Board,
 
     updateBoard(
       id: ID!,

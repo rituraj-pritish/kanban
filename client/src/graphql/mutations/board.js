@@ -7,7 +7,10 @@ export const CREATE_BOARD = gql`
       createBoard(
         name: $name,
         user_id: $user_id
-      )
+      ) {
+        _id,
+        name
+      }
   }
 `
 
