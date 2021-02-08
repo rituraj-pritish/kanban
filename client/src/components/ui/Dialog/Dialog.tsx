@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 
 import { VARIANTS } from 'constants/button'
 import KEYS from 'constants/keys'
@@ -40,6 +40,10 @@ const Dialog: React.FC<Props> = ({
 	const enterPress = useKeyPress(KEYS.ENTER)
 	const [isLoading, setIsLoading] = useState<boolean>(false)
 
+	useEffect(() => {
+		if(value) setInputText(value)
+	}, [value, isOpen])
+
 	const showInput = hasInput || confirmDeleteWithText || value
 
 	const handleConfirm = () => {
@@ -47,16 +51,14 @@ const Dialog: React.FC<Props> = ({
 		if(showInput) {
 			onConfirm(inputText)
 				.finally(() => {
-					setIsLoading(false)
-					onClose()
+					onRequestClose()
 				})
 			return
 		}
 
 		onConfirm()
 			.finally(() => {
-				setIsLoading(false)
-				onClose()
+				onRequestClose()
 			})
 	}
 
@@ -84,6 +86,7 @@ const Dialog: React.FC<Props> = ({
 	const onRequestClose = () => {
 		onClose()
 		setInputText('')
+		setIsLoading(false)
 	}
 
 	return (
