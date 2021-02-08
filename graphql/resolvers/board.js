@@ -38,7 +38,7 @@ module.exports = {
 			board.name = name
 			await board.save()
 
-			return true
+			return board
 		},
 
 		deleteBoard: async (_, { id }) => {

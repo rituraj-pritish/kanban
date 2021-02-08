@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
-import { PureQueryOptions, useMutation } from '@apollo/client'
+import React, { useContext } from 'react'
+import { ApolloCache, useMutation } from '@apollo/client'
 
+import { Board } from 'types/board'
 import { UPDATE_BOARD } from 'graphql/mutations/board'
 import Dialog from 'components/ui/Dialog'
+import { GET_BOARDS } from 'graphql/queries/board'
+import AuthContext from 'contexts/auth/AuthContext'
 
 type Props = {
   boardId: string,
   boardName: string,
-	refetchBoards: PureQueryOptions,
 	closeDialog: () => void,
 	isOpen: boolean
 }
@@ -15,11 +17,39 @@ type Props = {
 const RenameBoard: React.FC<Props> = ({
 	boardId,
 	boardName,
-	refetchBoards,
 	closeDialog,
 	isOpen
 }) => {
 	const [updateBoard] = useMutation(UPDATE_BOARD)
+	const { user } = useContext(AuthContext)
+
+	const updateCache = (cache: ApolloCache<unknown>, name: string | undefined) => {
+		try {
+			// @ts-expect-error
+			const { getBoards } = cache.readQuery({
+				query: GET_BOARDS,
+				variables: {
+					user_id: user?._id
+				}
+			})
+
+			const idx = getBoards.findIndex(({ _id }: Board) => _id === boardId)
+			getBoards[idx] = {
+				...getBoards[idx],
+				name
+			}
+
+			cache.writeQuery({
+				query: GET_BOARDS,
+				variables: {
+					user_id: user?._id
+				},
+				data: {
+					getBoards
+				}
+			})
+		} catch (err) {}
+	}
 
 	return (
 		<Dialog
@@ -31,7 +61,7 @@ const RenameBoard: React.FC<Props> = ({
 			onClose={closeDialog}
 			onConfirm={(text: string | undefined) => updateBoard({
 				variables: { id: boardId, name: text },
-				refetchQueries: [refetchBoards]
+				update: (cache: ApolloCache<unknown>) => updateCache(cache, text)
 			})}
 			isOpen={isOpen}
 		/> 

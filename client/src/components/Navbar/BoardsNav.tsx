@@ -6,19 +6,39 @@ import Button from 'components/ui/Button'
 import { BoardsNavWrapper } from './Navbar.styled'
 import AuthContext from 'contexts/auth/AuthContext'
 import Dialog from 'components/ui/Dialog'
+import { GET_BOARDS } from 'graphql/queries/board'
 
 
 const BoardsNav: React.FC = () => {
 	const { user } = useContext(AuthContext)
   
 	const [showDialog, setShowDialog] = useState<boolean>(false)
-	const [createBoard, { data }] = useMutation(CREATE_BOARD)
-
-
+	const [createBoard] = useMutation(CREATE_BOARD)
 
 	const handleSubmit = (name: string | undefined) => {
 		return createBoard({
-			variables: { name: name, user_id: user?._id , is_admin: true }
+			variables: { name: name, user_id: user?._id , is_admin: true },
+			update: (cache, { data: { createBoard } }) => {
+				//@ts-expect-error
+				const { getBoards } = cache.readQuery({
+					query: GET_BOARDS,
+					variables: {
+						user_id: user?._id
+					}
+				})
+
+				if(getBoards) {
+					cache.writeQuery({
+						query: GET_BOARDS,
+						variables: {
+							user_id: user?._id
+						},
+						data: {
+							getBoards: [...getBoards, createBoard]
+						}
+					})
+				}
+			}
 		})
 	}
   

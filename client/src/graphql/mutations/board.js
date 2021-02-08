@@ -21,7 +21,10 @@ export const UPDATE_BOARD = gql`
       updateBoard(
         name: $name,
         id: $id
-      )
+      ) {
+        _id
+        name
+      }
   }
 `
 

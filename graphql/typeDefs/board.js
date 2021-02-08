@@ -23,7 +23,7 @@ module.exports = {
     updateBoard(
       id: ID!,
       name: String!
-    ): Boolean,
+    ): Board,
 
     deleteBoard(
       id: ID!
