@@ -7,10 +7,11 @@ import { ColorBox, ColorsWrapper } from './Labels.styled'
 import { FlexBox, HDivider } from 'components/GlobalStyles'
 import Button from 'components/ui/Button'
 import { useMutation } from '@apollo/client'
-import { CREATE_LABEL, UPDATE_LABEL } from 'graphql/mutations/board'
+import { CREATE_LABEL, DELETE_LABEL, UPDATE_LABEL } from 'graphql/mutations/board'
 import { GET_BOARD } from 'graphql/queries/board'
 import { useParams } from 'react-router-dom'
 import { Label as LabelType } from 'types/card'
+import { VARIANTS } from 'constants/button'
 
 const COLORS = ['yellow', 'red', 'blue', 'green', 'magenta', 'purple', 'grey']
 
@@ -30,8 +31,9 @@ const CreateNewLabel: React.FC<Props> = ({
 	const { boardId } = useParams<RouteParams>()
 	const [text, setText] = useState<string>(label ? label.name : '')
 	const [selectedColor, setSelectedColor] = useState<string>(label ? label.bg_color : '')
-	const [createLabel, data] = useMutation(CREATE_LABEL)
-	const [updateLabel, updateData] = useMutation(UPDATE_LABEL)
+	const [createLabel] = useMutation(CREATE_LABEL)
+	const [updateLabel] = useMutation(UPDATE_LABEL)
+	const [deleteLabel] = useMutation(DELETE_LABEL)
 
 	const handleCreate = () => {
 		createLabel({
@@ -55,6 +57,20 @@ const CreateNewLabel: React.FC<Props> = ({
 				label_id: label?._id,
 				name: text,
 				bg_color: selectedColor
+			},
+			refetchQueries: [{
+				query: GET_BOARD,
+				variables: { id: boardId }
+			}]
+		})
+			.then(() => hideForm())
+	}
+
+	const handleDelete = () => {
+		deleteLabel({
+			variables: {
+				board_id: boardId,
+				label_id: label?._id
 			},
 			refetchQueries: [{
 				query: GET_BOARD,
@@ -89,7 +105,13 @@ const CreateNewLabel: React.FC<Props> = ({
 					)})}
 			</ColorsWrapper>
 			<HDivider/>
-			<FlexBox justify='flex-end'>
+			<FlexBox justify={label ? 'space-between' : 'flex-end'}>
+				{label && <Button
+					onClick={handleDelete}
+					variant={VARIANTS.DANGER}
+				>
+					Delete
+				</Button>}
 				<Button
 					disabled={!text || !selectedColor}
 					onClick={label ? handleUpdate : handleCreate}

@@ -15,18 +15,23 @@ import Button from 'components/ui/Button'
 import CreateNewLabel from './CreateNewLabel'
 import IconButton from 'components/ui/IconButton'
 
+type Props = {
+	cardLabels: string[]
+}
+
 type RouteParams = {
 	boardId: string
 }
 
-const Labels: React.FC = () => {
+const Labels: React.FC<Props> = ({
+	cardLabels
+}) => {
 	const { boardId } = useParams<RouteParams>()
 	const client = useApolloClient()
 	const { selected: cardId } = useSearchParams(['selected'])
 	const [addLabel] = useMutation(ADD_LABEL)
 	const [isCreating, setIsCreating] = useState<boolean>(false)
 	const [editingLabel, setEditingLabel] = useState<Label | null>(null)
-
 
 	const { getBoard: { labels } } = client.readQuery({
 		query: GET_BOARD,
@@ -77,7 +82,7 @@ const Labels: React.FC = () => {
 								const { name, bg_color, _id } = item
 
 								return (
-									<LabelWrapper key={_id} bgColor={bg_color} >
+									<LabelWrapper key={_id} bgColor={bg_color} disabled={cardLabels.includes(_id)} >
 										<div onClick={() => handleClick(_id)}>{name}</div>
 										<IconButton icon={<BiPencil/>} onClick={() => setEditingLabel(item)} />
 									</LabelWrapper>

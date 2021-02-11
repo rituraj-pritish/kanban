@@ -3,7 +3,8 @@ import styled, { css } from 'styled-components'
 import theme from 'theme'
 
 type LabelWrapperProps = {
-  bgColor: string
+  bgColor: string,
+  disabled: boolean
 }
 
 export const LabelWrapper = styled.div<LabelWrapperProps>`
@@ -12,18 +13,23 @@ export const LabelWrapper = styled.div<LabelWrapperProps>`
   color: ${({ bgColor }) => bgColor}; 
   margin: ${theme.spacing(0.4)} 0;
   border-radius: ${theme.borderRadius};
-  cursor: pointer;
+
+  & > div {
+    cursor: pointer;
+  }
 
   // label name
   & > div:first-child {
+    pointer-events: ${({ disabled }) => disabled && 'none'};
+    cursor: ${({ disabled }) => disabled && 'default'};
     border-radius: ${theme.borderRadius};
     padding: ${theme.spacing(0.2)} ${theme.spacing(0.6)};
-    background: ${({ bgColor }) => lighten(0.4, bgColor)}; 
+    background: ${({ bgColor, disabled }) => disabled ? lighten(0.45, bgColor) : lighten(0.4, bgColor)}; 
     flex-grow: 1;
     margin-right: ${theme.spacing(0.5)};
 
     &:hover {
-      background: ${({ bgColor }) => lighten(0.37, bgColor)}; 
+      background: ${({ bgColor, disabled }) => !disabled && lighten(0.37, bgColor)}; 
     }
   }
 
