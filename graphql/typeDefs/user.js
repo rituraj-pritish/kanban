@@ -3,7 +3,6 @@ module.exports = {
     type User {
       first_name: String!,
       last_name: String!,
-      avatar_bg_color: String!,
       email: String!,
       token: String!,
       _id: ID!

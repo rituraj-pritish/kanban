@@ -16,22 +16,25 @@ const initialState = {
 const AuthState: React.FC = ({ children }) => {
 	const client = useApolloClient()
 	const history = useHistory()
-	const [getUser, { data, called, loading }] = useLazyQuery(GET_USER)
+	const [getUser, { data, called, loading, error }] = useLazyQuery(GET_USER)
   
 	const token = window.localStorage.getItem('auth_token')
 	useEffect(() => {
-		if(token && !loading && !called) { 
+		if(token && !loading && !called && !error) { 
+			console.log('called')
 			getUser({ variables: { token } })
 		}
 	}, [token])
 
 	const [state, dispatch] = useReducer(authReducer, initialState)
   
-	if(!token && state.loading) {
+	if(!token && state.loading || error) {
+		localStorage.removeItem('auth_token')
 		dispatch({
 			type: AUTH_ERROR,
 			payload: null
 		})
+		history.push('/')
 	}
 
 	if(called && !loading && data?.getUser && state.loading) {

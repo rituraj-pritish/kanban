@@ -6,7 +6,6 @@ export const SIGN_IN = gql`
       _id
       first_name
       last_name
-      avatar_bg_color
       email
       token
     }
@@ -19,7 +18,6 @@ export const GET_USER = gql`
       _id
       first_name
       last_name
-      avatar_bg_color
       email
     }
   }

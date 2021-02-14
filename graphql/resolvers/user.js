@@ -1,6 +1,5 @@
 const User = require('../../models/User')
 const utils = require('../../helpers/authHelpers')
-const COLORS = require('../../constants/colors')
 
 module.exports = {
 	Query: {
@@ -59,7 +58,6 @@ module.exports = {
 			const user = new User({
 				first_name,
 				last_name,
-				avatar_bg_color: COLORS[Math.floor(Math.random() * COLORS.length)],
 				email,
 				password: hashedPassword
 			})

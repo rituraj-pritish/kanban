@@ -11,7 +11,6 @@ export default [
 		result: {
 			data: {
 				getUser: {
-					avatar_bg_color: '#a4e4eb',
 					email: 'jd@gmail.com',
 					first_name: 'John',
 					last_name: 'Doe',

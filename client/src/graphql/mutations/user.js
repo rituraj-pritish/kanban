@@ -18,7 +18,6 @@ export const SIGN_UP = gql`
       _id
       first_name
       last_name
-      avatar_bg_color
       email
       token
   }}

@@ -5,6 +5,7 @@ import theme from 'theme'
 interface AvatarWrapper {
   size: number,
   bgColor: string,
+  textColor: string,
   imageUrl?: string
 }
 
@@ -19,7 +20,7 @@ export const AvatarWrapper = styled.div<AvatarWrapper>`
   ${theme.styles.centerElement}
   font-size: ${theme.spacing(0.9)};
   cursor: pointer;
-  color: white;
+  color: ${({ textColor }) => textColor};
 `
 
 export const AdminIcon = styled(IoMdSettings)`
