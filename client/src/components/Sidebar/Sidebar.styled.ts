@@ -60,6 +60,7 @@ export const UserDetails = styled.div<UserDetails>`
     margin-left: ${({ isCollapsed }) => isCollapsed && theme.spacing(0.5)};
     min-width: 35px;
     transition: margin-left 0.2s;
+    pointer-events: none;
   }
 `
 
@@ -113,5 +114,26 @@ export const LogoWrapper = styled.div`
     min-width: 50px;
     min-height: 50px;
     transition: margin-left 0.2s;
+  }
+`
+
+type LogoutWrapper = {
+  isCollapsed: boolean
+}
+
+export const LogoutWrapper = styled.div<LogoutWrapper>`
+  ${theme.styles.centerElement};
+  justify-content: flex-start;
+  margin-bottom: ${theme.spacing(0.5)};
+  margin-left: ${theme.spacing(0.3)};
+  cursor: pointer;
+
+  & > div:first-child {
+    pointer-events: ${({ isCollapsed }) => !isCollapsed && 'none'};
+    margin-left: ${({ isCollapsed }) => isCollapsed && theme.spacing(0.3)};
+  }
+
+  & > div:nth-child(2) {
+    margin-left: ${theme.spacing(0.4)};
   }
 `

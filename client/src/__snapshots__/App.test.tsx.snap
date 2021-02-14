@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Boards 1`] = `
+exports[`Should render Dashboard page 1`] = `
 <div>
   <div
     style="overflow: hidden; background: rgb(247, 248, 255);"
@@ -172,44 +172,32 @@ exports[`Boards 1`] = `
       <div>
         <div
           class="sc-fzqzEs iYuZMg"
-        >
-          <div
-            class="sc-fzoCCn hJjPvy"
-          >
-            <div>
-              Boards
-              <button
-                class="sc-fznKkj digwXQ"
-              >
-                New Board
-              </button>
-            </div>
-          </div>
-        </div>
+        />
         <div
           class="sc-fzqKVi bMbWqX"
         >
-          <div
-            class="sc-fzoCUK jYwtTA"
-          >
-            <div
-              class="sc-fzoOEf dsMzKt"
-            >
-              Board 1
-            </div>
-            <div
-              class="sc-fzoOEf dsMzKt"
-            >
-              Board 2
-            </div>
-            <div
-              class="sc-fzoOEf dsMzKt"
-            >
-              Board 3
-            </div>
+          <div>
+            Dashboard
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Should render home page 1`] = `
+<div>
+  <div
+    style="overflow: hidden; background: rgb(247, 248, 255);"
+  >
+    <div>
+      HOME
+      <a
+        href="/?auth=signin"
+      >
+        Sign In
+      </a>
     </div>
   </div>
 </div>

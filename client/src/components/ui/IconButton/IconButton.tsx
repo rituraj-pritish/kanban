@@ -3,7 +3,7 @@ import { ButtonWrapper } from './IconButton.styled'
 
 interface Props {
 	icon: React.ReactNode,
-	onClick(e: React.MouseEvent<HTMLElement>): void,
+	onClick?(e: React.MouseEvent<HTMLElement>): void,
 	className?: string,
 	isCircular?: boolean 
 }

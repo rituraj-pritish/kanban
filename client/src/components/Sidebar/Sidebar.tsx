@@ -8,7 +8,7 @@ import { FiLogOut } from 'react-icons/fi'
 import { ReactComponent as Logo } from 'assets/Logo.svg' 
 import CollapseButton from './CollapseButton'
 import Avatar from 'components/Avatar'
-import { Divider, SidebarWrapper, UserDetails, LogoWrapper } from './Sidebar.styled'
+import { Divider, SidebarWrapper, UserDetails, LogoWrapper, LogoutWrapper } from './Sidebar.styled'
 import AuthContext from 'contexts/auth/AuthContext'
 import SidebarLink from './SidebarLink'
 import { FlexGrow } from 'components/CommonStyles'
@@ -54,7 +54,10 @@ const Sidebar: React.FC = () => {
 			<FlexGrow/>
 
 			<div>
-				<IconButton icon={<FiLogOut/>} onClick={signOut} />
+				<LogoutWrapper onClick={signOut} isCollapsed={isCollapsed}>
+					<IconButton icon={<FiLogOut/>} />
+					{!isCollapsed && <div>Logout</div>}
+				</LogoutWrapper>
 				<UserDetails isCollapsed={isCollapsed}>
 					<Avatar user={user} size={35}/>
 					<div>
