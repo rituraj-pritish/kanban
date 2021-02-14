@@ -3,7 +3,7 @@ import { Form, Field } from 'react-final-form'
 
 import TextFieldAdapter from 'components/ui/forms/TextFieldAdapter'
 import Button from 'components/ui/Button'
-import { required } from 'helpers/validators'
+import { matchPassword, password, required } from 'helpers/validators'
 import { FlexEndWrapper } from 'components/CommonStyles'
 
 interface Props {
@@ -20,7 +20,14 @@ const SignUpForm: React.FC<Props> = ({ onSubmit, isLoading }) => {
 	return (
 		<Form
 			onSubmit={onSubmit}
-			render={({ handleSubmit }) => {
+			initialValues={{
+				first_name: 'John',
+				last_name: 'Doe',
+				email: 'jd@gmail.com',
+				password: '1234567',
+				confirm_password: '1234567'
+			}}
+			render={({ handleSubmit, values }) => {
 				return (
 					<form onSubmit={handleSubmit}>
 						<Field
@@ -48,7 +55,7 @@ const SignUpForm: React.FC<Props> = ({ onSubmit, isLoading }) => {
 							name='password'
 							label='Password'
 							inputType='password'
-							validate={required}
+							validate={password}
 							component={TextFieldAdapter}			
 							isRequired
 						/>
@@ -56,7 +63,7 @@ const SignUpForm: React.FC<Props> = ({ onSubmit, isLoading }) => {
 							name='confirm_password'
 							label='Confirm Password'
 							inputType='password'
-							validate={required}
+							validate={matchPassword(values.password)}
 							component={TextFieldAdapter}			
 							isRequired
 						/>

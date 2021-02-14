@@ -15,18 +15,21 @@ const AuthModal: React.FC = () => {
 	const [isOpen, setIsOpen] = useState<boolean>(false)
 	const [currentForm, setCurrentForm] = useState<string>('')
 
+	const listenerFunction = () => {
+		const search = window.location.search
+
+		// todo find a better solution
+		const auth = search.slice(6, search.length)
+
+		if(auth === SIGN_UP || auth === SIGN_IN ) {
+			setIsOpen(true)
+			setCurrentForm(auth)
+		}
+	}
+
 	useEffect(() => {
-		window.addEventListener('click', () => {
-			const search = document.location.search
-
-			// todo find a better solution
-			const auth = search.slice(6, search.length)
-
-			if(auth === SIGN_UP || auth === SIGN_IN ) {
-				setIsOpen(true)
-				setCurrentForm(auth)
-			}
-		})
+		window.addEventListener('click', listenerFunction)
+		window.addEventListener('load', listenerFunction)
 	}, [])
 
 	const onRequestClose = () => {

@@ -9,7 +9,9 @@ export default {
 		primary: '#9196E4',
 		primaryLight: '#EFF0FE',
 		greyLight: '#DCDCDC',
-		inputBg: '#F7F7F7'
+		inputBg: '#F7F7F7',
+		red: '#FF3737',
+		
 	},
 
 	listWidth: '17rem',

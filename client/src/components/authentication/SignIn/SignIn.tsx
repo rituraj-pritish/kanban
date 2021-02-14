@@ -7,6 +7,7 @@ import { Link, useHistory } from 'react-router-dom'
 import AuthContext from 'contexts/auth/AuthContext'
 import { AUTH_SUCCESS } from 'contexts/types'
 import GoogleAuthButton from '../GoogleAuthButton'
+import { Error } from 'components/GlobalStyles'
 
 interface Values {
 	email: string,
@@ -20,13 +21,13 @@ interface Props {
 const SignIn: React.FC<Props> = ({ closeAuthModal }) => {
 	const { dispatch } = useContext(AuthContext)
 	const history = useHistory()
-	const [signIn, { data, loading, called }] = useLazyQuery(SIGN_IN)
+	const [signIn, { data, loading, called, error }] = useLazyQuery(SIGN_IN)
 
 	const handleSubmit = (values: Values) => {
 		signIn({ variables: values })
 	}
 
-	if(called && !loading && data.signIn) {
+	if(called && !loading && !error && data.signIn) {
 		localStorage.setItem('auth_token', data.signIn.token)
 
 		dispatch({
@@ -44,6 +45,7 @@ const SignIn: React.FC<Props> = ({ closeAuthModal }) => {
   
 	return (
 		<>
+			{!!error && <Error>{error.message}</Error>}
 			<SignInForm onSubmit={handleSubmit} isLoading={loading} />
 			<div>
 				Don't have an account{' '}

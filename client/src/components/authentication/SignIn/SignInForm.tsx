@@ -16,7 +16,7 @@ const SignInForm: React.FC<Props> = ({ onSubmit, isLoading }) => {
 		<Form
 			initialValues={{
 				email: 'jd@gmail.com',
-				password: '123456'
+				password: '1234567'
 			}}
 			onSubmit={onSubmit}
 			render={({ handleSubmit }) => {

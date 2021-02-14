@@ -25,6 +25,7 @@ const Routes: React.FC = () => {
 						<ProtectedRoute exact path='/dashboard' component={Dashboard} />
 						<ProtectedRoute exact path='/board/:boardId' component={Board} />
 						<ProtectedRoute exact path='/boards' component={Boards}/>
+						<Redirect from='*' to='/dashboard'/>
 					</Switch>
 				</RouteWrapper>
 			</div>
@@ -35,7 +36,8 @@ const Routes: React.FC = () => {
     <>
     	<AuthModal/>
     	<Route exact path='/' component={Home} />
-    	{!loading && <Redirect from='*' to='/' />}
+    	{/* TODO find a way to redirect gibrish to '/' */}
+    	{/* {!loading && <Redirect from='*' to='/' />} */}
     </>
   
   
