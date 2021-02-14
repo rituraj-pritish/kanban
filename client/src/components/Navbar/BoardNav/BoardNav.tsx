@@ -5,7 +5,7 @@ import { IoMdArrowRoundBack } from 'react-icons/io'
 import Skeleton from 'react-loading-skeleton'
 
 import { GET_BOARD } from 'graphql/queries/board'
-import IconButton from 'components/ui/IconButton'
+import IconButton from 'components/common/ui/IconButton'
 
 import { BoardNavWrapper } from '../Navbar.styled'
 import BoardNavToggleMenu from './BoardNavToggleMenu'

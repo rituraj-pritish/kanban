@@ -3,7 +3,7 @@ import { ApolloCache, useMutation } from '@apollo/client'
 
 import { Board } from 'types/board'
 import { UPDATE_BOARD } from 'graphql/mutations/board'
-import Dialog from 'components/ui/Dialog'
+import Dialog from 'components/common/ui/Dialog'
 import { GET_BOARDS } from 'graphql/queries/board'
 import AuthContext from 'contexts/auth/AuthContext'
 

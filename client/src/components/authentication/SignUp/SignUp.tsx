@@ -5,7 +5,7 @@ import { Link, useHistory } from 'react-router-dom'
 import { SIGN_UP } from 'graphql/mutations/user'
 import SignUpForm from './SignUpForm'
 import GoogleAuthButton from '../GoogleAuthButton'
-import { Error } from 'components/GlobalStyles'
+import { Error } from 'components/common/GlobalStyles'
 
 interface Values {
   name: string,

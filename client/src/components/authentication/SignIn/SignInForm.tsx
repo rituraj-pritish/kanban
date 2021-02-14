@@ -1,10 +1,10 @@
 import React from 'react'
 import { Form, Field } from 'react-final-form'
 
-import TextFieldAdapter from 'components/ui/forms/TextFieldAdapter'
-import Button from 'components/ui/Button'
+import TextFieldAdapter from 'components/common/ui/forms/TextFieldAdapter'
+import Button from 'components/common/ui/Button'
 import { required } from 'helpers/validators'
-import { FlexEndWrapper } from 'components/CommonStyles'
+import { FlexEndWrapper } from 'components/common/CommonStyles'
 
 interface Props {
 	isLoading: boolean,

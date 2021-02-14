@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { IoMdSettings } from 'react-icons/io'
 import { useParams } from 'react-router-dom'
 
-import ToggleMenu from 'components/ui/ToggleMenu'
-import IconButton from 'components/ui/IconButton'
+import ToggleMenu from 'components/common/ui/ToggleMenu'
+import IconButton from 'components/common/ui/IconButton'
 import DeleteBoard from './DeleteBoard'
 import RenameBoard from './RenameBoard'
 

@@ -2,10 +2,10 @@ import React, { useContext, useState } from 'react'
 import { useMutation } from '@apollo/client'
 
 import { CREATE_BOARD } from 'graphql/mutations/board'
-import Button from 'components/ui/Button'
+import Button from 'components/common/ui/Button'
 import { BoardsNavWrapper } from './Navbar.styled'
 import AuthContext from 'contexts/auth/AuthContext'
-import Dialog from 'components/ui/Dialog'
+import Dialog from 'components/common/ui/Dialog'
 import { GET_BOARDS } from 'graphql/queries/board'
 
 

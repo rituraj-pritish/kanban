@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 
-import IconButton from 'components/ui/IconButton'
+import IconButton from 'components/common/ui/IconButton'
 import { CollapseButtonWrapper } from './Sidebar.styled'
 
 type Props = {

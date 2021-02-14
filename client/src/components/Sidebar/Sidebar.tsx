@@ -7,12 +7,12 @@ import { FiLogOut } from 'react-icons/fi'
 
 import { ReactComponent as Logo } from 'assets/Logo.svg' 
 import CollapseButton from './CollapseButton'
-import Avatar from 'components/Avatar'
+import Avatar from 'components/common/Avatar'
 import { Divider, SidebarWrapper, UserDetails, LogoWrapper, LogoutWrapper } from './Sidebar.styled'
 import AuthContext from 'contexts/auth/AuthContext'
 import SidebarLink from './SidebarLink'
-import { FlexGrow } from 'components/CommonStyles'
-import IconButton from 'components/ui/IconButton'
+import { FlexGrow } from 'components/common/CommonStyles'
+import IconButton from 'components/common/ui/IconButton'
 
 const Sidebar: React.FC = () => {
 	const history = useHistory()

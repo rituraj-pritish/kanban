@@ -7,7 +7,7 @@ import { Link, useHistory } from 'react-router-dom'
 import AuthContext from 'contexts/auth/AuthContext'
 import { AUTH_SUCCESS } from 'contexts/types'
 import GoogleAuthButton from '../GoogleAuthButton'
-import { Error } from 'components/GlobalStyles'
+import { Error } from 'components/common/GlobalStyles'
 
 interface Values {
 	email: string,
