@@ -6,14 +6,14 @@ exports[`Should render Dashboard page 1`] = `
     style="overflow: hidden; background: rgb(247, 248, 255);"
   >
     <div
-      class="sc-fzqKVi kZnRW"
+      class="sc-fznBMq jhagdn"
     >
       <div
-        class="sc-fzoPby iCsclX"
+        class="sc-fzobTh kiWahS"
         data-testid="sidebar"
       >
         <div
-          class="sc-fzooss lkjnIX"
+          class="sc-fzpdyU dHaHAz"
         >
           <svg>
             Logo.svg
@@ -23,13 +23,13 @@ exports[`Should render Dashboard page 1`] = `
           </div>
         </div>
         <div
-          class="sc-fznBtT dthWmh"
+          class="sc-fzqKVi fUmWMg"
         />
         <div
-          class="sc-fznNTe hHzPbe"
+          class="sc-fzoCUK jMzGcJ"
         >
           <div
-            class="sc-fzobTh kMpxdX"
+            class="sc-fzoOEf WCNDB"
           >
             <svg
               fill="currentColor"
@@ -50,10 +50,10 @@ exports[`Should render Dashboard page 1`] = `
           </div>
         </div>
         <div
-          class="sc-fznNTe hHzPbe"
+          class="sc-fzoCUK jMzGcJ"
         >
           <div
-            class="sc-fzobTh kMpxdX"
+            class="sc-fzoOEf WCNDB"
           >
             <svg
               fill="currentColor"
@@ -74,10 +74,10 @@ exports[`Should render Dashboard page 1`] = `
           </div>
         </div>
         <div
-          class="sc-fznNTe hHzPbe"
+          class="sc-fzoCUK jMzGcJ"
         >
           <div
-            class="sc-fzobTh kMpxdX"
+            class="sc-fzoOEf WCNDB"
           >
             <svg
               fill="currentColor"
@@ -102,7 +102,7 @@ exports[`Should render Dashboard page 1`] = `
         />
         <div>
           <div
-            class="sc-fzqyvX dlPPtb"
+            class="sc-fzppip newCc"
           >
             <div
               class="sc-fznZeY cKnFVy"
@@ -137,7 +137,7 @@ exports[`Should render Dashboard page 1`] = `
             </div>
           </div>
           <div
-            class="sc-fzppAM kGnBYE"
+            class="sc-fzqyvX kNbHtW"
           >
             <div
               class="sc-fznAgC dyjSNL"
@@ -151,7 +151,7 @@ exports[`Should render Dashboard page 1`] = `
           </div>
         </div>
         <div
-          class="sc-fzpdbB idTrPe"
+          class="sc-fzooss daEgVW"
         >
           <div
             class="sc-fznZeY gjjbVi"
@@ -178,10 +178,10 @@ exports[`Should render Dashboard page 1`] = `
       </div>
       <div>
         <div
-          class="sc-fzqzEs iYuZMg"
+          class="sc-fzppAM cwISp"
         />
         <div
-          class="sc-fzoCUK bTWgqg"
+          class="sc-fznNvL hzmXKU"
         >
           <div>
             Dashboard
@@ -198,13 +198,38 @@ exports[`Should render home page 1`] = `
   <div
     style="overflow: hidden; background: rgb(247, 248, 255);"
   >
-    <div>
-      HOME
-      <a
-        href="/?auth=signin"
+    <div
+      class="sc-fzpdbB ebIqaw"
+    >
+      <div
+        class="sc-fzqzEs EgZsU"
       >
-        Sign In
-      </a>
+        <div />
+        <div
+          class="sc-fzqOul brOgxN"
+        >
+          <svg>
+            Logo.svg
+          </svg>
+        </div>
+        <div
+          class="sc-fzoPby ihzxVf"
+        >
+          <div
+            class="sc-fzoCCn kWIRIS"
+          >
+            Log In
+          </div>
+          <div>
+            or
+          </div>
+          <button
+            class="sc-fznKkj digwXQ"
+          >
+            Sign Up
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

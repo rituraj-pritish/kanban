@@ -5,7 +5,8 @@ import App from 'components/app/App'
 
 test('Should render home page', () => {
 	const { container } = render(<App/>)
-	expect(screen.getByText('Sign In')).toBeInTheDocument()
+	expect(screen.getByText('Log In')).toBeInTheDocument()
+	expect(screen.getByText('Sign Up')).toBeInTheDocument()
 
 	expect(container).toMatchSnapshot()
 })
