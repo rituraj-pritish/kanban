@@ -3,6 +3,7 @@ module.exports = {
     type User {
       first_name: String!,
       last_name: String!,
+      is_verified: Boolean!,
       email: String!,
       token: String!,
       _id: ID!

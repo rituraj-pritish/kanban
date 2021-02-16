@@ -11,6 +11,7 @@ import AuthContext from 'contexts/auth/AuthContext'
 import Sidebar from 'components/Sidebar'
 import { RoutesWrapper, RouteWrapper } from './Routes.styled'
 import Boards from 'components/boards/Boards'
+import Settings from 'components/settings/Settings'
 
 const Routes: React.FC = () => {
 	const { isAuthenticated, loading } = useContext(AuthContext)
@@ -25,6 +26,7 @@ const Routes: React.FC = () => {
 						<ProtectedRoute exact path='/dashboard' component={Dashboard} />
 						<ProtectedRoute exact path='/board/:boardId' component={Board} />
 						<ProtectedRoute exact path='/boards' component={Boards}/>
+						<ProtectedRoute exact path='/settings' component={Settings}/>
 						<Redirect from='*' to='/dashboard'/>
 					</Switch>
 				</RouteWrapper>

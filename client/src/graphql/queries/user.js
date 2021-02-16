@@ -19,6 +19,7 @@ export const GET_USER = gql`
       first_name
       last_name
       email
+      is_verified
     }
   }
 `
