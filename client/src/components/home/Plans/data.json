@@ -1,0 +1,29 @@
+[
+  {
+    "title": "Free",
+    "text": "For small teams",
+    "price": "0",
+    "button": "Get Started",
+    "link": "/?auth=signup"
+  },
+  {
+    "title": "Team",
+    "text": "For growing teams",
+    "price": "6",
+    "button": "Start Trial",
+    "link": "/?auth=signup"
+  },
+  {
+    "title": "Standard",
+    "text": "For organizations",
+    "price": "12",
+    "button": "Start Trial",
+    "link": "/?auth=signup"
+  },
+  {
+    "title": "Enterprise",
+    "text": "For enterprises",
+    "button": "Contact Us",
+    "link": "/contact"
+  }
+]
