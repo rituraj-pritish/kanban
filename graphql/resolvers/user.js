@@ -1,5 +1,9 @@
 const User = require('../../models/User')
 const utils = require('../../helpers/authHelpers')
+const keys = require('../../config/keys')
+const sgMail = require('@sendgrid/mail')
+
+sgMail.setApiKey(keys.sendgridApiKey)
 
 module.exports = {
 	Query: {
@@ -67,6 +71,25 @@ module.exports = {
 			const token = await utils.signToken(user._id)
 
 			return { token, ...user._doc, password: null }
+		},
+
+		sendVerificationEmail: async (_, __, { current_user }) => {
+			const user = await User.findById(current_user)
+
+			const msg = {
+				to: user.email,
+				from: keys.appEmail, 
+				subject: 'Verify Email',
+				text: 'and easy to do anywhere, even with Node.js',
+				html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+			}
+
+			try {
+				await sgMail.send(msg)
+				return true
+			} catch (error) {
+				return false
+			}
 		}
 	}
 }

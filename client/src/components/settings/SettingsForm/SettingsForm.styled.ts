@@ -16,3 +16,10 @@ export const VerifiedStatus = styled.div<VerifiedStatus>`
   justify-content: space-between;
   align-items: center;
 `
+
+export const EmailSent = styled.div`
+  background: green;
+  border-radius: ${theme.borderRadius};
+  padding: ${theme.spacing(0.5)};
+  color: black;
+`

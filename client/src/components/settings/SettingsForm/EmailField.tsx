@@ -1,8 +1,10 @@
 import React from 'react'
 import { Field } from 'react-final-form'
+import { useMutation } from '@apollo/client'
 
+import { SEND_VERIFICATION_EMAIL } from 'graphql/mutations/user'
 import TextFieldAdapter from 'components/common/ui/forms/TextFieldAdapter'
-import { VerifiedStatus } from './SettingsForm.styled'
+import { VerifiedStatus, EmailSent } from './SettingsForm.styled'
 import Button from 'components/common/ui/Button'
 
 type Props = {
@@ -10,6 +12,12 @@ type Props = {
 }
 
 const EmailField: React.FC<Props> = ({ isVerified }) => {
+	const [send, { data, loading }] = useMutation(SEND_VERIFICATION_EMAIL)
+
+	const handleClick = () => {
+		return send()
+	}
+
 	return (
 		<>
 			<Field
@@ -19,9 +27,11 @@ const EmailField: React.FC<Props> = ({ isVerified }) => {
 			/>
 			<VerifiedStatus isVerified={isVerified}>
 				{isVerified ? 'Verified' : 'Unverified'} 
-				<Button>
+				{data && data.sendVerificationEmail 
+					? <EmailSent>Email Sent</EmailSent>
+					: <Button onClick={handleClick} isLoading={loading}>
 					Send verification email
-				</Button>
+					</Button>}
 			</VerifiedStatus>
 		</>
 	)

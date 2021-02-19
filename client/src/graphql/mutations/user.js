@@ -22,3 +22,9 @@ export const SIGN_UP = gql`
       token
   }}
 `
+
+export const SEND_VERIFICATION_EMAIL = gql`
+  mutation {
+    sendVerificationEmail
+  }
+`

@@ -22,6 +22,8 @@ module.exports = {
       first_name: String!, 
       last_name: String!, 
       confirm_password: String!
-    ): User
+    ): User,
+
+    sendVerificationEmail: Boolean
   `
 }

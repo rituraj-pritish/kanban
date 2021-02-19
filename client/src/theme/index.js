@@ -11,7 +11,7 @@ export default {
 		greyLight: '#DCDCDC',
 		inputBg: '#F7F7F7',
 		red: '#FF3737',
-		
+		green: '#9ACD9A'
 	},
 
 	listWidth: '17rem',
