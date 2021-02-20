@@ -31,6 +31,6 @@ export const SEND_VERIFICATION_EMAIL = gql`
 
 export const VERIFY_EMAIL = gql`
   mutation($code: String!) {
-    VerifyEmail (code: $code) 
+    verifyEmail (code: $code) 
   }
 `

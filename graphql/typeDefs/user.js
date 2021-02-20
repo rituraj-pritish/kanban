@@ -26,6 +26,6 @@ module.exports = {
 
     sendVerificationEmail: Boolean,
 
-    verifyEmail: Boolean
+    verifyEmail(code: String!): Boolean
   `
 }

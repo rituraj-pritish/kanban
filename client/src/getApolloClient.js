@@ -7,12 +7,22 @@ export default () => {
 		? '/graphql'
 		: 'http://localhost:5000/graphql'
 
+	const defaultOptions = {
+		mutate: {
+			errorPolicy: 'all'
+		},
+		query: {
+			errorPolicy: 'all'
+		}
+	}
+
 	const client = new ApolloClient({
 		uri: URI,
 		headers: {
 			authorization: token || ''
 		},
-		cache: new InMemoryCache()
+		cache: new InMemoryCache(),
+		defaultOptions
 	})
   
 	return client

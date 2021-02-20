@@ -76,7 +76,7 @@ module.exports = {
 
 		sendVerificationEmail: async (_, __, { current_user }) => {
 			const user = await User.findById(current_user)
-			const code = await utils.signToken(current_user, 60)
+			const code = await utils.signToken(current_user, 86400)
 
 			const msg = {
 				to: user.email,
@@ -105,7 +105,7 @@ module.exports = {
 		},
 
 		verifyEmail: async (_, { code }, { current_user }) => {
-			const codeDoc = Code.find(({ user_id: current_user }))
+			const codeDoc = await Code.findOne(({ user_id: current_user }))
 
 			if (!codeDoc) {
 				throw new Error('The link is expired, go to the app resend verification email')
