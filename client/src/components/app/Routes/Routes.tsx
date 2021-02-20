@@ -12,6 +12,7 @@ import Sidebar from 'components/Sidebar'
 import { RoutesWrapper, RouteWrapper } from './Routes.styled'
 import Boards from 'components/boards/Boards'
 import Settings from 'components/settings/Settings'
+import VerifyEmail from 'components/authentication/VerifyEmail'
 
 const Routes: React.FC = () => {
 	const { isAuthenticated, loading } = useContext(AuthContext)
@@ -27,6 +28,7 @@ const Routes: React.FC = () => {
 						<ProtectedRoute exact path='/board/:boardId' component={Board} />
 						<ProtectedRoute exact path='/boards' component={Boards}/>
 						<ProtectedRoute exact path='/settings' component={Settings}/>
+						<ProtectedRoute exact path='/auth/verify-email' component={VerifyEmail}/>
 						<Redirect from='*' to='/dashboard'/>
 					</Switch>
 				</RouteWrapper>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 import Button from './index'
@@ -11,17 +11,18 @@ const Flex = styled.div`
   align-items: center;
   margin: 2rem 0;
 
-  div {
+  & > div:first-child {
     margin-right: 1rem;
   }
 `
 
 export const Views = () => {
+	const [loading, setLoading] = useState(false)
 	return (
 		<>
 			<Flex>
 				<div>Default</div>
-				<Button>Button</Button>   
+				<Button isLoading={loading} onClick={() => setLoading(true)}>Looooooooong button text</Button>   
 			</Flex>
 
 			<Flex>

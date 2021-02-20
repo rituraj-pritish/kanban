@@ -4,5 +4,6 @@ module.exports =  {
 	BOARD: 'board',
 	CARD: 'card',
 	TEAM: 'team',
-	LABEL: 'label'
+	LABEL: 'label',
+	VERIFICATION_CODE: 'verification code'
 }

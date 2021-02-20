@@ -7,15 +7,18 @@ module.exports = {
 	hashPassword: async password => {
 		return await bcrypt.hash(password, 10)
 	},
-	signToken: id => {
+
+	signToken: (id, expiresIn = '1day') => {
 		return jwt.sign({ id }, keys.jwtKey, {
-			expiresIn: '1day'
+			expiresIn: expiresIn
 		})
 	},
+
 	getUserIdFromToken: async token => {
 		const res = await jwt.verify(token, keys.jwtKey)
 		return res.id
 	},
+
 	verifyPassword: async (password, hashPassword) => {
 		return await bcrypt.compare(password, hashPassword)
 	}

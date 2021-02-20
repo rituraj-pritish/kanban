@@ -1,4 +1,5 @@
 const User = require('../../models/User')
+const Code = require('../../models/VerificationCode')
 const utils = require('../../helpers/authHelpers')
 const keys = require('../../config/keys')
 const sgMail = require('@sendgrid/mail')
@@ -75,21 +76,42 @@ module.exports = {
 
 		sendVerificationEmail: async (_, __, { current_user }) => {
 			const user = await User.findById(current_user)
+			const code = await utils.signToken(current_user, 60)
 
 			const msg = {
 				to: user.email,
-				from: keys.appEmail, 
-				subject: 'Verify Email',
-				text: 'and easy to do anywhere, even with Node.js',
-				html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+				from: {
+					email: keys.appEmail,
+					name: 'Kanban'
+				}, 
+				dynamic_template_data: {
+					'button_url': `http://localhost:3000/auth/verify-email?code=${code}`
+				},
+				template_id: 'd-e177ad411b8046f9b7607e6a5577a698'
 			}
 
 			try {
 				await sgMail.send(msg)
+				
+				await new Code({
+					user_id: current_user,
+					code
+				}).save()
+
 				return true
 			} catch (error) {
 				return false
 			}
+		},
+
+		verifyEmail: async (_, { code }, { current_user }) => {
+			const codeDoc = Code.find(({ user_id: current_user }))
+
+			if (!codeDoc) {
+				throw new Error('The link is expired, go to the app resend verification email')
+			}
+
+			if(code === codeDoc.code) return true
 		}
 	}
 }

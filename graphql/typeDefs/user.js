@@ -24,6 +24,8 @@ module.exports = {
       confirm_password: String!
     ): User,
 
-    sendVerificationEmail: Boolean
+    sendVerificationEmail: Boolean,
+
+    verifyEmail: Boolean
   `
 }

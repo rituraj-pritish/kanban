@@ -1,7 +1,7 @@
 import React from 'react'
 import PulseLoader from 'react-spinners/PulseLoader'
 
-import { StyledButton } from './Button.styled'
+import { LoadingWrapper, StyledButton } from './Button.styled'
 import { VARIANTS } from 'constants/button'
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement>{
@@ -18,8 +18,13 @@ const Button: React.FC<Props> = ({
 	isLoading,
 	...otherProps }) => {
 	return (
-		<StyledButton variant={variant} disabled={disabled} {...otherProps} >
-			{isLoading ? <PulseLoader color='white' size={8} /> : children}
+		<StyledButton variant={variant} disabled={disabled || isLoading} {...otherProps} >
+			<div>{children}</div>
+			{isLoading && 
+				<LoadingWrapper variant={variant}>
+					<PulseLoader color='white' size={8} />
+				</LoadingWrapper>
+			}
 		</StyledButton>
 	)
 }

@@ -27,6 +27,8 @@ export const StyledButton = styled.button<StyledButton>`
   font-size: ${theme.spacing(1)};
   border-radius: ${theme.borderRadius};
   color: white;
+  position: relative;
+  overflow: hidden;
 
   ${({ disabled, variant }) => {
 		const bgColor = getBgColor(variant)
@@ -40,4 +42,20 @@ export const StyledButton = styled.button<StyledButton>`
       }
     `}
 };
+`
+
+type LoadingWrapper = {
+  variant: string
+}
+
+export const LoadingWrapper = styled.div<LoadingWrapper>`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: ${({ variant }) => lighten(0.1, getBgColor(variant))};
 `
