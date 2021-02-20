@@ -1,3 +1,4 @@
+import PLACEMENTS from 'constants/placements'
 import { lighten } from 'polished'
 import styled from 'styled-components'
 import theme from 'theme'
@@ -26,3 +27,22 @@ export const Error = styled.div`
   border-radius: ${theme.borderRadius};
   margin: ${theme.spacing(0.5)} 0;
 `
+
+type ButtonsWrapper = {
+  position?: string
+}
+
+export const ButtonsWrapper = styled.div<ButtonsWrapper>`
+  padding: ${theme.spacing()} 0;
+  display: flex;
+  justify-content: ${({ position }) => position === PLACEMENTS.LEFT
+		? 'flex-start' : 'flex-end'};
+  & > button {
+    margin-right: ${({ position }) => position === PLACEMENTS.LEFT && theme.spacing()};
+    margin-left: ${({ position }) => position === PLACEMENTS.RIGHT && theme.spacing()};
+  }
+`
+
+ButtonsWrapper.defaultProps = {
+	position: PLACEMENTS.RIGHT
+}

@@ -16,12 +16,11 @@ const initialState = {
 const AuthState: React.FC = ({ children }) => {
 	const client = useApolloClient()
 	const history = useHistory()
-	const [getUser, { data, called, loading, error }] = useLazyQuery(GET_USER)
+	const [getUser, { data, called, loading, error, }] = useLazyQuery(GET_USER)
   
 	const token = window.localStorage.getItem('auth_token')
 	useEffect(() => {
 		if(token && !loading && !called && !error) { 
-			console.log('called')
 			getUser({ variables: { token } })
 		}
 	}, [token])
@@ -37,12 +36,15 @@ const AuthState: React.FC = ({ children }) => {
 		history.push('/')
 	}
 
-	if(called && !loading && data?.getUser && state.loading) {
-		dispatch({
-			type: AUTH_SUCCESS,
-			payload: data.getUser
-		})
-	}
+	useEffect(() => {
+		if(called && !loading && data?.getUser) {
+			dispatch({
+				type: AUTH_SUCCESS,
+				payload: data.getUser
+			})
+		}
+	}, [data, called, loading])
+
 
 	const signOut = () => {
 		client.resetStore()

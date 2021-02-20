@@ -74,6 +74,16 @@ module.exports = {
 			return { token, ...user._doc, password: null }
 		},
 
+		updateUser: async (_, values, { current_user }) => {
+			const user = await User.findById(current_user)
+			await user.update(values)
+			await user.save()
+			return {
+				...user._doc,
+				...values
+			}
+		},
+
 		sendVerificationEmail: async (_, __, { current_user }) => {
 			const user = await User.findById(current_user)
 			const code = await utils.signToken(current_user, 86400)

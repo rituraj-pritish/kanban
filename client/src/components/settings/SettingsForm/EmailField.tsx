@@ -22,7 +22,7 @@ const EmailField: React.FC<Props> = ({ isVerified }) => {
 		<>
 			<Field
 				name='email'
-				label='First Name'
+				label='Email'
 				component={TextFieldAdapter}
 			/>
 			<VerifiedStatus isVerified={isVerified}>

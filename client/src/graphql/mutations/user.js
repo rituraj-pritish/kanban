@@ -23,6 +23,25 @@ export const SIGN_UP = gql`
   }}
 `
 
+export const UPDATE_USER = gql`
+  mutation(
+    $first_name: String!,
+    $last_name: String!,
+    $email: String!
+  ) {
+      updateUser (
+      first_name: $first_name,
+      last_name: $last_name,
+      email: $email
+  ) {
+      _id
+      first_name
+      last_name
+      email
+  }}
+`
+
+
 export const SEND_VERIFICATION_EMAIL = gql`
   mutation {
     sendVerificationEmail

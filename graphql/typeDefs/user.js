@@ -24,6 +24,12 @@ module.exports = {
       confirm_password: String!
     ): User,
 
+    updateUser(
+      email: String!, 
+      first_name: String!, 
+      last_name: String!
+    ): User,
+
     sendVerificationEmail: Boolean,
 
     verifyEmail(code: String!): Boolean
