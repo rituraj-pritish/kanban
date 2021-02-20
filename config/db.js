@@ -1,15 +1,15 @@
-const mongoose = require('mongoose');
-const keys = require('./keys.js');
+const mongoose = require('mongoose')
+const keys = require('./keys.js')
 
 try {
-  mongoose.connect(
-    keys.mongoUri,
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    },
-    console.log('db connected')
-  );
+	mongoose.connect(
+		keys.mongoUri,
+		{
+			useNewUrlParser: true,
+			useUnifiedTopology: true
+		},
+		console.log('db connected')
+	)
 } catch (err) {
-  console.log(err);
+	console.log(err)
 }
