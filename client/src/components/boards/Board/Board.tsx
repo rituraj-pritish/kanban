@@ -14,7 +14,6 @@ import onDragEnd from 'helpers/onDragEnd'
 import CardDetails from 'components/boards/CardDetails'
 import Skeleton from 'react-loading-skeleton'
 import { List as ListType } from 'types/board'
-import ToggleMenu from 'components/common/ui/ToggleMenu/ToggleMenu'
 
 interface RouteParams {
 	boardId: string
@@ -23,8 +22,8 @@ interface RouteParams {
 const Board: React.FC = () => {
 	const { boardId } = useParams<RouteParams>()
 	const [columns, setColumns] = useState<ListType[] | null>(null)
-	const [updateCardIndex, updateCardData] = useMutation(UPDATE_CARD_INDEX)
-	const [updateListIndex, updateListData] = useMutation(UPDATE_LIST_INDEX)
+	const [updateCardIndex] = useMutation(UPDATE_CARD_INDEX)
+	const [updateListIndex] = useMutation(UPDATE_LIST_INDEX)
 
 	const { data, loading } = useQuery(GET_BOARD, {
 		variables: { id: boardId }

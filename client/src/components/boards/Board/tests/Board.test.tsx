@@ -6,7 +6,7 @@ import App from 'components/app/App'
 
 test('Board', async () => {
 	localStorage.setItem('auth_token', 'token')
-	const { container, debug } = render(<App/>)
+	const { container } = render(<App/>)
   
 	// navigate to board
 	await waitForElementToBeRemoved(() => screen.queryByText('loading...'))
@@ -14,8 +14,10 @@ test('Board', async () => {
   
 	expect(await screen.findByText('Board 1')).toBeInTheDocument()
 	expect(await screen.findByText('Board 2')).toBeInTheDocument()
-  
 	userEvent.click(screen.getByText('Board 1'))
+
+	// add list
+  
 	await waitForElement(() => screen.findByText('Add new list'))
   
 	userEvent.click(screen.getByText('Add new list'))
@@ -25,5 +27,4 @@ test('Board', async () => {
 		'List 2'
 	)
 	userEvent.click(screen.getByText('Add'))
-	debug()
 })
