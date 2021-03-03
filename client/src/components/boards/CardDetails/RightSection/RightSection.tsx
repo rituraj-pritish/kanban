@@ -1,7 +1,7 @@
 import React from 'react'
 
 import dayjs from 'helpers/dayjs'
-import { RootWrapper } from './RightSection.styled'
+import { Date, RootWrapper } from './RightSection.styled'
 import Labels from '../Labels'
 
 type Props = {
@@ -18,9 +18,23 @@ const RightSection: React.FC<Props> = ({
 	return (
 		<RootWrapper>
 			<Labels cardLabels={labels}/>
-      Created {dayjs(created_at).fromNow()}
-			<br/>
-      Updated {dayjs(updated_at).fromNow()}
+
+			<Date>
+				<span>
+					Created: 
+				</span>	
+				<span>
+					{dayjs(created_at).fromNow()}
+				</span>
+			</Date>
+			<Date>
+				<span>
+					Updated:
+				</span>
+				<span>
+					{dayjs(updated_at).fromNow()}
+				</span>
+			</Date>
 		</RootWrapper>
 	)
 }

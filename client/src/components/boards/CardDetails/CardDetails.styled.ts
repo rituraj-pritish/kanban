@@ -35,6 +35,7 @@ export const BottomSectionWrapper = styled.div`
 `
 
 export const Tabs = styled.div`
+  margin-top: ${theme.spacing()};
   display: flex;
 `
 

@@ -6,14 +6,14 @@ exports[`Should render Dashboard page 1`] = `
     style="overflow: hidden; background: rgb(247, 248, 255);"
   >
     <div
-      class="sc-dkIXFM dDhktQ"
+      class="sc-XhUPp duMhHY"
     >
       <div
-        class="sc-eGCarw cLKNwE"
+        class="sc-ctaXAZ bFIspQ"
         data-testid="sidebar"
       >
         <div
-          class="sc-fHuLdG lmlXfJ"
+          class="sc-dtTInj eDjZQY"
         >
           <svg>
             Logo.svg
@@ -23,13 +23,13 @@ exports[`Should render Dashboard page 1`] = `
           </div>
         </div>
         <div
-          class="sc-bsipQr kUWQFo"
+          class="sc-gInsOo kIIyGc"
         />
         <div
-          class="sc-gInsOo boXOZK"
+          class="sc-euMpXR bXCZqe"
         >
           <div
-            class="sc-euMpXR jdkbqX"
+            class="sc-fHuLdG koYyMA"
           >
             <svg
               fill="currentColor"
@@ -50,10 +50,10 @@ exports[`Should render Dashboard page 1`] = `
           </div>
         </div>
         <div
-          class="sc-gInsOo boXOZK"
+          class="sc-euMpXR bXCZqe"
         >
           <div
-            class="sc-euMpXR jdkbqX"
+            class="sc-fHuLdG koYyMA"
           >
             <svg
               fill="currentColor"
@@ -74,10 +74,10 @@ exports[`Should render Dashboard page 1`] = `
           </div>
         </div>
         <div
-          class="sc-gInsOo boXOZK"
+          class="sc-euMpXR bXCZqe"
         >
           <div
-            class="sc-euMpXR jdkbqX"
+            class="sc-fHuLdG koYyMA"
           >
             <svg
               fill="currentColor"
@@ -98,11 +98,11 @@ exports[`Should render Dashboard page 1`] = `
           </div>
         </div>
         <div
-          class="sc-hlTvYk kgKVun"
+          class="sc-eLgOdN cFcEdw"
         />
         <div>
           <div
-            class="sc-dtTInj hyETpm"
+            class="sc-dkIXFM bTldLG"
           >
             <div
               class="sc-kstrdz dFPRtk"
@@ -137,10 +137,10 @@ exports[`Should render Dashboard page 1`] = `
             </div>
           </div>
           <div
-            class="sc-dFJsGO ebJdPF"
+            class="sc-bsipQr ecPBV"
           >
             <div
-              class="sc-hTZhsR hRHuRd"
+              class="sc-jgHCyG gLRSQG"
               size="35"
             >
               JD
@@ -151,7 +151,7 @@ exports[`Should render Dashboard page 1`] = `
           </div>
         </div>
         <div
-          class="sc-ctaXAZ hEbGFx"
+          class="sc-dFJsGO ikBbZz"
         >
           <div
             class="sc-kstrdz UlMyM"
@@ -178,10 +178,10 @@ exports[`Should render Dashboard page 1`] = `
       </div>
       <div>
         <div
-          class="sc-GTWni jeeaA"
+          class="sc-gsxnyZ eFqINS"
         />
         <div
-          class="sc-XhUPp bXmHnN"
+          class="sc-ikPAkQ cmnRWh"
         >
           <div>
             Dashboard
@@ -199,24 +199,24 @@ exports[`Should render home page 1`] = `
     style="overflow: hidden; background: rgb(247, 248, 255);"
   >
     <div
-      class="sc-fbNXWD insGGP"
+      class="sc-GTWni gvBRqB"
     >
       <div
-        class="sc-hOqqkJ fltZbZ"
+        class="sc-dtwoBo julQgC"
       >
         <div />
         <div
-          class="sc-dtwoBo fRMJKB"
+          class="sc-dacFzL esOLqy"
         >
           <svg>
             Logo.svg
           </svg>
         </div>
         <div
-          class="sc-jUEnpm jhyWEo"
+          class="sc-jQbIHB iEZFPr"
         >
           <div
-            class="sc-dacFzL iNbmkX"
+            class="sc-jUEnpm ixNVQU"
           >
             Log In
           </div>
@@ -233,10 +233,10 @@ exports[`Should render home page 1`] = `
         </div>
       </div>
       <div
-        class="sc-jQbIHB kXKwjP"
+        class="sc-fvhGYg iyMJYo"
       >
         <div
-          class="sc-fvhGYg kXAMxk"
+          class="sc-fbNXWD jKUrlk"
         >
           <div>
             Free
@@ -257,7 +257,7 @@ exports[`Should render home page 1`] = `
           </button>
         </div>
         <div
-          class="sc-fvhGYg kXAMxk"
+          class="sc-fbNXWD jKUrlk"
         >
           <div>
             Team
@@ -278,7 +278,7 @@ exports[`Should render home page 1`] = `
           </button>
         </div>
         <div
-          class="sc-fvhGYg kXAMxk"
+          class="sc-fbNXWD jKUrlk"
         >
           <div>
             Standard
@@ -299,7 +299,7 @@ exports[`Should render home page 1`] = `
           </button>
         </div>
         <div
-          class="sc-fvhGYg kXAMxk"
+          class="sc-fbNXWD jKUrlk"
         >
           <div>
             Enterprise

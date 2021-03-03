@@ -13,6 +13,7 @@ export const Time = styled.div`
 
 export const HistoryWrapper = styled.div`
   display: flex;
+  align-items: baseline;
 
   & > div:last-child {
     margin-left: ${theme.spacing(0.8)};
