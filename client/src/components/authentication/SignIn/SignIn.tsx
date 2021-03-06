@@ -29,11 +29,11 @@ const SignIn: React.FC<Props> = ({ closeAuthModal }) => {
 
 	if(called && !loading && !error && data.signIn) {
 		localStorage.setItem('auth_token', data.signIn.token)
-
 		dispatch({
 			type: AUTH_SUCCESS,
 			payload: data.signIn
 		})
+
 
 		// todo push to whatever the previous link was
 		// in case of trying to access a specific page

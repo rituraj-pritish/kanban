@@ -8,6 +8,7 @@ type Props = {
 }
 
 const GoogleAuthButton: React.FC<Props> = props => {
+	return null
 	return (
 		<ButtonWrapper>
 			<GoogleLogin

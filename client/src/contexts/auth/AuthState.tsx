@@ -53,6 +53,7 @@ const AuthState: React.FC = ({ children }) => {
 			type: SIGNOUT,
 			payload: null
 		})
+		history.go(0)
 		history.push('/')
 	}
 

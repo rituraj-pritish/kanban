@@ -18,7 +18,6 @@ const server = new ApolloServer({
 		
 		try {
 			auth_token = req.headers['authorization']
-
 			if (auth_token) current_user = await utils.getUserIdFromToken(auth_token)
 		} catch (err) {
 			//todo error handling
