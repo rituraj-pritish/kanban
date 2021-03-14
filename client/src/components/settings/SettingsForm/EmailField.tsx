@@ -29,7 +29,7 @@ const EmailField: React.FC<Props> = ({ isVerified }) => {
 				{isVerified ? 'Verified' : 'Unverified'} 
 				{data && data.sendVerificationEmail 
 					? <EmailSent>Email Sent</EmailSent>
-					: <Button onClick={handleClick} isLoading={loading}>
+					: <Button type='button' onClick={handleClick} isLoading={loading}>
 					Send verification email
 					</Button>}
 			</VerifiedStatus>

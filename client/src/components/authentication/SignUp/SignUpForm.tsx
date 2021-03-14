@@ -23,7 +23,6 @@ const SignUpForm: React.FC<Props> = ({ onSubmit, isLoading }) => {
 			initialValues={{
 				first_name: 'John',
 				last_name: 'Doe',
-				email: 'jd@gmail.com',
 				password: '1234567',
 				confirm_password: '1234567'
 			}}
