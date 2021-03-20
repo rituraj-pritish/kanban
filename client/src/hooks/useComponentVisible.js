@@ -1,10 +1,12 @@
 import { useState, useEffect, useRef } from 'react'
 
-export default initialIsVisible => {
+export default (initialIsVisible, exception) => {
 	const [isComponentVisible, setIsComponentVisible] = useState(initialIsVisible)
 	const ref = useRef(null)
 
 	const handleClickOutside = event => {
+		if (exception?.current?.contains(event.target)) return
+		
 		if (ref.current && !ref.current.contains(event.target)) {
 			setIsComponentVisible(false)
 		}

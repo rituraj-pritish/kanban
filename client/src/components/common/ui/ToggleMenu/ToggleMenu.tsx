@@ -1,10 +1,10 @@
-import React, { ForwardRefRenderFunction, useImperativeHandle } from 'react'
+import React, { ForwardRefRenderFunction, useImperativeHandle, useLayoutEffect, useRef, useState } from 'react'
+import { PopupActions, PopupPosition } from 'reactjs-popup/dist/types'
+import Popup from 'reactjs-popup'
 import { MdMoreHoriz } from 'react-icons/md'
-import { Manager, Reference } from 'react-popper'
 
-import { RootWrapper, Trigger } from './ToggleMenu.styled'
-import MenuPopper from './MenuPopper'
-import useComponentVisible from 'hooks/useComponentVisible'
+import { Menu, Trigger } from './ToggleMenu.styled'
+import POSITIONS from './positions'
 
 type Item = {
 	text: string,
@@ -12,35 +12,45 @@ type Item = {
 }
 
 type Props = {
-	placement?: string,
-	items?: Item[],
+  position?: PopupPosition,
+  items?: Item[],
 	trigger?: React.ReactNode,
 	children?: React.ReactNode
 }
 
 const ToggleMenu: ForwardRefRenderFunction<HTMLDivElement, Props> = ({
-	placement = 'bottom-start',
+	position,
 	items,
 	children,
 	trigger,
 }, forwardedRef) => {
-	const [ref, visible, setVisibility] = useComponentVisible(false)
+	const [menuPosition, setPosition] = useState(POSITIONS.BOTTOM_LEFT)
+	const ref = useRef<PopupActions>(null)
+	const triggerRef = useRef<HTMLDivElement>(null)
+
+	const close = () => {
+		if(ref?.current) {
+			ref.current.close()
+		}
+	}
 
 	const handleClick = (e: React.MouseEvent) => {
 		e.preventDefault()
 		e.stopPropagation()
-		setVisibility(!visible)
+		close()
 	}
 
-	const onBlur = (e: React.FocusEvent) => {
-		const currentTarget = e.currentTarget
-
-		setTimeout(function () {
-			if (!currentTarget.contains(document.activeElement)) {
-				setVisibility(false)
-			}
-		}, 0)
+	const setMenuPosition = () => {
+		setPosition(
+			// @ts-expect-error
+			document.body.offsetWidth - triggerRef?.current?.offsetLeft > 170 
+				? POSITIONS.BOTTOM_LEFT : POSITIONS.BOTTOM_RIGHT)
 	}
+
+	// @ts-expect-error
+	useImperativeHandle(forwardedRef, () => ({
+		closeMenu: close
+	})) 
 
 	const renderMenu = () => {
 		if (children) {
@@ -60,30 +70,27 @@ const ToggleMenu: ForwardRefRenderFunction<HTMLDivElement, Props> = ({
 		}
 	}
 
-	// @ts-expect-error
-	useImperativeHandle(forwardedRef, () => ({
-		closeMenu: () => setVisibility(false)
-	}))
+	useLayoutEffect(() => {
+		setMenuPosition()
+	}, [])
 
 	return (
-		<RootWrapper
-			onBlur={onBlur}
-			onClick={() => setVisibility(false)}
-			ref={ref}
-		>
-			<Manager>
-				<Reference>
-					{({ ref }) => 
-						<Trigger ref={ref} onClick={handleClick}>
-							{trigger || <MdMoreHoriz size={18} />}
-						</Trigger>
-					}
-				</Reference>
-				{visible && 
-          <MenuPopper placement={placement}>{renderMenu()}</MenuPopper>
-				}
-			</Manager>
-		</RootWrapper>
+		<div>
+			<div ref={triggerRef}/>
+			<Popup
+				onOpen={setMenuPosition}
+				ref={ref}
+				closeOnDocumentClick
+				trigger={<Trigger onClick={handleClick}>
+					{trigger || <MdMoreHoriz size={18} />}
+				</Trigger>} 
+				position={menuPosition}
+			>
+				<Menu>
+					{renderMenu()}
+				</Menu>
+			</Popup>
+		</div>
 	)
 }
 

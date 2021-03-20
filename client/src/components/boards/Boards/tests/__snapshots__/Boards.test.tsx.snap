@@ -6,14 +6,14 @@ exports[`Boards 1`] = `
     style="overflow: hidden; background: rgb(247, 248, 255);"
   >
     <div
-      class="sc-XhUPp duMhHY"
+      class="sc-dkIXFM dDhktQ"
     >
       <div
-        class="sc-ctaXAZ bFIspQ"
+        class="sc-eGCarw cLKNwE"
         data-testid="sidebar"
       >
         <div
-          class="sc-dtTInj eDjZQY"
+          class="sc-fHuLdG lmlXfJ"
         >
           <svg>
             Logo.svg
@@ -23,13 +23,13 @@ exports[`Boards 1`] = `
           </div>
         </div>
         <div
-          class="sc-gInsOo kIIyGc"
+          class="sc-bsipQr kUWQFo"
         />
         <div
-          class="sc-euMpXR bXCZqe"
+          class="sc-gInsOo boXOZK"
         >
           <div
-            class="sc-fHuLdG koYyMA"
+            class="sc-euMpXR jdkbqX"
           >
             <svg
               fill="currentColor"
@@ -50,10 +50,10 @@ exports[`Boards 1`] = `
           </div>
         </div>
         <div
-          class="sc-euMpXR bXCZqe"
+          class="sc-gInsOo boXOZK"
         >
           <div
-            class="sc-fHuLdG koYyMA"
+            class="sc-euMpXR jdkbqX"
           >
             <svg
               fill="currentColor"
@@ -74,10 +74,10 @@ exports[`Boards 1`] = `
           </div>
         </div>
         <div
-          class="sc-euMpXR bXCZqe"
+          class="sc-gInsOo boXOZK"
         >
           <div
-            class="sc-fHuLdG koYyMA"
+            class="sc-euMpXR jdkbqX"
           >
             <svg
               fill="currentColor"
@@ -98,14 +98,14 @@ exports[`Boards 1`] = `
           </div>
         </div>
         <div
-          class="sc-eLgOdN cFcEdw"
+          class="sc-hlTvYk kgKVun"
         />
         <div>
           <div
-            class="sc-dkIXFM bTldLG"
+            class="sc-dtTInj hyETpm"
           >
             <div
-              class="sc-kstrdz dFPRtk"
+              class="sc-bqyKva hlVdvS"
             >
               <svg
                 fill="none"
@@ -137,10 +137,10 @@ exports[`Boards 1`] = `
             </div>
           </div>
           <div
-            class="sc-bsipQr ecPBV"
+            class="sc-dFJsGO ebJdPF"
           >
             <div
-              class="sc-jgHCyG gLRSQG"
+              class="sc-hTZhsR hRHuRd"
               size="35"
             >
               JD
@@ -151,10 +151,10 @@ exports[`Boards 1`] = `
           </div>
         </div>
         <div
-          class="sc-dFJsGO ikBbZz"
+          class="sc-ctaXAZ hEbGFx"
         >
           <div
-            class="sc-kstrdz UlMyM"
+            class="sc-bqyKva gdiXOG"
             data-testid="sidebar-trigger"
           >
             <svg
@@ -178,15 +178,15 @@ exports[`Boards 1`] = `
       </div>
       <div>
         <div
-          class="sc-gsxnyZ eFqINS"
+          class="sc-GTWni jeeaA"
         >
           <div
-            class="sc-eGCarw cMfxEA"
+            class="sc-bXDlPE hBioYy"
           >
             <div>
               Boards
               <button
-                class="sc-dQppl jyNfwk"
+                class="sc-crrsfI gVGGjG"
               >
                 <div>
                   New Board
@@ -196,23 +196,23 @@ exports[`Boards 1`] = `
           </div>
         </div>
         <div
-          class="sc-ikPAkQ cmnRWh"
+          class="sc-XhUPp bXmHnN"
         >
           <div
-            class="sc-tYoTV gofDRk"
+            class="sc-ikPAkQ hziFCF"
           >
             <div
-              class="sc-biBrSq cUTJkl"
+              class="sc-tYoTV jKYKQ"
             >
               Board 1
             </div>
             <div
-              class="sc-biBrSq cUTJkl"
+              class="sc-tYoTV jKYKQ"
             >
               Board 2
             </div>
             <div
-              class="sc-biBrSq cUTJkl"
+              class="sc-tYoTV jKYKQ"
             >
               Board 3
             </div>
