@@ -24,9 +24,10 @@ const ToggleMenu: ForwardRefRenderFunction<HTMLDivElement, Props> = ({
 	children,
 	trigger,
 }, forwardedRef) => {
-	const [menuPosition, setPosition] = useState(POSITIONS.BOTTOM_LEFT)
+	const [menuPosition, setPosition] = useState(position || POSITIONS.BOTTOM_LEFT)
 	const ref = useRef<PopupActions>(null)
-	const triggerRef = useRef<HTMLDivElement>(null)
+	const positionRef = useRef<HTMLDivElement>(null)
+	const menuRef = useRef<HTMLDivElement>(null)
 
 	const close = () => {
 		if(ref?.current) {
@@ -41,9 +42,13 @@ const ToggleMenu: ForwardRefRenderFunction<HTMLDivElement, Props> = ({
 	}
 
 	const setMenuPosition = () => {
+		const menuWidth = menuRef?.current?.offsetWidth || 170
+		const screenWidth = document.body.offsetWidth
+		const elLeftOffset = positionRef?.current?.offsetLeft
+		if(!elLeftOffset) return 
+
 		setPosition(
-			// @ts-expect-error
-			document.body.offsetWidth - triggerRef?.current?.offsetLeft > 170 
+			screenWidth - elLeftOffset > menuWidth 
 				? POSITIONS.BOTTOM_LEFT : POSITIONS.BOTTOM_RIGHT)
 	}
 
@@ -76,7 +81,7 @@ const ToggleMenu: ForwardRefRenderFunction<HTMLDivElement, Props> = ({
 
 	return (
 		<div>
-			<div ref={triggerRef}/>
+			<div ref={positionRef}/>
 			<Popup
 				onOpen={setMenuPosition}
 				ref={ref}
@@ -86,7 +91,7 @@ const ToggleMenu: ForwardRefRenderFunction<HTMLDivElement, Props> = ({
 				</Trigger>} 
 				position={menuPosition}
 			>
-				<Menu>
+				<Menu ref={menuRef}>
 					{renderMenu()}
 				</Menu>
 			</Popup>
