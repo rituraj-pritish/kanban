@@ -1,9 +1,9 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 
-import { Plan, RootWrapper } from './Plans.styled'
-import DATA from './data.json'
 import Button from 'components/common/ui/Button'
+import DATA from './data.json'
+import { Plan, Price, RootWrapper, Subtitle, Title } from './Plans.styled'
 
 const Plans: React.FC = () => {
 	const history = useHistory()
@@ -11,9 +11,10 @@ const Plans: React.FC = () => {
 		<RootWrapper>
 			{DATA.map(({ title, text, price, button, link }, idx) => 
 				<Plan key={idx}>
-					<div>{title}</div>
-					<div>{text}</div>
-					<div>${price}</div>
+					<Title>{title}</Title>
+					<hr/>
+					<Subtitle>{text}</Subtitle>
+					{price && <Price>${price}</Price>}
 					<Button onClick={() => history.push(link)}>{button}</Button>
 				</Plan>
 			)}

@@ -6,14 +6,14 @@ exports[`Should render Dashboard page 1`] = `
     style="overflow: hidden; background: rgb(247, 248, 255);"
   >
     <div
-      class="sc-dkIXFM dDhktQ"
+      class="sc-tYoTV hSCmEB"
     >
       <div
-        class="sc-eGCarw cLKNwE"
+        class="sc-bsipQr dqEkru"
         data-testid="sidebar"
       >
         <div
-          class="sc-fHuLdG lmlXfJ"
+          class="sc-XhUPp kQurwE"
         >
           <svg>
             Logo.svg
@@ -23,13 +23,13 @@ exports[`Should render Dashboard page 1`] = `
           </div>
         </div>
         <div
-          class="sc-bsipQr kUWQFo"
+          class="sc-fHuLdG jwzDuf"
         />
         <div
-          class="sc-gInsOo boXOZK"
+          class="sc-dtTInj gFhQwc"
         >
           <div
-            class="sc-euMpXR jdkbqX"
+            class="sc-dkIXFM jQtDBh"
           >
             <svg
               fill="currentColor"
@@ -50,10 +50,10 @@ exports[`Should render Dashboard page 1`] = `
           </div>
         </div>
         <div
-          class="sc-gInsOo boXOZK"
+          class="sc-dtTInj gFhQwc"
         >
           <div
-            class="sc-euMpXR jdkbqX"
+            class="sc-dkIXFM jQtDBh"
           >
             <svg
               fill="currentColor"
@@ -74,10 +74,10 @@ exports[`Should render Dashboard page 1`] = `
           </div>
         </div>
         <div
-          class="sc-gInsOo boXOZK"
+          class="sc-dtTInj gFhQwc"
         >
           <div
-            class="sc-euMpXR jdkbqX"
+            class="sc-dkIXFM jQtDBh"
           >
             <svg
               fill="currentColor"
@@ -102,7 +102,7 @@ exports[`Should render Dashboard page 1`] = `
         />
         <div>
           <div
-            class="sc-dtTInj hyETpm"
+            class="sc-ikPAkQ vEWiO"
           >
             <div
               class="sc-bqyKva hlVdvS"
@@ -137,7 +137,7 @@ exports[`Should render Dashboard page 1`] = `
             </div>
           </div>
           <div
-            class="sc-dFJsGO ebJdPF"
+            class="sc-euMpXR dmOvzt"
           >
             <div
               class="sc-hTZhsR hRHuRd"
@@ -151,7 +151,7 @@ exports[`Should render Dashboard page 1`] = `
           </div>
         </div>
         <div
-          class="sc-ctaXAZ hEbGFx"
+          class="sc-gInsOo fBPOQD"
         >
           <div
             class="sc-bqyKva gdiXOG"
@@ -178,10 +178,10 @@ exports[`Should render Dashboard page 1`] = `
       </div>
       <div>
         <div
-          class="sc-GTWni jeeaA"
+          class="sc-eGCarw fBThFG"
         />
         <div
-          class="sc-XhUPp bXmHnN"
+          class="sc-biBrSq rSPFl"
         >
           <div>
             Dashboard
@@ -199,7 +199,7 @@ exports[`Should render home page 1`] = `
     style="overflow: hidden; background: rgb(247, 248, 255);"
   >
     <div
-      class="sc-fbNXWD insGGP"
+      class="sc-bXDlPE gEAwyp"
     >
       <div
         class="sc-hOqqkJ fltZbZ"
@@ -233,18 +233,25 @@ exports[`Should render home page 1`] = `
         </div>
       </div>
       <div
-        class="sc-jQbIHB kXKwjP"
+        class="sc-jQbIHB dloSnl"
       >
         <div
-          class="sc-fvhGYg kXAMxk"
+          class="sc-fvhGYg gQjUTG"
         >
-          <div>
+          <div
+            class="sc-fbNXWD Quwy"
+          >
             Free
           </div>
-          <div>
-            For small teams
+          <hr />
+          <div
+            class="sc-GTWni liJfqy"
+          >
+            For individuals
           </div>
-          <div>
+          <div
+            class="sc-gsxnyZ PPgva"
+          >
             $
             0
           </div>
@@ -257,15 +264,22 @@ exports[`Should render home page 1`] = `
           </button>
         </div>
         <div
-          class="sc-fvhGYg kXAMxk"
+          class="sc-fvhGYg gQjUTG"
         >
-          <div>
+          <div
+            class="sc-fbNXWD Quwy"
+          >
             Team
           </div>
-          <div>
+          <hr />
+          <div
+            class="sc-GTWni liJfqy"
+          >
             For growing teams
           </div>
-          <div>
+          <div
+            class="sc-gsxnyZ PPgva"
+          >
             $
             6
           </div>
@@ -278,15 +292,22 @@ exports[`Should render home page 1`] = `
           </button>
         </div>
         <div
-          class="sc-fvhGYg kXAMxk"
+          class="sc-fvhGYg gQjUTG"
         >
-          <div>
+          <div
+            class="sc-fbNXWD Quwy"
+          >
             Standard
           </div>
-          <div>
+          <hr />
+          <div
+            class="sc-GTWni liJfqy"
+          >
             For organizations
           </div>
-          <div>
+          <div
+            class="sc-gsxnyZ PPgva"
+          >
             $
             12
           </div>
@@ -295,26 +316,6 @@ exports[`Should render home page 1`] = `
           >
             <div>
               Start Trial
-            </div>
-          </button>
-        </div>
-        <div
-          class="sc-fvhGYg kXAMxk"
-        >
-          <div>
-            Enterprise
-          </div>
-          <div>
-            For enterprises
-          </div>
-          <div>
-            $
-          </div>
-          <button
-            class="sc-crrsfI gVGGjG"
-          >
-            <div>
-              Contact Us
             </div>
           </button>
         </div>

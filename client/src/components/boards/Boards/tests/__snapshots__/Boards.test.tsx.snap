@@ -6,14 +6,14 @@ exports[`Boards 1`] = `
     style="overflow: hidden; background: rgb(247, 248, 255);"
   >
     <div
-      class="sc-dkIXFM dDhktQ"
+      class="sc-tYoTV hSCmEB"
     >
       <div
-        class="sc-eGCarw cLKNwE"
+        class="sc-bsipQr dqEkru"
         data-testid="sidebar"
       >
         <div
-          class="sc-fHuLdG lmlXfJ"
+          class="sc-XhUPp kQurwE"
         >
           <svg>
             Logo.svg
@@ -23,13 +23,13 @@ exports[`Boards 1`] = `
           </div>
         </div>
         <div
-          class="sc-bsipQr kUWQFo"
+          class="sc-fHuLdG jwzDuf"
         />
         <div
-          class="sc-gInsOo boXOZK"
+          class="sc-dtTInj gFhQwc"
         >
           <div
-            class="sc-euMpXR jdkbqX"
+            class="sc-dkIXFM jQtDBh"
           >
             <svg
               fill="currentColor"
@@ -50,10 +50,10 @@ exports[`Boards 1`] = `
           </div>
         </div>
         <div
-          class="sc-gInsOo boXOZK"
+          class="sc-dtTInj gFhQwc"
         >
           <div
-            class="sc-euMpXR jdkbqX"
+            class="sc-dkIXFM jQtDBh"
           >
             <svg
               fill="currentColor"
@@ -74,10 +74,10 @@ exports[`Boards 1`] = `
           </div>
         </div>
         <div
-          class="sc-gInsOo boXOZK"
+          class="sc-dtTInj gFhQwc"
         >
           <div
-            class="sc-euMpXR jdkbqX"
+            class="sc-dkIXFM jQtDBh"
           >
             <svg
               fill="currentColor"
@@ -102,7 +102,7 @@ exports[`Boards 1`] = `
         />
         <div>
           <div
-            class="sc-dtTInj hyETpm"
+            class="sc-ikPAkQ vEWiO"
           >
             <div
               class="sc-bqyKva hlVdvS"
@@ -137,7 +137,7 @@ exports[`Boards 1`] = `
             </div>
           </div>
           <div
-            class="sc-dFJsGO ebJdPF"
+            class="sc-euMpXR dmOvzt"
           >
             <div
               class="sc-hTZhsR hRHuRd"
@@ -151,7 +151,7 @@ exports[`Boards 1`] = `
           </div>
         </div>
         <div
-          class="sc-ctaXAZ hEbGFx"
+          class="sc-gInsOo fBPOQD"
         >
           <div
             class="sc-bqyKva gdiXOG"
@@ -178,10 +178,10 @@ exports[`Boards 1`] = `
       </div>
       <div>
         <div
-          class="sc-GTWni jeeaA"
+          class="sc-eGCarw fBThFG"
         >
           <div
-            class="sc-bXDlPE hBioYy"
+            class="sc-dFJsGO jMAqcS"
           >
             <div>
               Boards
@@ -196,23 +196,23 @@ exports[`Boards 1`] = `
           </div>
         </div>
         <div
-          class="sc-XhUPp bXmHnN"
+          class="sc-biBrSq rSPFl"
         >
           <div
-            class="sc-ikPAkQ hziFCF"
+            class="sc-eHfQar hoSQxt"
           >
             <div
-              class="sc-tYoTV jKYKQ"
+              class="sc-hzMMCg jcuAVa"
             >
               Board 1
             </div>
             <div
-              class="sc-tYoTV jKYKQ"
+              class="sc-hzMMCg jcuAVa"
             >
               Board 2
             </div>
             <div
-              class="sc-tYoTV jKYKQ"
+              class="sc-hzMMCg jcuAVa"
             >
               Board 3
             </div>

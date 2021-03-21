@@ -11,15 +11,15 @@ type VerifiedStatus = {
 }
 
 export const VerifiedStatus = styled.div<VerifiedStatus>`
-  color: ${({ isVerified }) => isVerified ? 'green' : '#E3B342'};
+  color: ${({ isVerified }) => isVerified ? '#66c666' : '#E3B342'};
   display: flex;
   justify-content: space-between;
   align-items: center;
 `
 
 export const EmailSent = styled.div`
-  background: green;
+  background: #66c666;
   border-radius: ${theme.borderRadius};
   padding: ${theme.spacing(0.5)};
-  color: black;
+  color: white;
 `
